@@ -1,0 +1,42 @@
+:root {
+    --body-bg:#398AB9;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #1C658C;
+  }
+  
+  .topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #D8D2CB;
+    color: white;
+  }
+
+body {
+    background-color: var(--body-bg);
+    margin: 0 auto;
+}
+
+#login {
+    width: 1000px;
+    height: 600px;
+    background-color: #1C658C;
+    margin-top: 150px;
+    color: #EEEEEE;
+    margin-left: 150px;
+}
+
