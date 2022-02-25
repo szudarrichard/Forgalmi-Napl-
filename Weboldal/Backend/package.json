@@ -1,0 +1,31 @@
+{
+  "name": "forgalminaplo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ricsko/Forgalmi-Napl-.git"
+  },
+  "author": "SZR KKG LA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ricsko/Forgalmi-Napl-/issues"
+  },
+  "homepage": "https://github.com/Ricsko/Forgalmi-Napl-#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7"
+  }
+}
