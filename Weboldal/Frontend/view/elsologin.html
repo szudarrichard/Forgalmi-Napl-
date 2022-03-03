@@ -14,10 +14,15 @@
     <div id="login">
         
         <h5>Ön először lépett be a Forgalmi Napló rendszerébe, kérjük adja meg új jelszavát</h5>
-        <label for="email">Jelszó:</label>
-        <input type="text" id="email" name="email"><br><br>
-        <label for="jelszo">Jelszó megerősítése:</label>
-        <input type="text" id="jelszo" name="jelszo"><br><br>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="">
+            <label for="floatingInput">Jelszó</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="">
+            <label for="floatingPassword">Jelszó megerősítése</label>
+          </div>
+          <br>
         <input type="button" value="Bejelentkezés">
     </div>
 </body>
