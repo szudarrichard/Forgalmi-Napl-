@@ -1,0 +1,33 @@
+body {
+    background-color: #398AB9;
+}
+
+.nav {
+    overflow: hidden;
+    background-color: #1C658C;
+  }
+
+  .nav li a {
+    float: right;
+    color: #f2f2f2;
+    padding: 30px 20px;
+    text-align: right;
+    text-decoration: none;
+    font-size: 25px;
+    top: 0;
+  }
+
+  .nav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .nav a.active {
+    background-color: #D8D2CB;
+    color: white;
+  }
+
+  .logo {
+      width: 100px;
+      height: 100px;
+  }
