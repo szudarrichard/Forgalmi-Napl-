@@ -37,3 +37,24 @@ body {
    bottom:0;
    width:100%;
   }
+
+  #login {
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 250px;
+    background-color: #1C658C;
+    margin-top: 300px;
+    color: #EEEEEE; 
+    padding: 10px;
+}
+
+.loginlogo {
+  width: 250px;
+  height: 250px;
+  position: fixed;
+  top: 18%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
