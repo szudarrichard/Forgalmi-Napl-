@@ -43,11 +43,16 @@ body {
     justify-content: center;
     align-items: center;
     width: 500px;
-    height: 250px;
+    height: 280px;
     background-color: #1C658C;
     margin-top: 300px;
-    color: #EEEEEE; 
+    color: #ffffff; 
     padding: 10px;
+}
+
+#login .form-floating
+{
+  color: #000000; 
 }
 
 .loginlogo {
