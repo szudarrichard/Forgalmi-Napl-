@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Feb 17. 13:41
+-- Létrehozás ideje: 2022. Már 03. 12:59
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.11
 
@@ -34,6 +34,7 @@ CREATE TABLE `admin` (
   `telSzam` text COLLATE utf8mb4_hungarian_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `status` tinyint(4) NOT NULL,
+  `jog` tinyint(4) NOT NULL,
   `iskolaID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
@@ -63,6 +64,7 @@ CREATE TABLE `diak` (
   `telSzam` text COLLATE utf8mb4_hungarian_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `status` tinyint(4) NOT NULL,
+  `jog` tinyint(4) NOT NULL,
   `tanarID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
@@ -104,6 +106,7 @@ CREATE TABLE `tanar` (
   `telSzam` text COLLATE utf8mb4_hungarian_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `status` tinyint(4) NOT NULL,
+  `jog` tinyint(4) NOT NULL,
   `iskolaID` int(11) NOT NULL,
   `orastatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
