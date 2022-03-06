@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="hu" ng-app="forgalminaplo">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--CSS-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!--Javascript-->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/angular.min.js"></script>
+
+
+
+    <script src="../js/angular-route.min.js"></script>
+    <script src="../js/angular-animate.min.js"></script>
+    <script src="../js/sha1.js"></script>
+    <script src="../js/fullcalendar.js"></script>
+    <script src="../js/locales-all.min.js"></script>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/factory.js"></script>
+
+    <!--Controllers-->
+    <script src="../js/controllers/loginCtrl.js"></script>
+
+    <title>{{title}}</title>
+</head>
+<body>
+    <header ng-if="loggedIn">
+        <ul class="nav nav-pills justify-content-end">
+            <img src="../img/LOGOarnyek.png" alt="Logó" class="logo">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Naptár</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tanárom elérhetőségei</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Beállítások</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Kijelentkezés</a>
+            </li>
+          </ul>
+    </header>
+
+    <main class="container" ng-view>
+
+    </main>
+
+    <footer class="bg-white">
+        <div class="bg-light py-4">
+          <div class="container text-center">
+            <p class="text-muted mb-0 py-2">Forgalmi Napló</p>
+          </div>
+        </div>
+      </footer>
+</body>
+</html>
