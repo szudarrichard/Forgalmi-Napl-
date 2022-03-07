@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Már 03. 12:59
+-- Létrehozás ideje: 2022. Már 07. 13:46
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.11
 
@@ -30,13 +30,20 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `ID` int(11) NOT NULL,
   `felhNev` text COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `jelszo` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `jelszo` varchar(40) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `telSzam` text COLLATE utf8mb4_hungarian_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `status` tinyint(4) NOT NULL,
   `jog` tinyint(4) NOT NULL,
   `iskolaID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `admin`
+--
+
+INSERT INTO `admin` (`ID`, `felhNev`, `jelszo`, `telSzam`, `email`, `status`, `jog`, `iskolaID`) VALUES
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', '06301111111', 'admin@admin.hu', 1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -60,7 +67,7 @@ CREATE TABLE `auto` (
 CREATE TABLE `diak` (
   `ID` int(11) NOT NULL,
   `felhNev` text COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `jelszo` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `jelszo` varchar(40) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `telSzam` text COLLATE utf8mb4_hungarian_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `status` tinyint(4) NOT NULL,
@@ -78,6 +85,13 @@ CREATE TABLE `iskola` (
   `ID` int(11) NOT NULL,
   `iskolaNev` text COLLATE utf8mb4_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `iskola`
+--
+
+INSERT INTO `iskola` (`ID`, `iskolaNev`) VALUES
+(1, 'Teszt Iskola');
 
 -- --------------------------------------------------------
 
@@ -102,7 +116,7 @@ CREATE TABLE `ora` (
 CREATE TABLE `tanar` (
   `ID` int(11) NOT NULL,
   `felhNev` text COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `jelszo` varchar(30) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `jelszo` varchar(40) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `telSzam` text COLLATE utf8mb4_hungarian_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `status` tinyint(4) NOT NULL,
@@ -169,7 +183,7 @@ ALTER TABLE `tanar`
 -- AUTO_INCREMENT a táblához `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `auto`
@@ -187,7 +201,7 @@ ALTER TABLE `diak`
 -- AUTO_INCREMENT a táblához `iskola`
 --
 ALTER TABLE `iskola`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT a táblához `ora`
