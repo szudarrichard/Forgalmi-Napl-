@@ -28,7 +28,7 @@
         <title>{{title}}</title>
     </head>
     <body>
-        <header ng-if="loggedIn">
+        <header ng-if="loggedIn" ng-controller="loginCtrl">
             <ul class="nav nav-pills justify-content-end">
                 <img src="../img/LOGOarnyek.png" alt="Logó" class="logo" />
                 <li class="nav-item">
@@ -41,7 +41,7 @@
                     <a class="nav-link" href="#">Beállítások</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled">Kijelentkezés</a>
+                    <a class="nav-link" ng-click="logout()">Kijelentkezés</a>
                 </li>
             </ul>
         </header>
