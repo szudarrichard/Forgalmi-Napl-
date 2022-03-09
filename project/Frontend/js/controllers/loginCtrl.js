@@ -4,14 +4,28 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
             alert('Nem adtál meg minden belépési adatot!');
         } else {
             factory.logincheck('admin', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
-                console.log(CryptoJS.SHA1($scope.uPassword).toString());
-
                 if (res.data.length > 0) {
                     $rootScope.loggedIn = true;
                     $rootScope.loggedUser = $scope.uMail;
                     sessionStorage.setItem('forgalminaploUser', angular.toJson($scope.uMail));
                 } else {
-                    alert('Hibás belépési adatok!');
+                    factory.logincheck('tanar', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
+                        if (res.data.length > 0) {
+                            $rootScope.loggedIn = true;
+                            $rootScope.loggedUser = $scope.uMail;
+                            sessionStorage.setItem('forgalminaploUser', angular.toJson($scope.uMail));
+                        } else {
+                            factory.logincheck('diak', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
+                                if (res.data.length > 0) {
+                                    $rootScope.loggedIn = true;
+                                    $rootScope.loggedUser = $scope.uMail;
+                                    sessionStorage.setItem('forgalminaploUser', angular.toJson($scope.uMail));
+                                } else {
+                                    alert('Hibás belépési adatok!');
+                                }
+                            });
+                        }
+                    });
                 }
             });
         }
