@@ -63,3 +63,16 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@media screen and (max-width: 800px) {
+  .nav-item {
+    width: 100%;  
+  }
+  .nav li a
+  {
+    float: left;
+  }
+.login {
+  float: left;
+}
+}
