@@ -11,7 +11,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                     sessionStorage.setItem('user', angular.toJson($scope.uMail));
                     sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
                 } else {
-                    factory.logincheck('tanar', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
+                    factory.logincheck('teacher', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                         if (res.data.length > 0) {
                             $rootScope.loggedIn = true;
                             $rootScope.loggedUser = $scope.uMail;
@@ -19,7 +19,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                             sessionStorage.setItem('user', angular.toJson($scope.uMail));
                             sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
                         } else {
-                            factory.logincheck('diak', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
+                            factory.logincheck('student', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                                 if (res.data.length > 0) {
                                     $rootScope.loggedIn = true;
                                     $rootScope.loggedUser = $scope.uMail;
