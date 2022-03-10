@@ -7,19 +7,25 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                 if (res.data.length > 0) {
                     $rootScope.loggedIn = true;
                     $rootScope.loggedUser = $scope.uMail;
-                    sessionStorage.setItem('forgalminaploUser', angular.toJson($scope.uMail));
+                    $rootScope.loggedPermission = res.data[0].permission;
+                    sessionStorage.setItem('user', angular.toJson($scope.uMail));
+                    sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
                 } else {
                     factory.logincheck('tanar', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                         if (res.data.length > 0) {
                             $rootScope.loggedIn = true;
                             $rootScope.loggedUser = $scope.uMail;
-                            sessionStorage.setItem('forgalminaploUser', angular.toJson($scope.uMail));
+                            $rootScope.loggedPermission = res.data[0].permission;
+                            sessionStorage.setItem('user', angular.toJson($scope.uMail));
+                            sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
                         } else {
                             factory.logincheck('diak', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                                 if (res.data.length > 0) {
                                     $rootScope.loggedIn = true;
                                     $rootScope.loggedUser = $scope.uMail;
-                                    sessionStorage.setItem('forgalminaploUser', angular.toJson($scope.uMail));
+                                    $rootScope.loggedPermission = res.data[0].permission;
+                                    sessionStorage.setItem('user', angular.toJson($scope.uMail));
+                                    sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
                                 } else {
                                     alert('Hibás belépési adatok!');
                                 }
@@ -32,8 +38,10 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
     };
 
     $scope.logout = function () {
-        sessionStorage.removeItem('forgalminaploUser');
+        sessionStorage.removeItem('user');
+        sessionStorage.removeItem('permission');
         $rootScope.loggedUser = '';
+        $rootScope.loggedPermission = '';
         $rootScope.loggedIn = false;
         $location.path('#!/');
     };
