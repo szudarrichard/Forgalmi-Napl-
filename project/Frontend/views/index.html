@@ -24,6 +24,8 @@
 
         <!--Controllers-->
         <script src="../js/controllers/loginCtrl.js"></script>
+        <script src="../js/controllers/teacherCtrl.js"></script>
+        <script src="../js/controllers/studentsCtrl.js"></script>
 
         <title>{{title}}</title>
     </head>
@@ -38,6 +40,12 @@
                     <a class="nav-link" href="#">Tanárom elérhetőségei</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#!/teacherlist">Tanárok kezelése</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#!/studentslist">Diákok kezelése</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">Beállítások</a>
                 </li>
                 <li class="nav-item">
@@ -45,7 +53,6 @@
                 </li>
             </ul>
         </header>
-
         <main class="container" ng-view></main>
 
         <footer class="bg-white">
