@@ -1,15 +1,17 @@
-<img src="../img/LOGOarnyek.png" alt="Logó" class="loginlogo" />
-<div id="login">
-    <h1>Bejelentkezés</h1>
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="" name="email" ng-model="uMail" />
-        <label for="floatingInput">E-mail cím</label>
-    </div>
+<div ng-if="loggedIn == false" ng-controller="loginCtrl">
+    <img src="../img/LOGOarnyek.png" alt="Logó" class="loginlogo" />
+    <div id="login">
+        <h1>Bejelentkezés</h1>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="" name="email" ng-model="uMail" />
+            <label for="floatingInput">E-mail cím</label>
+        </div>
 
-    <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="" name="passwrd" ng-model="uPassword" />
-        <label for="floatingPassword">Jelszó</label>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="" name="passwrd" ng-model="uPassword" />
+            <label for="floatingPassword">Jelszó</label>
+        </div>
+        <br />
+        <input type="button" class="btn btn-sm btn-success" value="Bejelentkezés" ng-click="login()" />
     </div>
-    <br />
-    <input type="button" class="btn btn-sm btn-success" value="Bejelentkezés" ng-click="login()" />
 </div>

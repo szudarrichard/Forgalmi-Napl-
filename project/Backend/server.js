@@ -101,9 +101,6 @@ app.delete('/:table/:id', (req, res) => {
     let table = req.params.table;
     let id = req.params.id;
     pool.query(`DELETE FROM ${table} WHERE ID=${id}`, (err, results) => {
-        if (err) throw err;
-        res.json(results);
-    });
 });
 
 app.listen(port, () => {

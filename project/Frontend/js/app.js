@@ -9,10 +9,12 @@ app.run(function ($rootScope, $locale) {
 
     if (sessionStorage.getItem('forgalminaploUser')) {
         $rootScope.loggedIn = true;
-        $rootScope.loggedUser = angular.fromJson(sessionStorage.getItem('forgalminaploUser'));
+        $rootScope.loggedUser = angular.fromJson(sessionStorage.getItem('user'));
+        $rootScope.loggedPermission = angular.fromJson(sessionStorage.getItem('permission'));
     } else {
         $rootScope.loggedIn = false;
         $rootScope.loggedUser = '';
+        $rootScope.loggedPermission = '';
     }
 });
 
