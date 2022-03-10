@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Már 07. 13:46
+-- Létrehozás ideje: 2022. Már 10. 13:23
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.11
 
@@ -29,101 +29,115 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `ID` int(11) NOT NULL,
-  `felhNev` text COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `jelszo` varchar(40) COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `telSzam` text COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `userName` text COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `password` varchar(40) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `phoneNum` text COLLATE utf8mb4_hungarian_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `jog` tinyint(4) NOT NULL,
-  `iskolaID` int(11) NOT NULL
+  `permission` tinyint(4) NOT NULL,
+  `schoolID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `admin`
 --
 
-INSERT INTO `admin` (`ID`, `felhNev`, `jelszo`, `telSzam`, `email`, `status`, `jog`, `iskolaID`) VALUES
+INSERT INTO `admin` (`ID`, `userName`, `password`, `phoneNum`, `email`, `status`, `permission`, `schoolID`) VALUES
 (1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', '06301111111', 'admin@admin.hu', 1, 3, 1);
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `auto`
+-- Tábla szerkezet ehhez a táblához `car`
 --
 
-CREATE TABLE `auto` (
+CREATE TABLE `car` (
   `ID` int(11) NOT NULL,
-  `tanarID` int(30) NOT NULL,
-  `rendszam` varchar(10) COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `osszKM` int(11) NOT NULL
+  `teacherID` int(30) NOT NULL,
+  `plateNum` varchar(10) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `sumKM` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `diak`
+-- Tábla szerkezet ehhez a táblához `clock`
 --
 
-CREATE TABLE `diak` (
+CREATE TABLE `clock` (
   `ID` int(11) NOT NULL,
-  `felhNev` text COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `jelszo` varchar(40) COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `telSzam` text COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `studentID` int(11) NOT NULL,
+  `startKM` int(11) NOT NULL,
+  `endKM` int(11) NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `school`
+--
+
+CREATE TABLE `school` (
+  `ID` int(11) NOT NULL,
+  `schoolName` text COLLATE utf8mb4_hungarian_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `school`
+--
+
+INSERT INTO `school` (`ID`, `schoolName`) VALUES
+(1, 'Teszt school');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `student`
+--
+
+CREATE TABLE `student` (
+  `ID` int(11) NOT NULL,
+  `userName` text COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `password` varchar(40) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `phoneNum` text COLLATE utf8mb4_hungarian_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `jog` tinyint(4) NOT NULL,
-  `tanarID` int(11) NOT NULL
+  `permission` tinyint(4) NOT NULL,
+  `teacherID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `student`
+--
+
+INSERT INTO `student` (`ID`, `userName`, `password`, `phoneNum`, `email`, `status`, `permission`, `teacherID`) VALUES
+(1, 'teszt1diak', 'cdfac85df641c02fd0e491df0a97ea456fe4e945', '0632222222', 'teszt1diak@teszt.hu', 1, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `iskola`
+-- Tábla szerkezet ehhez a táblához `teacher`
 --
 
-CREATE TABLE `iskola` (
+CREATE TABLE `teacher` (
   `ID` int(11) NOT NULL,
-  `iskolaNev` text COLLATE utf8mb4_hungarian_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
-
---
--- A tábla adatainak kiíratása `iskola`
---
-
-INSERT INTO `iskola` (`ID`, `iskolaNev`) VALUES
-(1, 'Teszt Iskola');
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `ora`
---
-
-CREATE TABLE `ora` (
-  `ID` int(11) NOT NULL,
-  `diakID` int(11) NOT NULL,
-  `kezdoKM` int(11) NOT NULL,
-  `vegsoKM` int(11) NOT NULL,
-  `datum` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `tanar`
---
-
-CREATE TABLE `tanar` (
-  `ID` int(11) NOT NULL,
-  `felhNev` text COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `jelszo` varchar(40) COLLATE utf8mb4_hungarian_ci NOT NULL,
-  `telSzam` text COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `userName` text COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `password` varchar(40) COLLATE utf8mb4_hungarian_ci NOT NULL,
+  `phoneNum` text COLLATE utf8mb4_hungarian_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_hungarian_ci NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `jog` tinyint(4) NOT NULL,
-  `iskolaID` int(11) NOT NULL,
-  `orastatus` int(11) NOT NULL
+  `permission` tinyint(4) NOT NULL,
+  `schoolID` int(11) NOT NULL,
+  `clockStatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `teacher`
+--
+
+INSERT INTO `teacher` (`ID`, `userName`, `password`, `phoneNum`, `email`, `status`, `permission`, `schoolID`, `clockStatus`) VALUES
+(1, 'teszt1tanar', '4b8c890edd1a93d9e4f63fb160d6c223b722f41f', '06301111117', 'teszt1tanar@teszt.hu', 1, 2, 1, 1);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -134,46 +148,46 @@ CREATE TABLE `tanar` (
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `ID` (`ID`,`iskolaID`),
-  ADD KEY `iskolaID` (`iskolaID`);
+  ADD KEY `ID` (`ID`,`schoolID`),
+  ADD KEY `schoolID` (`schoolID`);
 
 --
--- A tábla indexei `auto`
+-- A tábla indexei `car`
 --
-ALTER TABLE `auto`
+ALTER TABLE `car`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `ID` (`ID`,`tanarID`),
-  ADD KEY `tanarID` (`tanarID`);
+  ADD KEY `ID` (`ID`,`teacherID`),
+  ADD KEY `teacherID` (`teacherID`);
 
 --
--- A tábla indexei `diak`
+-- A tábla indexei `clock`
 --
-ALTER TABLE `diak`
+ALTER TABLE `clock`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `ID` (`ID`,`tanarID`),
-  ADD KEY `tanarID` (`tanarID`);
+  ADD KEY `ID` (`ID`,`studentID`),
+  ADD KEY `studentID` (`studentID`);
 
 --
--- A tábla indexei `iskola`
+-- A tábla indexei `school`
 --
-ALTER TABLE `iskola`
+ALTER TABLE `school`
   ADD PRIMARY KEY (`ID`);
 
 --
--- A tábla indexei `ora`
+-- A tábla indexei `student`
 --
-ALTER TABLE `ora`
+ALTER TABLE `student`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `ID` (`ID`,`diakID`),
-  ADD KEY `diakID` (`diakID`);
+  ADD KEY `ID` (`ID`,`teacherID`),
+  ADD KEY `teacherID` (`teacherID`);
 
 --
--- A tábla indexei `tanar`
+-- A tábla indexei `teacher`
 --
-ALTER TABLE `tanar`
+ALTER TABLE `teacher`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `ID` (`ID`,`iskolaID`),
-  ADD KEY `iskolaID` (`iskolaID`);
+  ADD KEY `ID` (`ID`,`schoolID`),
+  ADD KEY `schoolID` (`schoolID`);
 
 --
 -- A kiírt táblák AUTO_INCREMENT értéke
@@ -186,34 +200,34 @@ ALTER TABLE `admin`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT a táblához `auto`
+-- AUTO_INCREMENT a táblához `car`
 --
-ALTER TABLE `auto`
+ALTER TABLE `car`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT a táblához `diak`
+-- AUTO_INCREMENT a táblához `clock`
 --
-ALTER TABLE `diak`
+ALTER TABLE `clock`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT a táblához `iskola`
+-- AUTO_INCREMENT a táblához `school`
 --
-ALTER TABLE `iskola`
+ALTER TABLE `school`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT a táblához `ora`
+-- AUTO_INCREMENT a táblához `student`
 --
-ALTER TABLE `ora`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `student`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT a táblához `tanar`
+-- AUTO_INCREMENT a táblához `teacher`
 --
-ALTER TABLE `tanar`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `teacher`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Megkötések a kiírt táblákhoz
@@ -223,31 +237,31 @@ ALTER TABLE `tanar`
 -- Megkötések a táblához `admin`
 --
 ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`iskolaID`) REFERENCES `iskola` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`schoolID`) REFERENCES `school` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Megkötések a táblához `auto`
+-- Megkötések a táblához `car`
 --
-ALTER TABLE `auto`
-  ADD CONSTRAINT `auto_ibfk_1` FOREIGN KEY (`tanarID`) REFERENCES `tanar` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `car`
+  ADD CONSTRAINT `AUTO_ibfk_1` FOREIGN KEY (`teacherID`) REFERENCES `teacher` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Megkötések a táblához `diak`
+-- Megkötések a táblához `clock`
 --
-ALTER TABLE `diak`
-  ADD CONSTRAINT `diak_ibfk_2` FOREIGN KEY (`tanarID`) REFERENCES `tanar` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `clock`
+  ADD CONSTRAINT `clock_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `student` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Megkötések a táblához `ora`
+-- Megkötések a táblához `student`
 --
-ALTER TABLE `ora`
-  ADD CONSTRAINT `ora_ibfk_1` FOREIGN KEY (`diakID`) REFERENCES `diak` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `student`
+  ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`teacherID`) REFERENCES `teacher` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Megkötések a táblához `tanar`
+-- Megkötések a táblához `teacher`
 --
-ALTER TABLE `tanar`
-  ADD CONSTRAINT `tanar_ibfk_1` FOREIGN KEY (`iskolaID`) REFERENCES `iskola` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `teacher`
+  ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`schoolID`) REFERENCES `school` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
