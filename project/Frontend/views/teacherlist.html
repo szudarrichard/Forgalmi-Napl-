@@ -1,7 +1,7 @@
 <h3>Tanárok kezelése</h3>
 <hr>
 <div ng-controller="teacherCtrl">
-   <!--<div ng-include="'modal.html'"></div> -->
+   <div ng-include="'teacherModal.html'"></div> 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="addTeacher()">
         Új tanár felvétele
@@ -11,7 +11,6 @@
             <tr>
                 <th>Sorszám</th>
                 <th>Tanár neve</th>
-                <th>Tanár jelszava</th>
                 <th>Tanár telefonszáma</th>
                 <th>Tanár email-címe</th>
                 <th class="text-end">Műveletek</th>
@@ -20,9 +19,8 @@
         <tbody>
             <tr ng-repeat="teacher in teachers">
                 <td>{{$index+1}}</td>
-                <td>{{teacher.nev}}</td>
-                <td>{{teacher.jelszo}}</td>
-                <td>{{teacher.telSzam}}</td>
+                <td>{{teacher.userName}}</td>
+                <td>{{teacher.phoneNum}}</td>
                 <td>{{teacher.email}}</td>
                 <td class="text-end">
                     <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="modTeacher(teacher.ID)">
@@ -36,7 +34,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="6">Összesen: {{teacher.length}} tanár</td>
+                <td colspan="6">Összesen: {{teachers.length}} tanár</td>
             </tr>
         </tfoot>
     </table>
