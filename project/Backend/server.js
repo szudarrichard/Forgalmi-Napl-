@@ -22,7 +22,7 @@ app.post('/login', (req, res) => {
         table: req.body.table,
     };
 
-    pool.query(`SELECT * FROM ${data.table} WHERE email='${data.email}' AND jelszo='${data.pass}'`, (err, results) => {
+    pool.query(`SELECT * FROM ${data.table} WHERE email='${data.email}' AND password='${data.pass}'`, (err, results) => {
         if (err) throw err;
         res.json(results);
         console.log(results);
