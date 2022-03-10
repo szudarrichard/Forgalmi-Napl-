@@ -64,15 +64,18 @@ body {
   transform: translate(-50%, -50%);
 }
 
-@media screen and (max-width: 800px) {
-  .nav-item {
-    width: 100%;  
-  }
-  .nav li a
-  {
-    float: left;
-  }
-.login {
-  float: left;
+a.nav-link {
+    color: white;
+    text-decoration: none;
 }
+
+.navbar-toggler {
+  border-color: rgb(255, 255, 255);
+  outline-style: none;
+} 
+
+button .navbar {
+  size: 40px;
 }
+
+
