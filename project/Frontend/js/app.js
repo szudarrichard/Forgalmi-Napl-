@@ -13,7 +13,7 @@ app.run(function ($rootScope, $locale) {
         $rootScope.loggedUserMail = angular.fromJson(sessionStorage.getItem('email'));
         $rootScope.loggedPermission = angular.fromJson(sessionStorage.getItem('permission'));
         $rootScope.loggedSchoolID = angular.fromJson(sessionStorage.getItem('schoolID'));
-        $rootScope.studentTeacherID = angular.fromJson(sessionStorage.getItem('teacgerID'));
+        $rootScope.studentTeacherID = angular.fromJson(sessionStorage.getItem('teacherID'));
     } else {
         $rootScope.loggedIn = false;
         $rootScope.loggedUser = '';
