@@ -10,11 +10,17 @@ app.run(function ($rootScope, $locale) {
     if (sessionStorage.getItem('forgalminaploUser')) {
         $rootScope.loggedIn = true;
         $rootScope.loggedUser = angular.fromJson(sessionStorage.getItem('user'));
+        $rootScope.loggedUserMail = angular.fromJson(sessionStorage.getItem('email'));
         $rootScope.loggedPermission = angular.fromJson(sessionStorage.getItem('permission'));
+        $rootScope.loggedSchoolID = angular.fromJson(sessionStorage.getItem('schoolID'));
+        $rootScope.studentTeacherID = angular.fromJson(sessionStorage.getItem('teacgerID'));
     } else {
         $rootScope.loggedIn = false;
         $rootScope.loggedUser = '';
+        $rootScope.loggedUserMail = '';
         $rootScope.loggedPermission = '';
+        $rootScope.loggedSchoolID = '';
+        $rootScope.studentTeacherID = '';
     }
 });
 
