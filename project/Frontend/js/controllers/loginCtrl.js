@@ -7,19 +7,31 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                 if (res.data.length > 0) {
                     $rootScope.loggedIn = true;
                     $rootScope.loggedUser = $scope.uMail;
-                    sessionStorage.setItem('forgalminaploUser', angular.toJson($scope.uMail));
+                    $rootScope.loggedPermission = res.data[0].permission;
+                    sessionStorage.setItem('user', angular.toJson(res.data[0].userName));
+                    sessionStorage.setItem('email', angular.toJson($scope.uMail));
+                    sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
+                    sessionStorage.setItem('schoolID', angular.toJson(res.data[0].schoolID));
                 } else {
-                    factory.logincheck('tanar', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
+                    factory.logincheck('teacher', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                         if (res.data.length > 0) {
                             $rootScope.loggedIn = true;
                             $rootScope.loggedUser = $scope.uMail;
-                            sessionStorage.setItem('forgalminaploUser', angular.toJson($scope.uMail));
+                            $rootScope.loggedPermission = res.data[0].permission;
+                            sessionStorage.setItem('user', angular.toJson(res.data[0].userName));
+                            sessionStorage.setItem('email', angular.toJson($scope.uMail));
+                            sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
+                            sessionStorage.setItem('schoolID', angular.toJson(res.data[0].schoolID));
                         } else {
-                            factory.logincheck('diak', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
+                            factory.logincheck('student', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                                 if (res.data.length > 0) {
                                     $rootScope.loggedIn = true;
                                     $rootScope.loggedUser = $scope.uMail;
-                                    sessionStorage.setItem('forgalminaploUser', angular.toJson($scope.uMail));
+                                    $rootScope.loggedPermission = res.data[0].permission;
+                                    sessionStorage.setItem('user', angular.toJson(res.data[0].userName));
+                                    sessionStorage.setItem('email', angular.toJson($scope.uMail));
+                                    sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
+                                    sessionStorage.setItem('teacherID', angular.toJson(res.data[0].teacherID));
                                 } else {
                                     alert('Hibás belépési adatok!');
                                 }
@@ -32,8 +44,11 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
     };
 
     $scope.logout = function () {
-        sessionStorage.removeItem('forgalminaploUser');
-        $rootScope.loggedUser = '';
+        sessionStorage.removeItem('user');
+        sessionStorage.removeItem('email');
+        sessionStorage.removeItem('permission');
+        sessionStorage.removeItem('schoolID');
+        sessionStorage.removeItem('teacherID');
         $rootScope.loggedIn = false;
         $location.path('#!/');
     };
