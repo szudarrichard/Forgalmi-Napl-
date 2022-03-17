@@ -8,6 +8,7 @@ app.run(function ($rootScope, $locale) {
     $rootScope.author = 'KKG SZR LA';
 
     if (sessionStorage.getItem('forgalminaploUser')) {
+        //SessionStorage
         $rootScope.loggedIn = true;
         $rootScope.loggedUser = angular.fromJson(sessionStorage.getItem('user'));
         $rootScope.loggedUserMail = angular.fromJson(sessionStorage.getItem('email'));

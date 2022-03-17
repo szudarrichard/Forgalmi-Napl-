@@ -10,7 +10,7 @@ app.controller('teacherCtrl', function ($scope, $rootScope, factory) {
     });
 
     $scope.addTeacher = function () {
-        $scope.teacher = {};
+        $scope.teacher = { schoolID: angular.fromJson(sessionStorage.getItem('schoolID')), permission: '2', clockStatus: '1', status: '1' };
         $scope.modaltitle = 'Új tanár felvétele';
         $scope.modalBtn = 'Felvesz';
         $scope.modalType = 'success';
@@ -38,12 +38,6 @@ app.controller('teacherCtrl', function ($scope, $rootScope, factory) {
     };
 
     $scope.submit = function () {
-        //TODO theacher push id
-        $scope.schoolID = { schoolID: angular.fromJson(sessionStorage.getItem('schoolID')) };
-        //push nem működik ebben a formában
-        $scope.teacher.push($scope.schoolID);
-        console.log($scope.teacher);
-        console.log($scope.schoolID);
         // insert
         if ($scope.mode == 1) {
             if ($scope.teacher.userName == null || $scope.teacher.email == null || $scope.teacher.phoneNum == null) {
