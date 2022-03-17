@@ -8,8 +8,7 @@
         <!--CSS-->
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
         <link rel="stylesheet" href="../css/style.css" />
-        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-
+        <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
 
         <!--Javascript-->
         <script src="../js/bootstrap.min.js"></script>
@@ -33,32 +32,42 @@
     </head>
     <body>
         <header ng-if="loggedIn" ng-controller="loginCtrl">
-            <nav class="navbar navbar-expand-lg" style="background-color: #1C658C;">
+            <nav class="navbar navbar-expand-lg" style="background-color: #1c658c">
                 <div class="container-fluid">
-                  <img src="../img/LOGOarnyek.png" alt="Logó" class="logo"/>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="menu-icon"><i class='bx bx-menu' style='color:#ffffff'  ></i></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Naptár</a>
-                          </li>
-                      <li class="nav-item">
-                        <a class="nav-link active" href="#">Tanárom elérhetőségei</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Beállítások</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#" ng-click="logout()">Kijelentkezés</a>
-                      </li>
-                    </ul>
-                  </div>
+                    <img src="../img/LOGOarnyek.png" alt="Logó" class="logo" />
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="menu-icon"><i class="bx bx-menu" style="color: #ffffff"></i></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Naptár</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#!/teacherlist">Tanárok</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#!/studentlist">Diákok</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Beállítások</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" ng-click="logout()">Kijelentkezés</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-              </nav>
+            </nav>
         </header>
-
 
         <main class="container" ng-view></main>
 
