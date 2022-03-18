@@ -53,5 +53,49 @@ app.config(function ($routeProvider) {
             },
             templateUrl: 'studentlist.html',
             controller: 'studentsCtrl',
-        });
+        })
+        .when('/calendar', {
+            resolve: {
+                function($location, $rootScope) {
+                    if (!$rootScope.loggedIn) {
+                        $location.path('/');
+                    }
+                },
+            },
+            templateUrl: 'calendar.html',
+            controller: 'calendarCtrl',
+        })
+        .when('/teacherdata', {
+            resolve: {
+                function($location, $rootScope) {
+                    if (!$rootScope.loggedIn) {
+                        $location.path('/');
+                    }
+                },
+            },
+            templateUrl: 'teacherdata.html',
+            controller: 'teacherdataCtrl',
+        })
+        .when('/studentdata', {
+            resolve: {
+                function($location, $rootScope) {
+                    if (!$rootScope.loggedIn) {
+                        $location.path('/');
+                    }
+                },
+            },
+            templateUrl: 'studentdata.html',
+            controller: 'studentdataCtrl',
+        })
+        .when('/settings', {
+            resolve: {
+                function($location, $rootScope) {
+                    if (!$rootScope.loggedIn) {
+                        $location.path('/');
+                    }
+                },
+            },
+            templateUrl: 'settings.html',
+            controller: 'settingsCtrl',
+        })
 });
