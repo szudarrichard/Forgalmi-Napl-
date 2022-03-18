@@ -8,6 +8,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                     $rootScope.loggedIn = true;
                     $rootScope.loggedUser = $scope.uMail;
                     $rootScope.loggedPermission = res.data[0].permission;
+                    sessionStorage.setItem('userID', angular.toJson(res.data[0].ID));
                     sessionStorage.setItem('user', angular.toJson(res.data[0].userName));
                     sessionStorage.setItem('email', angular.toJson($scope.uMail));
                     sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
@@ -18,6 +19,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                             $rootScope.loggedIn = true;
                             $rootScope.loggedUser = $scope.uMail;
                             $rootScope.loggedPermission = res.data[0].permission;
+                            sessionStorage.setItem('userID', angular.toJson(res.data[0].ID));
                             sessionStorage.setItem('user', angular.toJson(res.data[0].userName));
                             sessionStorage.setItem('email', angular.toJson($scope.uMail));
                             sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
@@ -28,6 +30,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                                     $rootScope.loggedIn = true;
                                     $rootScope.loggedUser = $scope.uMail;
                                     $rootScope.loggedPermission = res.data[0].permission;
+                                    sessionStorage.setItem('userID', angular.toJson(res.data[0].ID));
                                     sessionStorage.setItem('user', angular.toJson(res.data[0].userName));
                                     sessionStorage.setItem('email', angular.toJson($scope.uMail));
                                     sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
@@ -44,6 +47,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
     };
 
     $scope.logout = function () {
+        sessionStorage.removeItem('userID');
         sessionStorage.removeItem('user');
         sessionStorage.removeItem('email');
         sessionStorage.removeItem('permission');
