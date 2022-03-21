@@ -8,8 +8,7 @@
         <!--CSS-->
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
         <link rel="stylesheet" href="../css/style.css" />
-        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-
+        <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
 
         <!--Javascript-->
         <script src="../js/bootstrap.min.js"></script>
@@ -34,46 +33,53 @@
     </head>
     <body>
         <header ng-if="loggedIn" ng-controller="loginCtrl">
-            <nav class="navbar navbar-expand-lg" style="background-color: #1C658C;">
+            <nav class="navbar navbar-expand-lg" style="background-color: #1c658c">
                 <div class="container-fluid">
-                  <img src="../img/LOGOarnyek.png" alt="Logó" class="logo"/>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="menu-icon"><i class='bx bx-menu' style='color:#ffffff'  ></i></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                      <li class="nav-item">
-                        <!--tanár diák látja (permission 1 || 2)-->
-                        <a class="nav-link"  href="#!/calendar">Naptár</a>
-                      </li>
-                      <li class="nav-item">
-                        <!--Csak diák látja (permission 1)-->
-                        <a class="nav-link" href="#!/teacherdata">Tanárom elérhetőségei</a>
-                      </li>
-                      <li class="nav-item">
-                        <!--Csak tanár látja (permission 2)-->
-                        <a class="nav-link" href="#!/studentdata">Diák(jaim) elérhetőségei</a>
-                      </li>
-                      <li class="nav-item">
-                        <!--Csak admin látja (permission 3)-->
-                        <a class="nav-link" href="#!/studentlist">Diákok kezelése</a>
-                      </li>
-                      <li class="nav-item">
-                        <!--Csak admin látja (permission 3)-->
-                        <a class="nav-link" href="#!/teacherlist">Tanárok kezélese</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#!/settings">Beállítások</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#" ng-click="logout()">Kijelentkezés</a>
-                      </li>
-                    </ul>
-                  </div>
+                    <img src="../img/LOGOarnyek.png" alt="Logó" class="logo" />
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="menu-icon"><i class="bx bx-menu" style="color: #ffffff"></i></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item" ng-if="loggedPermission<=2">
+                                <!--tanár diák látja (permission 1 || 2)-->
+                                <a class="nav-link" href="#!/calendar">Naptár</a>
+                            </li>
+                            <li class="nav-item" ng-if="loggedPermission==1">
+                                <!--Csak diák látja (permission 1)-->
+                                <a class="nav-link" href="#!/teacherdata">Tanárom elérhetőségei</a>
+                            </li>
+                            <li class="nav-item" ng-if="loggedPermission==2">
+                                <!--Csak tanár látja (permission 2)-->
+                                <a class="nav-link" href="#!/studentdata">Diákok elérhetőségei</a>
+                            </li>
+                            <li class="nav-item" ng-if="loggedPermission>=2">
+                                <!--Csak admin látja (permission 3)-->
+                                <a class="nav-link" href="#!/studentlist">Diákok kezelése</a>
+                            </li>
+                            <li class="nav-item" ng-if="loggedPermission==3">
+                                <!--Csak admin látja (permission 3)-->
+                                <a class="nav-link" href="#!/teacherlist">Tanárok kezélese</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#!/settings">Beállítások</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" ng-click="logout()">Kijelentkezés</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-              </nav>
+            </nav>
         </header>
-
 
         <main class="container" ng-view></main>
 

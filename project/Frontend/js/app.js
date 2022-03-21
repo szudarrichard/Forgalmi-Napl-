@@ -97,5 +97,5 @@ app.config(function ($routeProvider) {
             },
             templateUrl: 'settings.html',
             controller: 'settingsCtrl',
-        })
+        });
 });
