@@ -25,7 +25,7 @@ app.run(function ($rootScope, $locale) {
     }
 });
 
-//TODO: rooting : Admin - felhasználók + kezelés, Tanár - diákok + naptár(összes foglaáls névvel), Diák - naptár(foglalható órák), saját statisztika
+//rooting
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/', {

@@ -6,7 +6,6 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
             factory.logincheck('admin', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                 if (res.data.length > 0) {
                     $rootScope.loggedIn = true;
-                    $rootScope.loggedUser = $scope.uMail;
                     $rootScope.loggedPermission = res.data[0].permission;
                     sessionStorage.setItem('userID', angular.toJson(res.data[0].ID));
                     sessionStorage.setItem('user', angular.toJson(res.data[0].userName));
@@ -17,7 +16,6 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                     factory.logincheck('teacher', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                         if (res.data.length > 0) {
                             $rootScope.loggedIn = true;
-                            $rootScope.loggedUser = $scope.uMail;
                             $rootScope.loggedPermission = res.data[0].permission;
                             sessionStorage.setItem('userID', angular.toJson(res.data[0].ID));
                             sessionStorage.setItem('user', angular.toJson(res.data[0].userName));
@@ -28,7 +26,6 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                             factory.logincheck('student', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                                 if (res.data.length > 0) {
                                     $rootScope.loggedIn = true;
-                                    $rootScope.loggedUser = $scope.uMail;
                                     $rootScope.loggedPermission = res.data[0].permission;
                                     sessionStorage.setItem('userID', angular.toJson(res.data[0].ID));
                                     sessionStorage.setItem('user', angular.toJson(res.data[0].userName));
@@ -47,12 +44,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
     };
 
     $scope.logout = function () {
-        sessionStorage.removeItem('userID');
-        sessionStorage.removeItem('user');
-        sessionStorage.removeItem('email');
-        sessionStorage.removeItem('permission');
-        sessionStorage.removeItem('schoolID');
-        sessionStorage.removeItem('teacherID');
+        sessionStorage.clear();
         $rootScope.loggedIn = false;
         $location.path('#!/');
     };
