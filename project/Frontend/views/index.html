@@ -28,6 +28,7 @@
         <script src="../js/controllers/loginCtrl.js"></script>
         <script src="../js/controllers/teacherCtrl.js"></script>
         <script src="../js/controllers/studentsCtrl.js"></script>
+        <script src="../js/controllers/studentdataCtrl.js"></script>
 
         <title>{{title}}</title>
     </head>
@@ -41,14 +42,28 @@
                   </button>
                   <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Naptár</a>
-                          </li>
                       <li class="nav-item">
-                        <a class="nav-link active" href="#">Tanárom elérhetőségei</a>
+                        <!--tanár diák látja (permission 1 || 2)-->
+                        <a class="nav-link"  href="#!/calendar">Naptár</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Beállítások</a>
+                        <!--Csak diák látja (permission 1)-->
+                        <a class="nav-link" href="#!/teacherdata">Tanárom elérhetőségei</a>
+                      </li>
+                      <li class="nav-item">
+                        <!--Csak tanár látja (permission 2)-->
+                        <a class="nav-link" href="#!/studentdata">Diák(jaim) elérhetőségei</a>
+                      </li>
+                      <li class="nav-item">
+                        <!--Csak admin látja (permission 3)-->
+                        <a class="nav-link" href="#!/studentlist">Diákok kezelése</a>
+                      </li>
+                      <li class="nav-item">
+                        <!--Csak admin látja (permission 3)-->
+                        <a class="nav-link" href="#!/teacherlist">Tanárok kezélese</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#!/settings">Beállítások</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#" ng-click="logout()">Kijelentkezés</a>

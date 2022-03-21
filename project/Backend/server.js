@@ -25,7 +25,6 @@ app.post('/login', (req, res) => {
     pool.query(`SELECT * FROM ${data.table} WHERE email='${data.email}' AND password='${data.pass}'`, (err, results) => {
         if (err) throw err;
         res.json(results);
-        
     });
 });
 
@@ -57,15 +56,17 @@ app.post('/:table', (req, res) => {
 
     let fields = 'ID';
     results = Object.keys(data);
-    results.forEach(element => {
+    results.forEach((element) => {
         fields += ',' + element;
     });
 
     let str = '';
     results = Object.values(data);
-    results.forEach(element => {
+    results.forEach((element) => {
         str += ',"' + element + '"';
     });
+
+    console.log(fields);
 
     pool.query(`INSERT INTO ${table} (${fields}) VALUES(null ${str})`, (err, results) => {
         if (err) throw err;
@@ -78,7 +79,6 @@ app.patch('/:table/:id', (req, res) => {
     let table = req.params.table;
     let id = req.params.id;
     let data = req.body;
-
 
     let str = '';
     fields = Object.keys(data);
@@ -106,7 +106,6 @@ app.delete('/:table/:id', (req, res) => {
         console.log(results);
     });
 });
-
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}...`);
