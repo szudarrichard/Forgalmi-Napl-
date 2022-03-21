@@ -78,4 +78,38 @@ button .navbar {
   size: 40px;
 }
 
+.teacherdata {
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 280px;
+  background-color: #1C658C;
+  margin-top: 200px;
+  color: #ffffff; 
+  padding: 10px;
+}
 
+.passchange {
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 220px;
+  background-color: #1C658C;
+  margin-top: 100px;
+  color: #ffffff; 
+  padding: 10px;
+}
+
+.emailchange {
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 220px;
+  background-color: #1C658C;
+  margin-top: 25px;
+  color: #ffffff; 
+  padding: 10px;
+}
