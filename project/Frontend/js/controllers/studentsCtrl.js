@@ -1,4 +1,5 @@
 app.controller('studentsCtrl', function ($scope, $rootScope, factory) {
+    $rootScope.loggedUserID = angular.fromJson(sessionStorage.getItem('userID'));
     $scope.students = [];
     $scope.db = [];
 

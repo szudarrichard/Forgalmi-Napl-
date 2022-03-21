@@ -8,16 +8,21 @@
             </div>
             <div class="modal-body">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="userName" placeholder="Diák neve:" ng-model="student.userName" ng-disabled="mode==3">
+                    <input type="text" class="form-control" id="userName" placeholder="Diák neve:" ng-model="student.userName" ng-disabled="mode==3" />
                     <label for="userName">Diák neve:</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="phoneNum" placeholder="Telefonszám:" ng-model="student.phoneNum" ng-disabled="mode==3">
+                    <input type="text" class="form-control" id="phoneNum" placeholder="Telefonszám:" ng-model="student.phoneNum" ng-disabled="mode==3" />
                     <label for="phoneNum">Telefonszám:</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="email" placeholder="Email cím:" ng-model="student.email" ng-disabled="mode==3">
+                    <input type="text" class="form-control" id="email" placeholder="Email cím:" ng-model="student.email" ng-disabled="mode==3" />
                     <label for="email">Email cím:</label>
+                </div>
+                <!--TODO: Admin felület esetén a tanárok kilistázása-->
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="teacherID" placeholder="Tanár:" ng-model="student.teacherID" ng-disabled="mode==3" />
+                    <label for="teacherID">Tanár neve:</label>
                 </div>
             </div>
             <div class="modal-footer">
