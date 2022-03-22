@@ -36,9 +36,8 @@ body {
     position:absolute;
    bottom:0;
    width:100%;
-  }
-
-  #login {
+  } 
+#login {
     margin: 0 auto;
     justify-content: center;
     align-items: center;
@@ -48,8 +47,8 @@ body {
     margin-top: 300px;
     color: #ffffff; 
     padding: 10px;
-}
 
+}
 #login .form-floating
 {
   color: #000000; 
@@ -90,26 +89,15 @@ button .navbar {
   padding: 10px;
 }
 
-.passchange {
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  width: 500px;
-  height: 220px;
-  background-color: #1C658C;
-  margin-top: 100px;
-  color: #ffffff; 
-  padding: 10px;
+.size{
+width: 60%;
 }
 
-.emailchange {
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  width: 500px;
-  height: 220px;
-  background-color: #1C658C;
-  margin-top: 25px;
-  color: #ffffff; 
-  padding: 10px;
+
+
+@media (max-width: 992px)
+{
+  .size{
+    width: 100%;
+  }
 }

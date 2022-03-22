@@ -1,21 +1,29 @@
-<div class="passchange">
-    <h3>Jelszó módosítása</h3>
-        <input type="newpassword" class="form-control" id="floatingPassword" placeholder="" name="newpassword" ng-model="uNewPassword" />
-        <label for="floatingInput">Új jelszó</label>
-        <br />
-        <input type="newpasswordagain" class="form-control" id="floatingPassword" placeholder="" name="newpasswordagain" ng-model="uNewPasswordAgain" />
-        <label for="floatingPassword">Új jelszó megerősítése</label>
-    <br />
-    <input type="button" class="btn btn-sm btn-success" value="Módosítás" ng-click="" />
-</div>
 
-<div class="emailchange">
-    <h3>E-mail módosítása</h3>
-        <input type="newemail" class="form-control" id="floatingInput" placeholder="" name="newemail" ng-model="uNewEmail" />
-        <label for="floatingInput">Új E-mail</label>
-        <br />
-        <input type="newemailagain" class="form-control" id="floatingInput" placeholder="" name="newemailagain" ng-model="uNewEmailAgain" />
-        <label for="floatingPassword">Új E-mail megerősítése</label>
-    <br />
-    <input type="button" class="btn btn-sm btn-success" value="Módosítás" ng-click="" />
+<div ng-controller="settingsCtrl">
+    <h1>Beállítások</h1><hr>
+    <br>
+
+    <div class="size container-fluid">
+        <h3>E-mail cím megváltoztatása</h3>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="Új E-mail cím">
+            <label for="floatingInput">Új E-mail cím</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="Új E-mail cím megerősítése">
+            <label for="floatingInput">Új E-mail cím megerősítése</label>
+        </div>
+        <br>
+
+        <h3>Jelszó megváltoztatása</h3>
+
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingInput" placeholder="Új jelszó">
+            <label for="floatingInput">Új jelszó</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingInput" placeholder="Új jelszó megerősítése">
+            <label for="floatingInput">Új jelszó megerősítése</label>
+        </div>
+    </div>
 </div>
