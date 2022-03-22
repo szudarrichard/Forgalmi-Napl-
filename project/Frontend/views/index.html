@@ -51,29 +51,29 @@
                         <ul class="navbar-nav">
                             <li class="nav-item" ng-if="loggedPermission<=2">
                                 <!--tanár diák látja (permission 1 || 2)-->
-                                <a class="nav-link" href="#!/calendar">Naptár</a>
+                                <a class="nav-link" href="#!/calendar"><i class='bx bx-calendar' style='color:#ffffff' ></i>Naptár</a>
                             </li>
                             <li class="nav-item" ng-if="loggedPermission==1">
                                 <!--Csak diák látja (permission 1)-->
-                                <a class="nav-link" href="#!/teacherdata">Tanárom elérhetőségei</a>
+                                <a class="nav-link" href="#!/teacherdata"><i class='bx bxs-contact' style='color:#ffffff' ></i>Tanárom elérhetőségei</a>
                             </li>
                             <li class="nav-item" ng-if="loggedPermission==2">
                                 <!--Csak tanár látja (permission 2)-->
-                                <a class="nav-link" href="#!/studentdata">Diákok elérhetőségei</a>
+                                <a class="nav-link" href="#!/studentdata"><i class='bx bxs-contact' style='color:#ffffff' ></i>Diákok elérhetőségei</a>
                             </li>
                             <li class="nav-item" ng-if="loggedPermission>=2">
                                 <!--Csak admin látja (permission 3)-->
-                                <a class="nav-link" href="#!/studentlist">Diákok kezelése</a>
+                                <a class="nav-link" href="#!/studentlist"><i class='bx bx-user-pin' style='color:#ffffff' ></i></i>Diákok kezelése</a>
                             </li>
                             <li class="nav-item" ng-if="loggedPermission==3">
                                 <!--Csak admin látja (permission 3)-->
-                                <a class="nav-link" href="#!/teacherlist">Tanárok kezélese</a>
+                                <a class="nav-link" href="#!/teacherlist"><i class='bx bxs-user-pin' style='color:#ffffff' ></i>Tanárok kezélese</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#!/settings">Beállítások</a>
+                                <a class="nav-link" href="#!/settings"><i class='bx bx-cog' style='color:#ffffff' ></i>Beállítások</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" ng-click="logout()">Kijelentkezés</a>
+                                <a class="nav-link" href="#" ng-click="logout()"><i class='bx bx-log-out' style='color:#ffffff' ></i>Kijelentkezés</a>
                             </li>
                         </ul>
                     </div>
