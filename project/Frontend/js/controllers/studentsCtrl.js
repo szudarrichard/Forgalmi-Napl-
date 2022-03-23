@@ -45,6 +45,7 @@ app.controller('studentsCtrl', function ($scope, $rootScope, factory) {
                 alert('Nem adtál meg minden adatot!');
             } else {
                 factory.insert('student', $scope.student).then(function (res) {
+                    $scope.student.ID = res.insertId;
                     $scope.students.push($scope.student);
                     $scope.student = {};
                 });

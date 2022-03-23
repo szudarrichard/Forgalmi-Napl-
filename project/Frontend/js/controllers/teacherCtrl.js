@@ -1,6 +1,7 @@
 app.controller('teacherCtrl', function ($scope, $rootScope, factory) {
     $scope.teachers = [];
     $scope.db = [];
+    //TODO: modal feliratok $scope
 
     factory.selectAll('teacher').then(function (res) {
         $scope.teachers = res;
@@ -44,6 +45,7 @@ app.controller('teacherCtrl', function ($scope, $rootScope, factory) {
                 alert('Nem adtál meg minden adatot!');
             } else {
                 factory.insert('teacher', $scope.teacher).then(function (res) {
+                    $scope.teacher.ID = res.insertId;
                     $scope.teachers.push($scope.teacher);
                     $scope.teacher = {};
                 });
