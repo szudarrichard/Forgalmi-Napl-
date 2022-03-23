@@ -1,7 +1,8 @@
-app.controller('teacherCtrl', function ($scope, $rootScope, factory) {
+app.controller('teacherCtrl', function ($scope, factory) {
     $scope.peoples = [];
     $scope.db = [];
-    //TODO: modal feliratok $scope
+    //modal feliratok $scope
+    $scope.userTitle = 'Tanár';
 
     factory.selectAll('teacher').then(function (res) {
         $scope.peoples = res;
