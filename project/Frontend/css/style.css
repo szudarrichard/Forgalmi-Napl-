@@ -1,5 +1,61 @@
 body {
     background-color: #398AB9;
+    color: #ffffff;
+}
+
+.table {
+  color: #ffffff;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+  --bs-table-accent-bg: var(--bs-table-striped-bg);
+  color: #ffffff;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1c658c;
+  border-color: #1c658c;
+}
+
+.btn-primary:hover
+{
+  color: rgb(0, 0, 0);
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.btn-check:focus+.btn-primary, .btn-primary:focus {
+  color: #fff;
+  background-color: #1c658c;
+  border-color: #1c658c;
+  box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 50%);
+}
+
+.btn-warning {
+  color: #fff;
+  background-color: #1c658c;
+  border-color: #1c658c;
+}
+
+.btn-check:focus+.btn-warning, .btn-warning:focus {
+  color: #fff;
+  background-color: #1c658c;
+  border-color: #1c658c;
+  box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 50%);
+}
+
+.btn-warning:hover
+{
+  color: rgb(0, 0, 0);
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #8d2d36;
+  border-color: #8d2d36;
 }
 
 .nav {
@@ -112,4 +168,9 @@ button .navbar {
   margin-top: 25px;
   color: #ffffff; 
   padding: 10px;
+}
+
+.modal-content
+{
+  color: #000000;
 }
