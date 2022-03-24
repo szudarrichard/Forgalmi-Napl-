@@ -1,0 +1,21 @@
+body {
+    background-color: #398AB9;
+    color: white;
+}
+
+th {
+    color: white;
+}
+
+td {
+    color: white;
+}
+
+.table
+{
+    color: white;
+}
+
+.tableheader {
+    text-align: center;
+}
