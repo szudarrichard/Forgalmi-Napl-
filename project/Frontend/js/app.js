@@ -7,7 +7,7 @@ app.run(function ($rootScope, $locale) {
     $rootScope.company = 'Bajai SZC Türr István Technikum';
     $rootScope.author = 'KKG SZR LA';
 
-    if (sessionStorage.getItem('forgalminaploUser')) {
+    if (sessionStorage.getItem('user')) {
         //SessionStorage
         $rootScope.loggedIn = true;
         $rootScope.loggedUser = angular.fromJson(sessionStorage.getItem('user'));
@@ -25,7 +25,7 @@ app.run(function ($rootScope, $locale) {
     }
 });
 
-//TODO: rooting : Admin - felhasználók + kezelés, Tanár - diákok + naptár(összes foglaáls névvel), Diák - naptár(foglalható órák), saját statisztika
+//rooting
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/', {

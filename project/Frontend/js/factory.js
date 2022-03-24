@@ -1,6 +1,7 @@
 app.factory('factory', function ($http, $q) {
     let url = 'http://localhost:3000';
     return {
+        //LOGIN
         logincheck: function (tablename, user, pass) {
             let deferred = $q.defer();
             let data = {
@@ -108,28 +109,7 @@ app.factory('factory', function ($http, $q) {
             return deferred.promise;
         },
 
-        toChart: function (title, type, div, datapoints, theme, anim, exp) {
-            var chart = new CanvasJS.Chart(div, {
-                animationEnabled: anim,
-                exportEnabled: exp,
-                theme: theme, // "light1", "light2", "dark1", "dark2"
-                title: {
-                    text: title,
-                },
-                axisY: {
-                    includeZero: true,
-                },
-                data: [
-                    {
-                        // "bar", "column", "pie", "doughnut", "line", "spline", "splineArea", "area"
-                        type: type,
-                        dataPoints: datapoints,
-                    },
-                ],
-            });
-            chart.render();
-        },
-
+        //CALENDAR
         toCalendar: function (events, div, view, edit) {
             var calendarEl = document.getElementById(div);
             var today = new Date();
@@ -153,6 +133,7 @@ app.factory('factory', function ($http, $q) {
             calendar.render();
         },
 
+        //DATE FORMAT
         format: function (amount, decimalCount = 0, decimal = ',', thousands = '.') {
             var re = '\\d(?=(\\d{' + 3 + '})+' + (decimalCount > 0 ? '\\,' : '$') + ')';
             return amount.toFixed(Math.max(0, ~~decimalCount)).replace(new RegExp(re, 'g'), '$&.');
