@@ -43,7 +43,7 @@ app.get('/:table/:field/:id', (req, res) => {
     let table = req.params.table;
     let field = req.params.field;
     let id = req.params.id;
-    pool.query(`SELECT * FROM ${table} WHERE ${field}=${id}`, (err, results) => {
+    pool.query(`SELECT * FROM ${table} WHERE ${field}='${id}'`, (err, results) => {
         if (err) throw err;
         res.json(results);
     });
