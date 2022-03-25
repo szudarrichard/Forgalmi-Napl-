@@ -64,6 +64,13 @@ body {
     background-color: #1C658C;
   }
 
+  .nav-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
 a.nav-link:hover {
     color: white;
   }
@@ -107,8 +114,6 @@ a.nav-link:hover {
     margin: 0 auto;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 100%;
     background-color: #1C658C;
     margin-top: 300px;
     color: #ffffff; 
@@ -121,8 +126,8 @@ a.nav-link:hover {
 }
 
 .loginlogo {
-  width: 15%;
-  height: 25%;
+  width: 200px;
+  height: 200px;
   position: fixed;
   top: 18%;
   left: 50%;
@@ -182,4 +187,9 @@ button .navbar {
 .modal-content
 {
   color: #000000;
+}
+
+i {
+  font-size: 20px;
+  padding: 5px;
 }
