@@ -44,7 +44,7 @@ app.controller('studentsCtrl', function ($scope, factory) {
         // insert
         if ($scope.mode == 1) {
             if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null) {
-                alert('Nem adtál meg minden adatot!');
+                factory.alert('Nem adtál meg minden adatot!', 'danger');
             } else {
                 factory.insert('student', $scope.people).then(function (res) {
                     $scope.people.ID = res.insertId;
@@ -57,7 +57,7 @@ app.controller('studentsCtrl', function ($scope, factory) {
         // update
         if ($scope.mode == 2) {
             if ($scope.people.userName == null || $scope.people.password == null || $scope.people.email == null || $scope.people.phoneNum == null) {
-                alert('Nem adtál meg minden adatot!');
+                factory.alert('Nem adtál meg minden adatot!', 'danger');
             } else {
                 factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
                     let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
