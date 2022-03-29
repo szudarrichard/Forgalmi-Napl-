@@ -138,5 +138,23 @@ app.factory('factory', function ($http, $q) {
             var re = '\\d(?=(\\d{' + 3 + '})+' + (decimalCount > 0 ? '\\,' : '$') + ')';
             return amount.toFixed(Math.max(0, ~~decimalCount)).replace(new RegExp(re, 'g'), '$&.');
         },
+
+        //ALERT WINDOW
+        alert: function (message, type) {
+            console.log(message, type);
+            var alertplaceholder = document.getElementById('alertplaceholder');
+            var wrapper = document.createElement('div');
+            wrapper.innerHTML =
+                '<div class="alert alert-' +
+                type +
+                ' alert-dismissible" role="alert">' +
+                message +
+                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+            alertplaceholder.append(wrapper);
+            setTimeout(function () {
+                wrapper.remove();
+            }, 5000);
+        },
     };
 });
