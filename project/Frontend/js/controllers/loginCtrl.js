@@ -1,7 +1,7 @@
 app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
     $scope.login = function () {
         if ($scope.uMail == null || $scope.uPassword == null) {
-            alert('Nem adtál meg minden belépési adatot!');
+            factory.alert('Nem adtál meg minden belépési adatot!', 'danger', 'bxs-error');
         } else {
             factory.logincheck('admin', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                 if (res.data.length > 0) {
@@ -36,7 +36,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                                     sessionStorage.setItem('teacherID', angular.toJson(res.data[0].teacherID));
                                     sessionStorage.setItem('status', angular.toJson(res.data[0].status));
                                 } else {
-                                    alert('Hibás belépési adatok!');
+                                    factory.alert('Hibás belépési adatok!', 'danger', 'bxs-error');
                                 }
                             });
                         }
