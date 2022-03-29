@@ -64,6 +64,13 @@ body {
     background-color: #1c658c;
 }
 
+.nav-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 a.nav-link:hover {
     color: white;
 }
@@ -107,8 +114,6 @@ footer {
     margin: 0 auto;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 100%;
     background-color: #1c658c;
     margin-top: 300px;
     color: #ffffff;
@@ -120,8 +125,8 @@ footer {
 }
 
 .loginlogo {
-    width: 15%;
-    height: 25%;
+    width: 200px;
+    height: 200px;
     position: fixed;
     top: 18%;
     left: 50%;
@@ -174,6 +179,15 @@ button .navbar {
     margin-top: 30px;
     background-color: red;
     right: 0;
+}
+
+i {
+    font-size: 20px;
+    padding: 5px;
+}
+
+h3 {
+    color: white;
 }
 
 @media (max-width: 768px) {
