@@ -22,8 +22,8 @@
             <!--tanár id-->
             <tr ng-repeat="people in peoples">
                 <td>{{people.userName}}</td>
-                <td>{{people.email}}</td>
                 <td>{{people.phoneNum}}</td>
+                <td>{{people.email}}</td>
                 <td class="text-end">
                     <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="modPeople(people.ID)">Módosítás</button>
                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="delPeople(people.ID)">Törlés</button>
