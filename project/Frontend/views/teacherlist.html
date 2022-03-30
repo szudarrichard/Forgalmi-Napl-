@@ -5,7 +5,7 @@
     <!-- Button trigger modal -->
     <nav class="navbar navbar-light">
         <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Keresés" aria-label="Search">
+            <input type="text" ng-model="search" class="form-control mr-sm-2" placeholder="Keresés" aria-label="Search">
         </form>
     </nav>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="addPeople()">Új tanár felvétele</button>
@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="people in peoples">
+            <tr class="animate" ng-repeat="people in peoples | filter: search" ng-click="selectRow($index)">
                 <td>{{people.userName}}</td>
                 <td>{{people.email}}</td>
                 <td>{{people.phoneNum}}</td>
