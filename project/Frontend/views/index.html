@@ -32,6 +32,7 @@
         <script src="../js/controllers/studentsCtrl.js"></script>
         <script src="../js/controllers/studentdataCtrl.js"></script>
         <script src="../js/controllers/settingsCtrl.js"></script>
+        <script src="../js/controllers/firstloginCtrl.js"></script>
 
         <title>{{title}}</title>
     </head>
@@ -39,7 +40,7 @@
         <!--ALERT DIV-->
         <div id="alertplaceholder" class="alertplaceholder"></div>
         <header ng-if="loggedIn" ng-controller="loginCtrl">
-            <nav class="navbar navbar-expand-lg" style="background-color: #1c658c">
+            <nav class="navbar navbar-expand-lg" style="background-color: #1c658c" >
                 <div class="container-fluid">
                     <img src="../img/LOGOarnyek.png" alt="Logó" class="logo" />
                     <button
@@ -50,8 +51,9 @@
                         aria-controls="navbarNav"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
+                        ng-if="status != 0"
                     >
-                        <span class="menu-icon"><i class="bx bx-menu" style="color: #ffffff"></i></span>
+                        <span class="menu-icon" ><i class="bx bx-menu" style="color: #ffffff"></i></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">

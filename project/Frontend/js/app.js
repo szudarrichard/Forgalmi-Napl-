@@ -15,6 +15,7 @@ app.run(function ($rootScope, $locale) {
         $rootScope.loggedPermission = angular.fromJson(sessionStorage.getItem('permission'));
         $rootScope.loggedSchoolID = angular.fromJson(sessionStorage.getItem('schoolID'));
         $rootScope.studentTeacherID = angular.fromJson(sessionStorage.getItem('teacherID'));
+        $rootScope.status = angular.fromJson(sessionStorage.getItem('status'));
     } else {
         $rootScope.loggedIn = false;
         $rootScope.loggedUser = '';
@@ -22,6 +23,7 @@ app.run(function ($rootScope, $locale) {
         $rootScope.loggedPermission = '';
         $rootScope.loggedSchoolID = '';
         $rootScope.studentTeacherID = '';
+        $rootScope.status = '';
     }
 });
 
@@ -31,6 +33,17 @@ app.config(function ($routeProvider) {
         .when('/', {
             templateUrl: 'login.html',
             controller: 'loginCtrl',
+        })
+        .when('/firstlogin',{
+            resolve: {
+                function($location, $rootScope) {
+                    if (!$rootScope.status) {
+                        $location.path('/firstlogin');
+                    }
+                },
+            },
+            templateUrl: 'firstlogin.html',
+            controller: 'firstloginCtrl',
         })
         .when('/teacherlist', {
             resolve: {
