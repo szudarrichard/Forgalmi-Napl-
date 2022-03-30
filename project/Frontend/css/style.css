@@ -3,13 +3,10 @@ body {
     color: #ffffff;
     font-family: 'Open Sans', sans-serif;
 }
-
-.table {
-    color: #ffffff;
+table {
+    margin-top: 20px;
 }
-
-.table-striped > tbody > tr:nth-of-type(odd) > * {
-    --bs-table-accent-bg: var(--bs-table-striped-bg);
+.table-white {
     color: #ffffff;
 }
 
@@ -169,7 +166,7 @@ button .navbar {
     margin-top: 20px;
 }
 
-.font-color {
+.modal-content {
     color: #000000;
 }
 
