@@ -195,6 +195,7 @@ i {
 
 h3 {
     color: white;
+    margin-top: 10px;
 }
 
 @media (max-width: 768px) {
