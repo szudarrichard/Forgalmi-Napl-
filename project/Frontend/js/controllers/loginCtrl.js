@@ -13,6 +13,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                     sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
                     sessionStorage.setItem('schoolID', angular.toJson(res.data[0].schoolID));
                     sessionStorage.setItem('status', angular.toJson(res.data[0].status));
+                    $location.path('/firstlogin');
                 } else {
                     factory.logincheck('teacher', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                         if (res.data.length > 0) {
@@ -24,6 +25,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                             sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
                             sessionStorage.setItem('schoolID', angular.toJson(res.data[0].schoolID));
                             sessionStorage.setItem('status', angular.toJson(res.data[0].status));
+                            $location.path('/firstlogin');
                         } else {
                             factory.logincheck('student', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                                 if (res.data.length > 0) {
@@ -35,6 +37,8 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                                     sessionStorage.setItem('permission', angular.toJson(res.data[0].permission));
                                     sessionStorage.setItem('teacherID', angular.toJson(res.data[0].teacherID));
                                     sessionStorage.setItem('status', angular.toJson(res.data[0].status));
+                                    $location.path('/firstlogin');
+
                                 } else {
                                     factory.alert('Hibás belépési adatok!', 'danger', 'bxs-error');
                                 }

@@ -16,6 +16,7 @@ app.run(function ($rootScope, $locale) {
         $rootScope.loggedSchoolID = angular.fromJson(sessionStorage.getItem('schoolID'));
         $rootScope.studentTeacherID = angular.fromJson(sessionStorage.getItem('teacherID'));
         $rootScope.status = angular.fromJson(sessionStorage.getItem('status'));
+        console.log($rootScope.status);
     } else {
         $rootScope.loggedIn = false;
         $rootScope.loggedUser = '';
@@ -37,8 +38,8 @@ app.config(function ($routeProvider) {
         .when('/firstlogin',{
             resolve: {
                 function($location, $rootScope) {
-                    if (!$rootScope.status) {
-                        $location.path('/firstlogin');
+                    if ($rootScope.status != 0) {
+                        $location.path('/');
                     }
                 },
             },

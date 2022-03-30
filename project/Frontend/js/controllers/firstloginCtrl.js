@@ -2,6 +2,7 @@ app.controller('firstloginCtrl', function ($scope, $rootScope, factory, $locatio
     
     
     $scope.userPerm = ['inactive', 'student', 'teacher', 'admin'];
+
     $scope.password = {};
 
 
