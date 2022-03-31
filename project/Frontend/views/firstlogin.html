@@ -1,12 +1,12 @@
-<div ng-if="status == 0" ng-controller="firstloginCtrl" class="container">
+<div ng-controller="firstloginCtrl" class="container">
     <div class="settings-container font-color">
         <h3>Jelszó módosítása</h3>
         <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Új jelszó" name="newpassword" ng-model="password.password" />
+            <input type="password" class="form-control" id="floatingPassword1" placeholder="Új jelszó" name="newpassword" ng-model="password.password" />
             <label for="floatingInput">Új jelszó</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Új jelszó megerősítése" name="newpasswordagain" ng-model="uNewPasswordAgain" />
+            <input type="password" class="form-control" id="floatingPassword2" placeholder="Új jelszó megerősítése" name="newpasswordagain" ng-model="uNewPasswordAgain" />
             <label for="floatingPassword">Új jelszó megerősítése</label>
         </div>
         <input type="button" class="btn btn-sm btn-success" value="Módosítás" ng-click="passMod()" />
