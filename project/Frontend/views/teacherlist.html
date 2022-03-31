@@ -9,7 +9,7 @@
         </form>
     </nav>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="addPeople()">Új tanár felvétele</button>
-    <table class="table table-striped table-hover">
+    <table class="table table-hover table-sm table-white">
         <thead>
             <tr>
                 <th>Tanár neve</th>
@@ -21,8 +21,8 @@
         <tbody>
             <tr class="animate" ng-repeat="people in peoples | filter: search" ng-click="selectRow($index)">
                 <td>{{people.userName}}</td>
-                <td>{{people.email}}</td>
                 <td>{{people.phoneNum}}</td>
+                <td>{{people.email}}</td>
                 <td class="text-end">
                     <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="modPeople(people.ID)"><i class='bx bx-cog' style='color:#ffffff'  ></i></button>
                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="delPeople(people.ID)"><i class='bx bx-trash' style='color:#ffffff' ></i></button>

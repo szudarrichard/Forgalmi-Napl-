@@ -140,16 +140,18 @@ app.factory('factory', function ($http, $q) {
         },
 
         //ALERT WINDOW
-        alert: function (message, type) {
-            console.log(message, type);
+        alert: function (message, type, icon) {
+            console.log(message, type, icon);
             var alertplaceholder = document.getElementById('alertplaceholder');
             var wrapper = document.createElement('div');
             wrapper.innerHTML =
                 '<div class="alert alert-' +
                 type +
-                ' alert-dismissible" role="alert">' +
+                '" role="alert"><i class="alert-icon bx ' +
+                icon +
+                '"></i>' +
                 message +
-                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                '<button type="button" class="btn-close ms-2" data-bs-dismiss="alert" aria-label="Close"></div>';
 
             alertplaceholder.append(wrapper);
             setTimeout(function () {

@@ -3,14 +3,14 @@ app.controller('settingsCtrl', function ($scope, $rootScope, factory, $location)
     $scope.password = {};
     $scope.phoneNum = {};
     $scope.email = {};
-    
 
     $scope.passMod = function () {
         if ($scope.password.password == null || $scope.uNewPasswordAgain == null) {
-            alert('Nem adott meg minden adatot!');
+            factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
         } else {
             if ($scope.password.password != $scope.uNewPasswordAgain) {
                 alert('A két jelszó nem egyezik meg!');
+                factory.alert('A két jelszó nem egyezik meg!', 'danger', 'bxs-error');
             } else {
                 factory.select($scope.userPerm[$rootScope.loggedPermission], 'email', $rootScope.loggedUserMail).then(function (res) {
                     console.log(res);
@@ -29,14 +29,14 @@ app.controller('settingsCtrl', function ($scope, $rootScope, factory, $location)
 
     $scope.phoneMod = function () {
         if ($scope.phoneNum.phoneNum == null || $scope.uNewPhoneAgain == null) {
-            alert('Nem adott meg minden adatot!');
+            factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
         } else {
             if ($scope.phoneNum.phoneNum != $scope.uNewPhoneAgain) {
-                alert('A két email nem egyezik meg!');
+                factory.alert('A két email nem egyezik meg!', 'danger', 'bxs-error');
             } else {
                 factory.select($scope.userPerm[$rootScope.loggedPermission], 'email', $rootScope.loggedUserMail).then(function (res) {
                     console.log(res);
-                    let data = { phoneNum: $scope.phoneNum.phoneNum};
+                    let data = { phoneNum: $scope.phoneNum.phoneNum };
                     console.log(data);
                     factory.update($scope.userPerm[$rootScope.loggedPermission], res[0].ID, data).then(function (res) {
                         alert('Sikeres telefonszám változtatás!');
