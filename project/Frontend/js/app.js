@@ -38,8 +38,8 @@ app.config(function ($routeProvider) {
         .when('/firstlogin', {
             resolve: {
                 function($location, $rootScope) {
-                    if ($rootScope.loggedIn && $rootScope.status == 1) {
-                        $location.path('/');
+                    if ($rootScope.loggedIn && $rootScope.status != 1) {
+                        $location.path('/firstlogin');
                     }
                 },
             },
