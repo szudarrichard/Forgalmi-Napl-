@@ -57,27 +57,27 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item" ng-if="loggedPermission<=2">
+                            <li class="nav-item" ng-if="loggedPermission<=2 && status != 0">
                                 <!--tanár diák látja (permission 1 || 2)-->
                                 <a class="nav-link" href="#!/calendar"><i class='bx bx-calendar'  ></i>Naptár</a>
                             </li>
-                            <li class="nav-item" ng-if="loggedPermission==1">
+                            <li class="nav-item" ng-if="loggedPermission==1 && status != 0">
                                 <!--Csak diák látja (permission 1)-->
                                 <a class="nav-link" href="#!/teacherdata"><i class='bx bxs-contact'></i>Tanárom elérhetőségei</a>
                             </li>
-                            <li class="nav-item" ng-if="loggedPermission==2">
+                            <li class="nav-item" ng-if="loggedPermission==2 && status != 0">
                                 <!--Csak tanár látja (permission 2)-->
                                 <a class="nav-link" href="#!/studentdata"><i class='bx bxs-contact'></i>Diákok elérhetőségei</a>
                             </li>
-                            <li class="nav-item" ng-if="loggedPermission>=2">
+                            <li class="nav-item" ng-if="loggedPermission>=2 && status != 0">
                                 <!--Csak admin látja (permission 3)-->
                                 <a class="nav-link" href="#!/studentlist"><i class='bx bx-user-pin'></i></i>Diákok kezelése</a>
                             </li>
-                            <li class="nav-item" ng-if="loggedPermission==3">
+                            <li class="nav-item" ng-if="loggedPermission==3 && status != 0">
                                 <!--Csak admin látja (permission 3)-->
                                 <a class="nav-link" href="#!/teacherlist"><i class='bx bxs-user-pin'></i>Tanárok kezélese</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" ng-if="status != 0">
                                 <a class="nav-link" href="#!/settings"><i class='bx bx-cog'></i>Beállítások</a>
                             </li>
                             <li class="nav-item">
@@ -89,7 +89,6 @@
             </nav>
         </header>
 
-        
         <main class="container" ng-view></main>
 
         <footer class="bg-white footer">

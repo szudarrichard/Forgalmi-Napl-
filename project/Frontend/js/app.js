@@ -35,27 +35,16 @@ app.config(function ($routeProvider) {
             templateUrl: 'login.html',
             controller: 'loginCtrl',
         })
-        .when('/firstlogin',{
+        .when('/firstlogin', {
             resolve: {
                 function($location, $rootScope) {
-                    if ($rootScope.status != 0) {
+                    if ($rootScope.loggedIn && $rootScope.status == 1) {
                         $location.path('/');
                     }
                 },
             },
             templateUrl: 'firstlogin.html',
             controller: 'firstloginCtrl',
-        })
-        .when('/teacherlist', {
-            resolve: {
-                function($location, $rootScope) {
-                    if (!$rootScope.loggedIn) {
-                        $location.path('/');
-                    }
-                },
-            },
-            templateUrl: 'teacherlist.html',
-            controller: 'teacherCtrl',
         })
         .when('/studentlist', {
             resolve: {
