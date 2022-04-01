@@ -126,7 +126,7 @@ footer {
     width: 100%;
 }
 
-#login {
+.login {
     margin: 0 auto;
     justify-content: center;
     align-items: center;
@@ -136,7 +136,14 @@ footer {
     padding: 10px;
 }
 
-#login .form-floating {
+.form-signin {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+    margin: auto;
+}
+
+.login .form-floating {
     color: black;
 }
 
@@ -183,6 +190,8 @@ button .navbar {
     color: var(--text-color);
     padding: 10px;
     margin-top: 20px;
+    width: 100%;
+    max-width: 500px;
 }
   
 .modal-content {
@@ -221,7 +230,7 @@ button > i {
     margin-top: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 770px) {
     .alertplaceholder {
         top: 10px;
         margin-right: 0px;
@@ -231,6 +240,7 @@ button > i {
         justify-content: center;
         align-items: center;
     }
+
 
     .alertplaceholder .alert {
         width: 100% !important;

@@ -1,5 +1,5 @@
-<div ng-controller="firstloginCtrl" class="container">
-    <div class="settings-container font-color">
+<div ng-if="status == 0" ng-controller="firstloginCtrl" class="container">
+    <div class="settings-container">
         <h3>Jelszó módosítása</h3>
         <div class="form-floating mb-3">
             <input type="password" class="form-control" id="floatingPassword1" placeholder="Új jelszó" name="newpassword" ng-model="password.password" />
