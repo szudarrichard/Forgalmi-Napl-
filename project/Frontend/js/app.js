@@ -46,6 +46,17 @@ app.config(function ($routeProvider) {
             templateUrl: 'firstlogin.html',
             controller: 'firstloginCtrl',
         })
+        .when('/teacherlist', {
+            resolve: {
+                function($location, $rootScope) {
+                    if (!$rootScope.loggedIn) {
+                        $location.path('/');
+                    }
+                },
+            },
+            templateUrl: 'teacherlist.html',
+            controller: 'teacherCtrl',
+        })
         .when('/studentlist', {
             resolve: {
                 function($location, $rootScope) {
