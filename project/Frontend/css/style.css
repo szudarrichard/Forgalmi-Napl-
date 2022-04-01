@@ -139,6 +139,8 @@ footer {
     margin-top: 300px;
     color: var(--text-color);
     padding: 10px;
+    width: 100%;
+    max-width: 500px;
 }
 
 .form-floating {
