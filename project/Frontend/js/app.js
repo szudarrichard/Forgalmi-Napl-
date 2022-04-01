@@ -68,6 +68,17 @@ app.config(function ($routeProvider) {
             templateUrl: 'studentlist.html',
             controller: 'studentsCtrl',
         })
+        .when('/teacherlist', {
+            resolve: {
+                function($location, $rootScope) {
+                    if (!$rootScope.loggedIn) {
+                        $location.path('/');
+                    }
+                },
+            },
+            templateUrl: 'teacherlist.html',
+            controller: 'teacherCtrl',
+        })
         .when('/calendar', {
             resolve: {
                 function($location, $rootScope) {

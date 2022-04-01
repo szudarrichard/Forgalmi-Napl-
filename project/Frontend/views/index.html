@@ -84,10 +84,17 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#" ng-click="logout()"><i class='bx bx-log-out'></i>Kijelentkezés</a>
                             </li>
+                            
                         </ul>
+                        
                     </div>
                 </div>
+                <div class="logged-user">
+                    <i class='bx bxs-user' style='color:#ffffff' ></i>
+                    {{loggedUser}}
+                </div>
             </nav>
+            
         </header>
 
         <main class="container main" ng-view></main>

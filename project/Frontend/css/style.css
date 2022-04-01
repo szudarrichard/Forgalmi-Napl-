@@ -229,6 +229,21 @@ button > i {
     margin-top: 10px;
 }
 
+.logged-user
+{
+    float: right;
+    color: var(--text-color);
+    margin-right: 70px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.logged-user i {
+    margin-right: 5px;
+    font-size: 18px;
+}
+
 @media (max-width: 770px) {
     .alertplaceholder {
         top: 10px;
