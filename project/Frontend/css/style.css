@@ -230,6 +230,12 @@ button > i {
     margin-top: 10px;
 }
 
+.logged-user
+{
+    float: right;
+    color: black;
+}
+
 @media (max-width: 770px) {
     .alertplaceholder {
         top: 10px;
