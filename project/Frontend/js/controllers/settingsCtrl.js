@@ -9,15 +9,32 @@ app.controller('settingsCtrl', function ($scope, $rootScope, factory, $location)
             factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
         } else {
             if ($scope.password.password != $scope.uNewPasswordAgain) {
-                alert('A két jelszó nem egyezik meg!');
                 factory.alert('A két jelszó nem egyezik meg!', 'danger', 'bxs-error');
             } else {
                 factory.select($scope.userPerm[$rootScope.loggedPermission], 'email', $rootScope.loggedUserMail).then(function (res) {
-                    console.log(res);
                     let data = { password: CryptoJS.SHA1($scope.password.password).toString() };
-                    console.log(data);
                     factory.update($scope.userPerm[$rootScope.loggedPermission], res[0].ID, data).then(function (res) {
-                        alert('Sikeres jelszó változatás!');
+                        factory.alert('Sikeres jelszó változatás!\nKérjük jelentkezzen be újra!', 'success', 'bx-check-circle');
+                        sessionStorage.clear();
+                        $rootScope.loggedIn = false;
+                        $location.path('#!/');
+                    });
+                });
+            }
+        }
+    };
+
+    $scope.emailMod = function () {
+        if ($scope.email.email == null || $scope.uNewEmailAgain == null) {
+            factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
+        } else {
+            if ($scope.email.email != $scope.uNewEmailAgain) {
+                factory.alert('A két email nem egyezik meg!', 'danger', 'bxs-error');
+            } else {
+                factory.select($scope.userPerm[$rootScope.loggedPermission], 'email', $rootScope.loggedUserMail).then(function (res) {
+                    let data = { email: $scope.email.email };
+                    factory.update($scope.userPerm[$rootScope.loggedPermission], res[0].ID, data).then(function (res) {
+                        factory.alert('Sikeres email változatás!\nKérjük jelentkezzen be újra!', 'success', 'bx-check-circle');
                         sessionStorage.clear();
                         $rootScope.loggedIn = false;
                         $location.path('#!/');
@@ -32,17 +49,12 @@ app.controller('settingsCtrl', function ($scope, $rootScope, factory, $location)
             factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
         } else {
             if ($scope.phoneNum.phoneNum != $scope.uNewPhoneAgain) {
-                factory.alert('A két email nem egyezik meg!', 'danger', 'bxs-error');
+                factory.alert('A két telefonszám nem egyezik meg!', 'danger', 'bxs-error');
             } else {
                 factory.select($scope.userPerm[$rootScope.loggedPermission], 'email', $rootScope.loggedUserMail).then(function (res) {
-                    console.log(res);
                     let data = { phoneNum: $scope.phoneNum.phoneNum };
-                    console.log(data);
                     factory.update($scope.userPerm[$rootScope.loggedPermission], res[0].ID, data).then(function (res) {
-                        alert('Sikeres telefonszám változtatás!');
-                        sessionStorage.clear();
-                        $rootScope.loggedIn = false;
-                        $location.path('#!/');
+                        factory.alert('Sikeres telefonszám változtatás!', 'success', 'bx-check-circle');
                     });
                 });
             }

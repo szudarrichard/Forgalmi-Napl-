@@ -5,7 +5,7 @@
     <!-- Button trigger modal -->
     <nav class="navbar navbar-light">
         <form class="form-inline">
-          <input type="text" ng-model="search" class="form-control mr-sm-2" placeholder="Keresés" aria-label="Search">
+            <input type="text" ng-model="search" class="form-control mr-sm-2" placeholder="Keresés" aria-label="Search" />
         </form>
     </nav>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="addPeople()">Új diák felvétele</button>
@@ -25,8 +25,12 @@
                 <td>{{people.phoneNum}}</td>
                 <td>{{people.email}}</td>
                 <td class="text-end">
-                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="modPeople(people.ID)"><i class='bx bx-cog' style='color:#ffffff'  ></i></button>
-                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="delPeople(people.ID)"><i class='bx bx-trash' style='color:#ffffff' ></i></button>
+                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="modPeople(people.ID)">
+                        <i class="bx bx-cog" style="color: #ffffff"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="delPeople(people.ID)">
+                        <i class="bx bx-trash" style="color: #ffffff"></i>
+                    </button>
                 </td>
             </tr>
         </tbody>
