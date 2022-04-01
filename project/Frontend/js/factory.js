@@ -145,7 +145,7 @@ app.factory('factory', function ($http, $q) {
             var alertplaceholder = document.getElementById('alertplaceholder');
             var wrapper = document.createElement('div');
             wrapper.innerHTML =
-                '<div class="alert alert-' +
+                '<div class="animate__animated animate__slideInRight animate__delay-0s animate__faster alert alert-' +
                 type +
                 '" role="alert"><i class="alert-icon bx ' +
                 icon +
