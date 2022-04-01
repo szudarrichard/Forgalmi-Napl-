@@ -27,7 +27,6 @@ table > tbody > tr > td {
 .table-striped > tbody > tr:nth-of-type(odd) > * {
     --bs-table-accent-bg: var(--bs-table-striped-bg);
     color: var(--text-color);
-  
 }
 
 .btn-primary {
@@ -192,7 +191,7 @@ button .navbar {
     width: 100%;
     max-width: 500px;
 }
-  
+
 .modal-content {
     color: #000000;
 }
@@ -223,8 +222,8 @@ button .navbar {
 button > i {
     font-size: 15px;
 }
-  
- h3 {
+
+h3 {
     color: var(--text-color);
     margin-top: 10px;
 }
@@ -254,7 +253,6 @@ button > i {
         justify-content: center;
         align-items: center;
     }
-
 
     .alertplaceholder .alert {
         width: 100% !important;
