@@ -25,6 +25,9 @@
                 <td>{{people.phoneNum}}</td>
                 <td>{{people.email}}</td>
                 <td class="text-end">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="diary(people.ID)">
+                        <i class="bx bxs-book" style="color: #ffffff"></i>
+                    </button>
                     <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="modPeople(people.ID)">
                         <i class="bx bx-cog" style="color: #ffffff"></i>
                     </button>

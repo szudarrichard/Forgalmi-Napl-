@@ -2,12 +2,12 @@ app.controller('studentsCtrl', function ($scope, factory) {
     $scope.peoples = [];
     $scope.db = [];
     $scope.teachers = [];
+    $scope.lessions = [];
     $scope.decide = 1;
-    $scope.valueID = -1;
 
-    //modal feliratok $scope
     $scope.userTitle = 'Diák';
 
+    //szenélyek és tanárok kigyüjtése
     factory.selectAll('student').then(function (res) {
         $scope.peoples = res;
         for (let i = 0; i < $scope.peoples.length; i++) {
@@ -20,27 +20,33 @@ app.controller('studentsCtrl', function ($scope, factory) {
         for (let i = 0; i < $scope.teachers.length; i++) {
             $scope.db[i] = 0;
         }
-        console.log($scope.teachers);
     });
-    
 
+    //új diák felvétele
     $scope.addPeople = function () {
-        if(angular.fromJson(sessionStorage.getItem('teacherID')) > 0)
-        {
+        if (angular.fromJson(sessionStorage.getItem('teacherID')) > 0) {
             $scope.people = { teacherID: angular.fromJson(sessionStorage.getItem('teacherID')), permission: '1', status: '1' };
-        }
-        else
-        {
+        } else {
             $scope.people = { permission: '1', status: '1' };
         }
         $scope.modaltitle = 'Új diák felvétele';
         $scope.modalBtn = 'Felvesz';
         $scope.modalType = 'success';
         $scope.mode = 1;
-        console.log($scope.people);
-
     };
 
+    //kiválasztott diák karton
+    $scope.diary = function (id) {
+        $scope.modaltitle = 'Diák karton';
+        $scope.modalBtn = '';
+        $scope.modalType = 'warning';
+        $scope.mode = 4;
+        factory.select('clock', 'studentID', id).then(function (res) {
+            $scope.lessions = res;
+        });
+    };
+
+    //kiválasztott diák módosítása
     $scope.modPeople = function (id) {
         $scope.modaltitle = 'Diák adatainak módosítása';
         $scope.modalBtn = 'Módosít';
@@ -51,6 +57,7 @@ app.controller('studentsCtrl', function ($scope, factory) {
         });
     };
 
+    //kiválasztott diák törlése
     $scope.delPeople = function (id) {
         $scope.mode = 3;
         $scope.modaltitle = 'Diák törlése';
@@ -61,6 +68,7 @@ app.controller('studentsCtrl', function ($scope, factory) {
         });
     };
 
+    //submit button események
     $scope.submit = function () {
         // insert
         if ($scope.mode == 1) {
