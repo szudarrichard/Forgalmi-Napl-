@@ -1,6 +1,7 @@
 app.controller('teacherCtrl', function ($scope, factory) {
     $scope.peoples = [];
     $scope.db = [];
+    $scope.decide = 0;
     //modal feliratok $scope
     $scope.userTitle = 'Tanár';
 

@@ -1,6 +1,9 @@
 app.controller('studentsCtrl', function ($scope, factory) {
     $scope.peoples = [];
     $scope.db = [];
+    $scope.teachers = [];
+    $scope.decide = 1;
+    $scope.valueID = -1;
 
     //modal feliratok $scope
     $scope.userTitle = 'Diák';
@@ -12,12 +15,30 @@ app.controller('studentsCtrl', function ($scope, factory) {
         }
     });
 
+    factory.selectAll('teacher').then(function (res) {
+        $scope.teachers = res;
+        for (let i = 0; i < $scope.teachers.length; i++) {
+            $scope.db[i] = 0;
+        }
+        console.log($scope.teachers);
+    });
+    
+
     $scope.addPeople = function () {
-        $scope.people = { teacherID: angular.fromJson(sessionStorage.getItem('teacherID')), permission: '1', status: '1' };
+        if(angular.fromJson(sessionStorage.getItem('teacherID')) > 0)
+        {
+            $scope.people = { teacherID: angular.fromJson(sessionStorage.getItem('teacherID')), permission: '1', status: '1' };
+        }
+        else
+        {
+            $scope.people = { permission: '1', status: '1' };
+        }
         $scope.modaltitle = 'Új diák felvétele';
         $scope.modalBtn = 'Felvesz';
         $scope.modalType = 'success';
         $scope.mode = 1;
+        console.log($scope.people);
+
     };
 
     $scope.modPeople = function (id) {
@@ -50,7 +71,7 @@ app.controller('studentsCtrl', function ($scope, factory) {
                     $scope.people.ID = res.insertId;
                     $scope.peoples.push($scope.people);
                     $scope.people = {};
-                    factory.alert('Tanár felvétele sikeres!', 'success', 'bx-check-circle');
+                    factory.alert('Diák felvétele sikeres!', 'success', 'bx-check-circle');
                 });
             }
         }
