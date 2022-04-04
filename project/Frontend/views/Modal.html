@@ -6,6 +6,7 @@
                 <h5 class="modal-title" id="staticBackdropLabel">{{modaltitle}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <!--Felvétel / szerkesztés / törlés események modal ablaka-->
             <div ng-if="mode < 4" class="modal-body">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="userName" placeholder="{{userTitle}} neve:" ng-model="people.userName" ng-disabled="mode==3" />
@@ -27,6 +28,7 @@
                 </div>
             </div>
 
+            <!--A kiválasztott diák kartonja-->
             <div ng-if="mode == 4" class="modal-body">
                 <table class="table table-bordered">
                     <thead>

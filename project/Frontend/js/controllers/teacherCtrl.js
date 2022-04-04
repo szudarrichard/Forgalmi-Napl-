@@ -1,17 +1,16 @@
 app.controller('teacherCtrl', function ($scope, factory) {
     $scope.peoples = [];
     $scope.db = [];
+    $scope.teachers = [];
     $scope.decide = 0;
-    //modal feliratok $scope
     $scope.userTitle = 'Tanár';
 
-    factory.selectAll('teacher').then(function (res) {
-        $scope.peoples = res;
-        for (let i = 0; i < $scope.peoples.length; i++) {
-            $scope.db[i] = 0;
-        }
+    //Tanárok listája a belépett administrátor iskolájában
+    factory.select('teacher', 'schoolID', angular.fromJson(sessionStorage.getItem('schoolID'))).then(function (res) {
+        $scope.teachers = res;
     });
 
+    //Felvétel
     $scope.addPeople = function () {
         $scope.people = { schoolID: angular.fromJson(sessionStorage.getItem('schoolID')), permission: '2', clockStatus: '1', status: '1' };
         $scope.modaltitle = 'Új tanár felvétele';
@@ -20,6 +19,7 @@ app.controller('teacherCtrl', function ($scope, factory) {
         $scope.mode = 1;
     };
 
+    //Módosítás
     $scope.modPeople = function (id) {
         $scope.modaltitle = 'Tanár adatainak módosítása';
         $scope.modalBtn = 'Módosít';
@@ -30,6 +30,7 @@ app.controller('teacherCtrl', function ($scope, factory) {
         });
     };
 
+    //Törlés
     $scope.delPeople = function (id) {
         $scope.mode = 3;
         $scope.modaltitle = 'Tanár törlése';
