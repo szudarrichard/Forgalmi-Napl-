@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="staticBackdropLabel">{{modaltitle}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div ng-if="mode < 4" class="modal-body">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="userName" placeholder="{{userTitle}} neve:" ng-model="people.userName" ng-disabled="mode==3" />
                     <label for="userName">{{userTitle}} neve:</label>
@@ -22,18 +22,40 @@
                 <div ng-if="loggedPermission == 3 && decide == 1">
                     <select id="teacherlist" ng-model="people.teacherID" class="form-select">
                         <option value="" selected disabled>Tanárok listája</option>
-                        <option ng-repeat="teacher in teachers" value="{{teacher.ID}}" >{{teacher.userName}}</option>
+                        <option ng-repeat="teacher in teachers" value="{{teacher.ID}}">{{teacher.userName}}</option>
                     </select>
                 </div>
-                <!--TODO: Admin felület esetén a tanárok kilistázása
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="teacherID" placeholder="Tanár:" ng-model="student.teacherID" ng-disabled="mode==3" />
-                    <label for="teacherID">Tanár neve:</label>
-                </div>-->
+            </div>
+
+            <div ng-if="mode == 4" class="modal-body">
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Gönygölt óraszám</th>
+                            <th>óra</th>
+                            <th>Dátum</th>
+                            <th>Kezdő KM</th>
+                            <th>Végső KM</th>
+                            <th>Tanuló</th>
+                            <th>Oktató</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="lession in lessions">
+                            <td>{{0}}</td>
+                            <td>{{$index + 1}}</td>
+                            <td>{{lession.date}}</td>
+                            <td>{{lession.startKM}}</td>
+                            <td>{{lession.endKM}}</td>
+                            <td>* diák név *</td>
+                            <td>* tanár név *</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
-                <button type="button" class="btn btn-{{modalType}}" ng-click="submit()" data-bs-dismiss="modal">{{modalBtn}}</button>
+                <button ng-if="modalBtn.length>0" type="button" class="btn btn-{{modalType}}" ng-click="submit()" data-bs-dismiss="modal">{{modalBtn}}</button>
             </div>
         </div>
     </div>
