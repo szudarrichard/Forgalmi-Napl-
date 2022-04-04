@@ -22,7 +22,7 @@
                 <div ng-if="loggedPermission == 3 && decide == 1">
                     <select id="teacherlist" ng-model="people.teacherID" class="form-select">
                         <option value="" selected disabled>Tanárok listája</option>
-                        <option ng-repeat="teacher in teachers" value="{{teacher.ID}}" >{{teacher.userName}}</option>
+                        <option ng-repeat="teacher in teachers" value="{{teacher.ID}}" >{{teacher.ID}} - {{teacher.userName}}</option>
                     </select>
                 </div>
                 <!--TODO: Admin felület esetén a tanárok kilistázása

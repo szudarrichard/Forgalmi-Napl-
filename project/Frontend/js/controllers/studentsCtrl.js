@@ -1,4 +1,4 @@
-app.controller('studentsCtrl', function ($scope, factory) {
+app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
     $scope.peoples = [];
     $scope.db = [];
     $scope.teachers = [];
@@ -20,14 +20,13 @@ app.controller('studentsCtrl', function ($scope, factory) {
         for (let i = 0; i < $scope.teachers.length; i++) {
             $scope.db[i] = 0;
         }
-        console.log($scope.teachers);
     });
     
 
     $scope.addPeople = function () {
-        if(angular.fromJson(sessionStorage.getItem('teacherID')) > 0)
+        if($rootScope.loggedPermission == 2)
         {
-            $scope.people = { teacherID: angular.fromJson(sessionStorage.getItem('teacherID')), permission: '1', status: '1' };
+            $scope.people = { teacherID: angular.fromJson(sessionStorage.getItem('userID')), permission: '1', status: '1' };
         }
         else
         {
@@ -37,8 +36,6 @@ app.controller('studentsCtrl', function ($scope, factory) {
         $scope.modalBtn = 'Felvesz';
         $scope.modalType = 'success';
         $scope.mode = 1;
-        console.log($scope.people);
-
     };
 
     $scope.modPeople = function (id) {
@@ -64,7 +61,7 @@ app.controller('studentsCtrl', function ($scope, factory) {
     $scope.submit = function () {
         // insert
         if ($scope.mode == 1) {
-            if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null) {
+            if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null /* select value hiány */) {
                 factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } else {
                 factory.insert('student', $scope.people).then(function (res) {
