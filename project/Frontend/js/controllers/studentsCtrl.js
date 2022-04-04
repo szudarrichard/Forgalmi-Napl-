@@ -11,15 +11,18 @@ app.controller('studentsCtrl', function ($scope, factory) {
     //admin => diák felvétel esetén csak a tanárok látszódjanak ( select => option )
     if (angular.fromJson(sessionStorage.getItem('permission')) == 3) {
         factory.select('teacher', 'schoolID', angular.fromJson(sessionStorage.getItem('schoolID'))).then(function (res) {
+            var assistObj = [];
             $scope.teachers = res;
+            console.log($scope.teachers);
             for (let i = 0; i < res.length; i++) {
                 factory.select('student', 'teacherID', res[i].ID).then(function (res) {
-                    $scope.students = res;
+                    assistObj[i] = res;
+                    for (let j = 0; j < assistObj[i].length; j++) {
+                        $scope.students.push(assistObj[i][j]);
+                    }
                 });
             }
         });
-
-        console.log($scope.students);
     }
 
     //tanár => sajaté Diákok
