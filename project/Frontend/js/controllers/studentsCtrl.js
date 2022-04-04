@@ -12,8 +12,14 @@ app.controller('studentsCtrl', function ($scope, factory) {
     if (angular.fromJson(sessionStorage.getItem('permission')) == 3) {
         factory.select('teacher', 'schoolID', angular.fromJson(sessionStorage.getItem('schoolID'))).then(function (res) {
             $scope.teachers = res;
-            //uj select a res adataival
+            for (let i = 0; i < res.length; i++) {
+                factory.select('student', 'teacherID', res[i].ID).then(function (res) {
+                    $scope.students = res;
+                });
+            }
         });
+
+        console.log($scope.students);
     }
 
     //tanár => sajaté Diákok
