@@ -1,22 +1,21 @@
 app.controller('calendarCtrl', function ($scope, $rootScope, factory) {
     //TODO: Naptár
-    $scope.lessions = [];
-    factory.selectAll('clock').then(function (res) {
-        $scope.lessions = res;
-    });
+    $scope.reservations = [];
 
     factory.selectAll('clock').then(function (res) {
-        $scope.lessions = res;
+        $scope.reservations = res;
+
         let events = [];
 
-        $scope.lessions.forEach((lession) => {
-            lession.date = lession.date.substring(0, 10);
+        $scope.reservations.forEach((reservation) => {
             events.push({
-                title: '',
-                start: lessions.date,
-                end: lessions.date + 1,
+                title: reservation.studentID,
+                start: reservation.start,
+                end: reservation.end,
+                id: reservation.ID,
             });
         });
-        factory.toCalendar(events, 'calendar', 'dayGridMonth', false);
+
+        factory.toCalendar(events, 'calendar', 'timeGridWeek', true, true, 'clock');
     });
 });

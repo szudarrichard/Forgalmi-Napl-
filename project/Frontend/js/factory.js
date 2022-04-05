@@ -110,7 +110,7 @@ app.factory('factory', function ($http, $q) {
         },
 
         //CALENDAR
-        toCalendar: function (events, div, view, edit) {
+        toCalendar: function (events, div, view, edit, selectable, tablename) {
             var calendarEl = document.getElementById(div);
             var today = new Date();
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -119,6 +119,8 @@ app.factory('factory', function ($http, $q) {
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
                 },
+                timeZone: 'UTC',
+                selectable: selectable,
                 initialDate: today,
                 initialView: view, // dayGridMonth,timeGridWeek,timeGridDay,listMonth
                 locale: 'hu',
@@ -127,6 +129,36 @@ app.factory('factory', function ($http, $q) {
                 navLinks: true, // can click day/week names to navigate views
                 editable: edit,
                 dayMaxEvents: true, // allow \"more\" link when too many events
+                select: function (arg) {
+                    $http.get(url + '/' + 'student' + '/' + 'email' + '/' + angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
+                        console.log(res);
+
+                        let data = {
+                            start: moment(arg.start).locale('hu').format('YYYY-MM-DD HH:MM'),
+                            end: moment(arg.end).locale('hu').format('YYYY-MM-DD HH:MM'),
+                            studentID: res.data[0].ID,
+                        };
+
+                        $http.post(url + '/' + tablename, data).then(function (res) {
+                            calendar.addEvent({
+                                start: arg.start,
+                                end: arg.end,
+                                id: res.data.insertId,
+                                allDay: arg.allDay,
+                            });
+                        });
+
+                        calendar.unselect();
+                    });
+                },
+
+                eventClick: function (arg) {
+                    if (confirm('Are you sure you want to delete this event?')) {
+                        $http.delete(url + '/' + tablename + '/' + arg.event.id).then(function (res) {
+                            arg.event.remove();
+                        });
+                    }
+                },
                 events: events,
             });
 

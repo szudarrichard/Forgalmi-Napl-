@@ -8,12 +8,11 @@ app.controller('studentsCtrl', function ($scope, factory) {
 
     $scope.userTitle = 'Diák';
 
-    //admin => diák felvétel esetén csak a tanárok látszódjanak ( select => option )
+    //admin => diákok kilistázása az admin iskolájába
     if (angular.fromJson(sessionStorage.getItem('permission')) == 3) {
         factory.select('teacher', 'schoolID', angular.fromJson(sessionStorage.getItem('schoolID'))).then(function (res) {
             var assistObj = [];
             $scope.teachers = res;
-            console.log($scope.teachers);
             for (let i = 0; i < res.length; i++) {
                 factory.select('student', 'teacherID', res[i].ID).then(function (res) {
                     assistObj[i] = res;
@@ -22,10 +21,11 @@ app.controller('studentsCtrl', function ($scope, factory) {
                     }
                 });
             }
+            assistObj = [];
         });
     }
 
-    //tanár => sajaté Diákok
+    //tanár => saját Diákok
     if (angular.fromJson(sessionStorage.getItem('permission')) == 2) {
         factory.select('student', 'teacherID', angular.fromJson(sessionStorage.getItem('userID'))).then(function (res) {
             $scope.students = res;
