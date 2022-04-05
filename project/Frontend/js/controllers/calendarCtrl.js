@@ -4,6 +4,7 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory) {
 
     factory.selectAll('clock').then(function (res) {
         $scope.reservations = res;
+        //$scope.reservationName = //TODO: foglaló diákok neve
 
         let events = [];
 

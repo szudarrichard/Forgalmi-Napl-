@@ -131,8 +131,6 @@ app.factory('factory', function ($http, $q) {
                 dayMaxEvents: true, // allow \"more\" link when too many events
                 select: function (arg) {
                     $http.get(url + '/' + 'student' + '/' + 'email' + '/' + angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
-                        console.log(res);
-
                         let data = {
                             start: moment(arg.start).locale('hu').format('YYYY-MM-DD HH:MM'),
                             end: moment(arg.end).locale('hu').format('YYYY-MM-DD HH:MM'),
@@ -153,11 +151,16 @@ app.factory('factory', function ($http, $q) {
                 },
 
                 eventClick: function (arg) {
-                    if (confirm('Are you sure you want to delete this event?')) {
-                        $http.delete(url + '/' + tablename + '/' + arg.event.id).then(function (res) {
-                            arg.event.remove();
+                    $http.get(url + '/' + 'clock' + '/' + 'ID' + '/' + arg.event.id).then(function (res) {
+                        $http.get(url + '/' + 'student' + '/' + 'ID' + '/' + res.data[0].studentID).then(function (res) {
+                            if (res.data[0].email != angular.fromJson(sessionStorage.getItem('email'))) {
+                            } else {
+                                $http.delete(url + '/' + tablename + '/' + arg.event.id).then(function (res) {
+                                    arg.event.remove();
+                                });
+                            }
                         });
-                    }
+                    });
                 },
                 events: events,
             });
@@ -192,3 +195,7 @@ app.factory('factory', function ($http, $q) {
         },
     };
 });
+/*
+if (confirm('Are you sure you want to delete this event?')) {
+    
+}*/
