@@ -129,6 +129,7 @@ app.factory('factory', function ($http, $q) {
                 navLinks: true, // can click day/week names to navigate views
                 editable: edit,
                 dayMaxEvents: true, // allow \"more\" link when too many events
+                eventColor: '#C70039',
                 select: function (arg) {
                     $http.get(url + '/' + 'student' + '/' + 'email' + '/' + angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
                         let data = {
@@ -154,6 +155,7 @@ app.factory('factory', function ($http, $q) {
                     $http.get(url + '/' + 'clock' + '/' + 'ID' + '/' + arg.event.id).then(function (res) {
                         $http.get(url + '/' + 'student' + '/' + 'ID' + '/' + res.data[0].studentID).then(function (res) {
                             if (res.data[0].email != angular.fromJson(sessionStorage.getItem('email'))) {
+                                //TODO: modál az adtokkal
                             } else {
                                 $http.delete(url + '/' + tablename + '/' + arg.event.id).then(function (res) {
                                     arg.event.remove();

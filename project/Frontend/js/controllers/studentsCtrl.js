@@ -11,7 +11,7 @@ app.controller('studentsCtrl', function ($scope, factory) {
     //admin => diákok kilistázása az admin iskolájába
     if (angular.fromJson(sessionStorage.getItem('permission')) == 3) {
         factory.select('teacher', 'schoolID', angular.fromJson(sessionStorage.getItem('schoolID'))).then(function (res) {
-            var assistObj = [];
+            let assistObj = [];
             $scope.teachers = res;
             for (let i = 0; i < res.length; i++) {
                 factory.select('student', 'teacherID', res[i].ID).then(function (res) {
