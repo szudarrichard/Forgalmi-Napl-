@@ -15,6 +15,10 @@ body {
     color: var(--text-color);
 }
 
+.table:hover {
+    color: var(--text-color);
+}
+
 table.table.table-bordered {
     color: var(--text-secondarycolor);
     text-align: center;
@@ -70,7 +74,7 @@ table > tbody > tr > td {
 }
 
 .btn-warning:hover {
-    color: black;
+    color: var(--nav-secondarycolor);
     background-color: var(--text-color);
     border-color: var(--text-color);
 }
@@ -113,7 +117,7 @@ a.nav-link:hover {
 
 .nav a:hover {
     background-color: #ddd;
-    color: black;
+    color: var(--nav-secondarycolor);
 }
 
 .nav a.active {
@@ -202,7 +206,8 @@ button .navbar {
 }
 
 .modal-content {
-    color: #000000;
+    color: var(--nav-secondarycolor);
+    width: 200%;
 }
 
 .alertplaceholder {
