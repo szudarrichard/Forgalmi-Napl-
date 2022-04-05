@@ -27,8 +27,10 @@ app.controller('studentsCtrl', function ($scope, factory) {
 
     //tanár => saját Diákok
     if (angular.fromJson(sessionStorage.getItem('permission')) == 2) {
-        factory.select('student', 'teacherID', angular.fromJson(sessionStorage.getItem('userID'))).then(function (res) {
-            $scope.students = res;
+        factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
+            factory.select('student', 'teacherID', res[0].ID).then(function (res) {
+                $scope.students = res;
+            });
         });
     }
 
