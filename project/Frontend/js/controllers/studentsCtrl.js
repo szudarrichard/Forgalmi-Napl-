@@ -2,34 +2,41 @@ app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
     $scope.peoples = [];
     $scope.db = [];
     $scope.teachers = [];
+    $scope.students = [];
+    $scope.lessions = [];
     $scope.decide = 1;
-    $scope.valueID = -1;
 
-    //modal feliratok $scope
     $scope.userTitle = 'Diák';
 
-    factory.selectAll('student').then(function (res) {
-        $scope.peoples = res;
-        for (let i = 0; i < $scope.peoples.length; i++) {
-            $scope.db[i] = 0;
-        }
-    });
+    //admin => diák felvétel esetén csak a tanárok látszódjanak ( select => option )
+    if (angular.fromJson(sessionStorage.getItem('permission')) == 3) {
+        factory.select('teacher', 'schoolID', angular.fromJson(sessionStorage.getItem('schoolID'))).then(function (res) {
+            var assistObj = [];
+            $scope.teachers = res;
+            console.log($scope.teachers);
+            for (let i = 0; i < res.length; i++) {
+                factory.select('student', 'teacherID', res[i].ID).then(function (res) {
+                    assistObj[i] = res;
+                    for (let j = 0; j < assistObj[i].length; j++) {
+                        $scope.students.push(assistObj[i][j]);
+                    }
+                });
+            }
+        });
+    }
 
-    factory.selectAll('teacher').then(function (res) {
-        $scope.teachers = res;
-        for (let i = 0; i < $scope.teachers.length; i++) {
-            $scope.db[i] = 0;
-        }
-    });
-    
+    //tanár => sajaté Diákok
+    if (angular.fromJson(sessionStorage.getItem('permission')) == 2) {
+        factory.select('student', 'teacherID', angular.fromJson(sessionStorage.getItem('userID'))).then(function (res) {
+            $scope.students = res;
+        });
+    }
 
+    //új diák felvétele
     $scope.addPeople = function () {
-        if($rootScope.loggedPermission == 2)
-        {
-            $scope.people = { teacherID: angular.fromJson(sessionStorage.getItem('userID')), permission: '1', status: '1' };
-        }
-        else
-        {
+        if (angular.fromJson(sessionStorage.getItem('teacherID')) > 0) {
+            $scope.people = { teacherID: angular.fromJson(sessionStorage.getItem('teacherID')), permission: '1', status: '1' };
+        } else {
             $scope.people = { permission: '1', status: '1' };
         }
         $scope.modaltitle = 'Új diák felvétele';
@@ -38,6 +45,18 @@ app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
         $scope.mode = 1;
     };
 
+    //kiválasztott diák karton
+    $scope.diary = function (id) {
+        $scope.modaltitle = 'Diák karton';
+        $scope.modalBtn = '';
+        $scope.modalType = 'warning';
+        $scope.mode = 4;
+        factory.select('clock', 'studentID', id).then(function (res) {
+            $scope.lessions = res;
+        });
+    };
+
+    //kiválasztott diák módosítása
     $scope.modPeople = function (id) {
         $scope.modaltitle = 'Diák adatainak módosítása';
         $scope.modalBtn = 'Módosít';
@@ -48,6 +67,7 @@ app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
         });
     };
 
+    //kiválasztott diák törlése
     $scope.delPeople = function (id) {
         $scope.mode = 3;
         $scope.modaltitle = 'Diák törlése';
@@ -58,10 +78,11 @@ app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
         });
     };
 
+    //submit button események
     $scope.submit = function () {
         // insert
         if ($scope.mode == 1) {
-            if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null /* select value hiány */) {
+            if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null || $scope.people.teacherID == null) {
                 factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } else {
                 factory.insert('student', $scope.people).then(function (res) {

@@ -20,15 +20,19 @@
         </thead>
         <tbody>
             <!--tanár id-->
-            <tr class="animate" ng-repeat="people in peoples | filter: search" ng-click="selectRow($index)">
-                <td>{{people.userName}}</td>
-                <td>{{people.phoneNum}}</td>
-                <td>{{people.email}}</td>
+            <tr class="animate" ng-repeat="student in students | filter: search" ng-click="selectRow($index)">
+                <td>{{student.userName}}</td>
+                <td>{{student.phoneNum}}</td>
+                <td>{{student.email}}</td>
                 <td class="text-end">
-                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="modPeople(people.ID)">
+
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="diary(people.ID)">
+                        <i class="bx bxs-book" style="color: #ffffff"></i>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="modPeople(student.ID)">
                         <i class="bx bx-cog" style="color: #ffffff"></i>
                     </button>
-                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="delPeople(people.ID)">
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ng-click="delPeople(student.ID)">
                         <i class="bx bx-trash" style="color: #ffffff"></i>
                     </button>
                 </td>
@@ -36,7 +40,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="6">Összesen: {{peoples.length}} diák</td>
+                <td colspan="6">Összesen: {{students.length}} diák</td>
             </tr>
         </tfoot>
     </table>

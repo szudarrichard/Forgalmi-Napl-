@@ -16,7 +16,6 @@ app.run(function ($rootScope, $locale) {
         $rootScope.loggedSchoolID = angular.fromJson(sessionStorage.getItem('schoolID'));
         $rootScope.studentTeacherID = angular.fromJson(sessionStorage.getItem('userID'));
         $rootScope.status = angular.fromJson(sessionStorage.getItem('status'));
-        console.log($rootScope.status);
     } else {
         $rootScope.loggedIn = false;
         $rootScope.loggedUser = '';

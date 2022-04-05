@@ -2,6 +2,7 @@
     --bg-color: #398ab9;
     --nav-color: #1c658c;
     --text-color: white;
+    --text-secondarycolor: black;
 }
 
 body {
@@ -12,6 +13,11 @@ body {
 
 .table {
     color: var(--text-color);
+}
+
+table.table.table-bordered {
+    color: var(--text-secondarycolor);
+    text-align: center;
 }
 
 table > tbody > tr > td {
