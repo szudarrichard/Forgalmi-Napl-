@@ -98,11 +98,12 @@ table > tbody > tr > td {
 }
 
 a.nav-link:hover {
-    color: white;
+    color: var(--text-color);
+    font-weight: 900;
 }
 
 .nav-link:focus {
-    color: white;
+    color: var(--text-color);
 }
 
 .nav li a {
@@ -255,6 +256,35 @@ h3 {
 .logged-user i {
     margin-right: 5px;
     font-size: 18px;
+}
+
+.teacher-data {
+    margin-right: 80px;
+    font-size: 16px;
+}
+
+.teacher-data-icon {
+    vertical-align: middle;
+    color: var(--text-color);
+    margin-right: 5px;
+    
+}
+
+.teacher-data a {
+    color: var(--text-color);
+}
+
+.card {
+    background: none;
+    border: none;
+    font-size: 25px;
+    margin-bottom: 10px;
+    justify-content: right;
+}
+
+.clock-icon {
+    color: var(--text-color);
+    vertical-align: middle;
 }
 
 @media (max-width: 770px) {
