@@ -119,7 +119,8 @@ app.factory('factory', function ($http, $q) {
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
                 },
-                timeZone: 'UTC',
+                timeZone: 'Europe/Budapest',
+                slotDuration: '01:00',
                 selectable: selectable,
                 initialDate: today,
                 initialView: view, // dayGridMonth,timeGridWeek,timeGridDay,listMonth
@@ -130,11 +131,12 @@ app.factory('factory', function ($http, $q) {
                 editable: edit,
                 dayMaxEvents: true, // allow \"more\" link when too many events
                 eventColor: '#C70039',
+                height: 750,
                 select: function (arg) {
                     $http.get(url + '/' + 'student' + '/' + 'email' + '/' + angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
                         let data = {
-                            start: moment(arg.start).locale('hu').format('YYYY-MM-DD HH:MM'),
-                            end: moment(arg.end).locale('hu').format('YYYY-MM-DD HH:MM'),
+                            start: moment(arg.start).locale('hu').format('YYYY-MM-DD HH:mm'),
+                            end: moment(arg.end).locale('hu').format('YYYY-MM-DD HH:mm'),
                             studentID: res.data[0].ID,
                         };
 
@@ -152,7 +154,7 @@ app.factory('factory', function ($http, $q) {
                 },
 
                 eventClick: function (arg) {
-                    $http.get(url + '/' + 'clock' + '/' + 'ID' + '/' + arg.event.id).then(function (res) {
+                    $http.get(url + '/' + tablename + '/' + 'ID' + '/' + arg.event.id).then(function (res) {
                         $http.get(url + '/' + 'student' + '/' + 'ID' + '/' + res.data[0].studentID).then(function (res) {
                             if (res.data[0].email != angular.fromJson(sessionStorage.getItem('email'))) {
                                 //TODO: modál az adtokkal
@@ -197,7 +199,3 @@ app.factory('factory', function ($http, $q) {
         },
     };
 });
-/*
-if (confirm('Are you sure you want to delete this event?')) {
-    
-}*/

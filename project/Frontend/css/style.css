@@ -125,7 +125,7 @@ a.nav-link:hover {
     height: 100px;
 }
 
-.main{
+.main {
     min-height: calc(100vh - 198px);
     padding-bottom: 10px;
 }
@@ -236,8 +236,7 @@ h3 {
     margin-top: 10px;
 }
 
-.logged-user
-{
+.logged-user {
     float: right;
     color: var(--text-color);
     margin-right: 70px;
