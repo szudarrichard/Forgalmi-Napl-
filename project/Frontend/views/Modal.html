@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!--Felvétel / szerkesztés / törlés események modal ablaka-->
-            <div ng-if="mode < 4" class="modal-body">
+            <div class="modal-body">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="userName" placeholder="{{userTitle}} neve:" ng-model="people.userName" ng-disabled="mode==3" />
                     <label for="userName">{{userTitle}} neve:</label>
@@ -28,37 +28,49 @@
                 </div>
             </div>
 
-            <!--A kiválasztott diák kartonja-->
-            <div ng-if="mode == 4" class="modal-body container">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Göngyölt óraszám</th>
-                            <th>Óra</th>
-                            <th>Dátum</th>
-                            <th>Kezdő KM</th>
-                            <th>Végső KM</th>
-                            <th>Tanuló</th>
-                            <th>Oktató</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="lession in lessions">
-                            <td>{{0}}</td>
-                            <td>{{$index + 1}}</td>
-                            <td>{{lession.date}}</td>
-                            <td>{{lession.startKM}}</td>
-                            <td>{{lession.endKM}}</td>
-                            <td>* diák név *</td>
-                            <td>* tanár név *</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
-                <button ng-if="modalBtn.length>0" type="button" class="btn btn-{{modalType}}" ng-click="submit()" data-bs-dismiss="modal">{{modalBtn}}</button>
+                <button type="button" class="btn btn-{{modalType}}" ng-click="submit()" data-bs-dismiss="modal">{{modalBtn}}</button>
             </div>
         </div>
     </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">{{modaltitle}} - {{selectedName}}</h5>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Göngyölt óraszám</th>
+                        <th>Óra</th>
+                        <th>Dátum</th>
+                        <th>Kezdő KM</th>
+                        <th>Végső KM</th>
+                        <th>Tanuló</th>
+                        <th>Oktató</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="lession in lessions">
+                        <td>{{0}}</td>
+                        <td>{{$index + 1}}</td>
+                        <td>{{lession.date}}</td>
+                        <td>{{lession.startKM}}</td>
+                        <td>{{lession.endKM}}</td>
+                        <td>......</td>
+                        <td>......</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+            </div>
+      </div>
+    </div>
+
 </div>
