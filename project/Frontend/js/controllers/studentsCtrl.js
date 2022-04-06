@@ -49,9 +49,11 @@ app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
     //kiválasztott diák karton
     $scope.diary = function (id) {
         $scope.modaltitle = 'Diák karton';
-        $scope.modalBtn = '';
-        $scope.modalType = 'warning';
         $scope.mode = 4;
+        factory.select('student', 'ID', id).then(function(res){
+            $scope.selectedName = res[0].userName;
+        });
+
         factory.select('clock', 'studentID', id).then(function (res) {
             $scope.lessions = res;
         });
