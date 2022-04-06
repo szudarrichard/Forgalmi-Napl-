@@ -63,10 +63,6 @@
                                 <!--tanár diák látja (permission 1 || 2)-->
                                 <a class="nav-link" href="#!/calendar"><i class='bx bx-calendar'  ></i>Naptár</a>
                             </li>
-                            <li class="nav-item" ng-if="loggedPermission==1 && status != 0">
-                                <!--Csak diák látja (permission 1)-->
-                                <a class="nav-link" href="#!/teacherdata"><i class='bx bxs-contact'></i>Tanárom elérhetőségei</a>
-                            </li>
                             <!--
                             <li class="nav-item" ng-if="loggedPermission==2 && status != 0">
                                 Csak tanár látja (permission 2)
@@ -102,7 +98,7 @@
                     </div>
                     </div>
                     </div>
-                <div class="teacher-data">
+                <div class="teacher-data" ng-if="loggedPremission == 1 && status != 0">
                         <a><i class='bx bx-user teacher-data-icon' ></i>Saját tanár neve</a><br>
                         <a><i class='bx bx-phone teacher-data-icon' ></i>Telefon:</a> (123) 456-7890
                         <a><i class='bx bx-envelope teacher-data-icon' ></i>E-mail</a><br>
