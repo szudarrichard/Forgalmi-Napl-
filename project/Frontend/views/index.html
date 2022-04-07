@@ -104,7 +104,7 @@
 
         <main class="container main" ng-view></main>
 
-        <footer class="bg-white footer">
+        <footer class="bg-white footer" ng-if="loggedIn == true">
             <div class="bg-light py-4">
                 <div class="container text-center">
                     <p class="text-muted mb-0">{{ title }} - {{ company }} - {{ author }}</p>
