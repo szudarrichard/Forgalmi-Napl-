@@ -1,4 +1,5 @@
-app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
+
+app.controller('studentsCtrl', function ($scope, factory, factoryAlert) {
     $scope.peoples = [];
     $scope.db = [];
     $scope.teachers = [];
@@ -8,12 +9,11 @@ app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
 
     $scope.userTitle = 'Diák';
 
-    //admin => diák felvétel esetén csak a tanárok látszódjanak ( select => option )
+    //admin => diákok kilistázása az admin iskolájába
     if (angular.fromJson(sessionStorage.getItem('permission')) == 3) {
         factory.select('teacher', 'schoolID', angular.fromJson(sessionStorage.getItem('schoolID'))).then(function (res) {
-            var assistObj = [];
+            let assistObj = [];
             $scope.teachers = res;
-            console.log($scope.teachers);
             for (let i = 0; i < res.length; i++) {
                 factory.select('student', 'teacherID', res[i].ID).then(function (res) {
                     assistObj[i] = res;
@@ -22,22 +22,26 @@ app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
                     }
                 });
             }
+            assistObj = [];
         });
     }
 
-    //tanár => sajaté Diákok
+    //tanár => saját Diákok
     if (angular.fromJson(sessionStorage.getItem('permission')) == 2) {
-        factory.select('student', 'teacherID', angular.fromJson(sessionStorage.getItem('userID'))).then(function (res) {
-            $scope.students = res;
+        factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
+            factory.select('student', 'teacherID', res[0].ID).then(function (res) {
+                $scope.students = res;
+            });
         });
     }
 
     //új diák felvétele
     $scope.addPeople = function () {
-        if (angular.fromJson(sessionStorage.getItem('teacherID')) > 0) {
-            $scope.people = { teacherID: angular.fromJson(sessionStorage.getItem('teacherID')), permission: '1', status: '1' };
-        } 
-        else {
+        if (angular.fromJson(sessionStorage.getItem('permission')) == 2) {
+            factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
+                $scope.people = { teacherID: res[0].ID, permission: '1', status: '1' };
+            });
+        } else {
             $scope.people = { permission: '1', status: '1' };
         }
         $scope.modaltitle = 'Új diák felvétele';
@@ -87,6 +91,17 @@ app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
         // insert
         if ($scope.mode == 1) {
             if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null || $scope.people.teacherID == null) {
+              /*
+                factoryAlert.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
+                console.log($scope.people);
+            } else {
+                factory.insert('student', $scope.people).then(function (res) {
+                    $scope.people.ID = res.insertId;
+                    $scope.peoples.push($scope.people);
+                    $scope.people = {};
+                    factoryAlert.alert('Diák felvétele sikeres!', 'success', 'bx-check-circle');
+                });
+                */
                 factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } 
             else {
@@ -114,15 +129,22 @@ app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
                         })
                     }
                 })
-                
             }
         }
        
         // update
         if ($scope.mode == 2) {
             if ($scope.people.userName == null || $scope.people.password == null || $scope.people.email == null || $scope.people.phoneNum == null) {
-                factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
+                factoryAlert.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } else {
+              /*
+                factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
+                    let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
+                    $scope.peoples[index] = $scope.people;
+                    $scope.people = {};
+                    factoryAlert.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
+                });
+                */
                 factory.select('student','email', $scope.people.email).then(function(res){
                     if(res.length != 0)
                     {
@@ -156,7 +178,7 @@ app.controller('studentsCtrl', function ($scope, factory, $rootScope) {
                 let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                 $scope.peoples.splice(index, 1);
                 $scope.people = {};
-                factory.alert('Az adat eltávolítva!', 'success', 'bx-check-circle');
+                factoryAlert.alert('Az adat eltávolítva!', 'success', 'bx-check-circle');
             });
         }
     };

@@ -69,7 +69,8 @@ CREATE TABLE `clock` (
   `studentID` int(11) NOT NULL,
   `startKM` int(11) NOT NULL,
   `endKM` int(11) NOT NULL,
-  `date` datetime NOT NULL
+  `start` datetime NOT NULL,
+  `end` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 -- --------------------------------------------------------

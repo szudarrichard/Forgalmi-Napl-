@@ -244,6 +244,7 @@ h3 {
     margin-top: 10px;
 }
 
+
 h5 {
     color: var(--text-secondarycolor);
 }
@@ -286,6 +287,15 @@ h5 {
     font-size: 25px;
     margin-bottom: 10px;
     justify-content: right;
+}
+
+.calendar {
+    border-radius: 5px;
+    background-color: #e7a637;
+}
+
+.fc-col-header-cell {
+    background-color: #a57110;
 }
 
 @media (max-width: 770px) {
