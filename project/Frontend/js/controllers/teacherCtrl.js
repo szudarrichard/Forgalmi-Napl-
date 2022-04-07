@@ -40,33 +40,86 @@ app.controller('teacherCtrl', function ($scope, factory, factoryAlert) {
             $scope.people = res[0];
         });
     };
-
+   
     $scope.submit = function () {
         // insert
         if ($scope.mode == 1) {
             if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null) {
                 factoryAlert.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } else {
+
+              /*
                 factory.insert('teacher', $scope.people).then(function (res) {
                     $scope.people.ID = res.insertId;
                     $scope.peoples.push($scope.people);
                     $scope.people = {};
                     factoryAlert.alert('Tanár felvétele sikeres!', 'success', 'bx-check-circle');
                 });
+=======*/
+                factory.select('teacher','email', $scope.people.email).then(function(res){
+                    if(res.length != 0)
+                    {
+                        factory.alert('Ez az email cím már foglalt!', 'danger', 'bxs-error');
+                    }    
+                    else
+                    {
+                        factory.select('teacher','phoneNum', $scope.people.phoneNum).then(function(res){
+                            if(res.length != 0)
+                            {
+                                factory.alert('Ez a telefonszám  már foglalt!', 'danger', 'bxs-error');
+                            }  
+                            else
+                            {
+                                factory.insert('teacher', $scope.people).then(function (res) {
+                                    $scope.people.ID = res.insertId;
+                                    $scope.peoples.push($scope.people);
+                                    $scope.people = {};
+                                    factory.alert('Tanár felvétele sikeres!', 'success', 'bx-check-circle');
+                                });
+                            }
+                        }) 
+                    }
+                })
             }
         }
-
+        
         // update
         if ($scope.mode == 2) {
             if ($scope.people.userName == null || $scope.people.password == null || $scope.people.email == null || $scope.people.phoneNum == null) {
                 factoryAlert.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } else {
+              /*
                 factory.update('teacher', $scope.people.ID, $scope.people).then(function (res) {
                     let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                     $scope.peoples[index] = $scope.people;
                     $scope.people = {};
                     factoryAlert.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
                 });
+=======*/
+                factory.select('teacher','email', $scope.people.email).then(function(res){
+                    if(res.length != 0)
+                    {
+                        factory.alert('Ez az email cím már foglalt!', 'danger', 'bxs-error');
+                    }    
+                    else
+                    {
+                        factory.select('teacher','phoneNum', $scope.people.phoneNum).then(function(res){
+                            if(res.length != 0)
+                            {
+                                factory.alert('Ez a telefonszám  már foglalt!', 'danger', 'bxs-error');
+                            }  
+                            else
+                            {
+                                factory.update('teacher', $scope.people.ID, $scope.people).then(function (res) {
+                                    let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
+                                    $scope.peoples[index] = $scope.people;
+                                    $scope.people = {};
+                                    factory.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
+                                });
+                            }
+                        }) 
+                    }
+                })
             }
         }
 

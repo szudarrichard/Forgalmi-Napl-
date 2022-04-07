@@ -15,6 +15,10 @@ body {
     color: var(--text-color);
 }
 
+.table:hover {
+    color: var(--text-color);
+}
+
 table.table.table-bordered {
     color: var(--text-secondarycolor);
     text-align: center;
@@ -43,8 +47,8 @@ table > tbody > tr > td {
 
 .btn-primary:hover {
     color: rgb(0, 0, 0);
-    background-color: white;
-    border-color: white;
+    background-color: var(--text-color);
+    border-color: var(--text-color);
 }
 
 .btn-check:focus + .btn-primary,
@@ -70,8 +74,9 @@ table > tbody > tr > td {
 }
 
 .btn-warning:hover {
-    background-color: #197aad;
-    border-color: #197aad;
+    color: var(--nav-secondarycolor);
+    background-color: var(--text-color);
+    border-color: var(--text-color);
 }
 
 .btn-danger {
@@ -93,11 +98,12 @@ table > tbody > tr > td {
 }
 
 a.nav-link:hover {
-    color: white;
+    color: var(--text-color);
+    font-weight: 900;
 }
 
 .nav-link:focus {
-    color: white;
+    color: var(--text-color);
 }
 
 .nav li a {
@@ -112,7 +118,7 @@ a.nav-link:hover {
 
 .nav a:hover {
     background-color: #ddd;
-    color: black;
+    color: var(--nav-secondarycolor);
 }
 
 .nav a.active {
@@ -125,8 +131,8 @@ a.nav-link:hover {
     height: 100px;
 }
 
-.main {
-    min-height: calc(100vh - 198px);
+.main{
+    min-height: calc(100vh - 188px);
     padding-bottom: 10px;
 }
 
@@ -142,7 +148,7 @@ footer {
     justify-content: center;
     align-items: center;
     background-color: var(--nav-color);
-    margin-top: 300px;
+    margin-top: 50px;
     color: var(--text-color);
     padding: 10px;
     width: 100%;
@@ -156,10 +162,8 @@ footer {
 .loginlogo {
     width: 200px;
     height: 200px;
-    position: fixed;
-    top: 18%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: block;
+    margin: auto;
 }
 
 a.nav-link {
@@ -201,7 +205,11 @@ button .navbar {
 }
 
 .modal-content {
-    color: #000000;
+    color: var(--nav-secondarycolor);
+}
+
+h5 {
+    color: var(--text-secondarycolor);
 }
 
 .alertplaceholder {
@@ -236,7 +244,13 @@ h3 {
     margin-top: 10px;
 }
 
-.logged-user {
+
+h5 {
+    color: var(--text-secondarycolor);
+}
+
+.logged-user
+{
     float: right;
     color: var(--text-color);
     margin-right: 70px;
@@ -248,6 +262,31 @@ h3 {
 .logged-user i {
     margin-right: 5px;
     font-size: 18px;
+    color: var(--text-color);
+}
+
+.teacher-data {
+    margin-right: 100px;
+    font-size: 13px;
+}
+
+.teacher-data-icon {
+    vertical-align: middle;
+    color: var(--text-color);
+    margin-right: 5px;
+    
+}
+
+.teacher-data a {
+    color: var(--text-color);
+}
+
+.card {
+    background: none;
+    border: none;
+    font-size: 25px;
+    margin-bottom: 10px;
+    justify-content: right;
 }
 
 .calendar {

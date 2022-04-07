@@ -25,6 +25,8 @@
         <script src="../js/fullcalendar.js"></script>
         <script src="../js/locales-all.min.js"></script>
         <script src="../js/moment-with-locales.min.js"></script>
+        <script src="../js/clock.js"></script>
+
 
         <script src="../js/app.js"></script>
         <script src="../js/factory.js"></script>
@@ -66,10 +68,6 @@
                                 <!--tanár diák látja (permission 1 || 2)-->
                                 <a class="nav-link" href="#!/calendar"><i class='bx bx-calendar'  ></i>Naptár</a>
                             </li>
-                            <li class="nav-item" ng-if="loggedPermission==1 && status != 0">
-                                <!--Csak diák látja (permission 1)-->
-                                <a class="nav-link" href="#!/teacherdata"><i class='bx bxs-contact'></i>Tanárom elérhetőségei</a>
-                            </li>
                             <!--
                             <li class="nav-item" ng-if="loggedPermission==2 && status != 0">
                                 Csak tanár látja (permission 2)
@@ -94,8 +92,15 @@
                         
                     </div>
                 </div>
+                <div class="teacher-data">
+                        <strong>Tanárom adatai</strong><br>
+                        <a><i class='bx bx-user teacher-data-icon' ></i>{{teacher.userName}</a><br>
+                        <a><i class='bx bx-phone teacher-data-icon' ></i>Telefon:</a> {{teacher.phoneNum}}<br>
+                        <a><i class='bx bx-envelope teacher-data-icon' ></i>E-mail</a>
+                        <a>{{teacher.email}}</a>
+                </div>
                 <div class="logged-user">
-                    <i class='bx bxs-user' style='color:#ffffff' ></i>
+                    <i class='bx bxs-user'></i>
                     {{loggedUser}}
                 </div>
             </nav>
@@ -104,7 +109,7 @@
 
         <main class="container main" ng-view></main>
 
-        <footer class="bg-white footer">
+        <footer class="bg-white footer" ng-if="loggedIn == true">
             <div class="bg-light py-4">
                 <div class="container text-center">
                     <p class="text-muted mb-0">{{ title }} - {{ company }} - {{ author }}</p>
