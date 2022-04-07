@@ -1,4 +1,4 @@
-app.controller('studentsCtrl', function ($scope, factory, factoryAlert) {
+app.controller('studentsCtrl', function ($scope, factory, factoryTools) {
     $scope.peoples = [];
     $scope.db = [];
     $scope.teachers = [];
@@ -89,21 +89,21 @@ app.controller('studentsCtrl', function ($scope, factory, factoryAlert) {
         // insert
         if ($scope.mode == 1) {
             if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null || $scope.people.teacherID == null) {
-                factoryAlert.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
+                factoryTools.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } else {
                 factory.select('student', 'email', $scope.people.email).then(function (res) {
                     if (res.length != 0) {
-                        factoryAlert.alert('Ez az email cím már foglalt!', 'danger', 'bxs-error');
+                        factoryTools.alert('Ez az email cím már foglalt!', 'danger', 'bxs-error');
                     } else {
                         factory.select('student', 'phoneNum', $scope.people.phoneNum).then(function (res) {
                             if (res.length != 0) {
-                                factoryAlert.alert('Ez a telefonszám  már foglalt!', 'danger', 'bxs-error');
+                                factoryTools.alert('Ez a telefonszám  már foglalt!', 'danger', 'bxs-error');
                             } else {
                                 factory.insert('student', $scope.people).then(function (res) {
                                     $scope.people.ID = res.insertId;
                                     $scope.peoples.push($scope.people);
                                     $scope.people = {};
-                                    factoryAlert.alert('Diák felvétele sikeres!', 'success', 'bx-check-circle');
+                                    factoryTools.alert('Diák felvétele sikeres!', 'success', 'bx-check-circle');
                                 });
                             }
                         });
@@ -115,21 +115,21 @@ app.controller('studentsCtrl', function ($scope, factory, factoryAlert) {
         // update
         if ($scope.mode == 2) {
             if ($scope.people.userName == null || $scope.people.password == null || $scope.people.email == null || $scope.people.phoneNum == null) {
-                factoryAlert.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
+                factoryTools.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } else {
                 factory.select('student', 'email', $scope.people.email).then(function (res) {
                     if (res.length != 0) {
-                        factoryAlert.alert('Ez az email cím már foglalt!', 'danger', 'bxs-error');
+                        factoryTools.alert('Ez az email cím már foglalt!', 'danger', 'bxs-error');
                     } else {
                         factory.select('student', 'phoneNum', $scope.people.phoneNum).then(function (res) {
                             if (res.length != 0) {
-                                factoryAlert.alert('Ez a telefonszám  már foglalt!', 'danger', 'bxs-error');
+                                factoryTools.alert('Ez a telefonszám  már foglalt!', 'danger', 'bxs-error');
                             } else {
                                 factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
                                     let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                                     $scope.peoples[index] = $scope.people;
                                     $scope.people = {};
-                                    factoryAlert.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
+                                    factoryTools.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
                                 });
                             }
                         });
@@ -144,7 +144,7 @@ app.controller('studentsCtrl', function ($scope, factory, factoryAlert) {
                 let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                 $scope.peoples.splice(index, 1);
                 $scope.people = {};
-                factoryAlert.alert('Az adat eltávolítva!', 'success', 'bx-check-circle');
+                factoryTools.alert('Az adat eltávolítva!', 'success', 'bx-check-circle');
             });
         }
     };
