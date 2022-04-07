@@ -288,11 +288,6 @@ h5 {
     justify-content: right;
 }
 
-.clock-icon {
-    color: var(--text-color);
-    vertical-align: middle;
-}
-
 @media (max-width: 770px) {
     .alertplaceholder {
         top: 10px;
