@@ -208,7 +208,10 @@ button .navbar {
 
 .modal-content {
     color: var(--nav-secondarycolor);
-    width: 200%;
+}
+
+h5 {
+    color: var(--text-secondarycolor);
 }
 
 .alertplaceholder {

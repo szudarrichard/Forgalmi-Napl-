@@ -31,15 +31,41 @@ app.controller('settingsCtrl', function ($scope, $rootScope, factory, $location)
             if ($scope.email.email != $scope.uNewEmailAgain) {
                 factory.alert('A két email nem egyezik meg!', 'danger', 'bxs-error');
             } else {
-                factory.select($scope.userPerm[$rootScope.loggedPermission], 'email', $rootScope.loggedUserMail).then(function (res) {
-                    let data = { email: $scope.email.email };
-                    factory.update($scope.userPerm[$rootScope.loggedPermission], res[0].ID, data).then(function (res) {
-                        factory.alert('Sikeres email változatás!\nKérjük jelentkezzen be újra!', 'success', 'bx-check-circle');
-                        sessionStorage.clear();
-                        $rootScope.loggedIn = false;
-                        $location.path('#!/');
-                    });
+                factory.select('student', 'email', $rootScope.loggedUserMail).then(function (res) {
+                   if(res.length != 0)
+                   {
+                    factory.alert('Az email cím foglalt!', 'danger', 'bxs-error');
+                   }
+                   else
+                   {
+                       factory.select('teacher', 'email', $rootScope.loggedUserMail).then(function(res){
+                           if(res.length != 0)
+                           {
+                            factory.alert('Az email cím foglalt!', 'danger', 'bxs-error');
+                           }
+                           else
+                           {
+                               factory.select('admin', 'email', $rootScope.loggedUserMail).then(function(res){
+                                   if(res.length != 0)
+                                   {
+                                    factory.alert('Az email cím foglalt!', 'danger', 'bxs-error');
+                                   }
+                                   else
+                                   {
+                                    let data = { email: $scope.email.email };
+                                    factory.update($scope.userPerm[$rootScope.loggedPermission], res[0].ID, data).then(function (res) {
+                                        factory.alert('Sikeres email változatás!\nKérjük jelentkezzen be újra!', 'success', 'bx-check-circle');
+                                        sessionStorage.clear();
+                                        $rootScope.loggedIn = false;
+                                        $location.path('#!/');
+                                    });
+                                   }
+                               })
+                           }
+                       })
+                   }
                 });
+
             }
         }
     };
@@ -51,13 +77,40 @@ app.controller('settingsCtrl', function ($scope, $rootScope, factory, $location)
             if ($scope.phoneNum.phoneNum != $scope.uNewPhoneAgain) {
                 factory.alert('A két telefonszám nem egyezik meg!', 'danger', 'bxs-error');
             } else {
-                factory.select($scope.userPerm[$rootScope.loggedPermission], 'email', $rootScope.loggedUserMail).then(function (res) {
-                    let data = { phoneNum: $scope.phoneNum.phoneNum };
-                    factory.update($scope.userPerm[$rootScope.loggedPermission], res[0].ID, data).then(function (res) {
-                        factory.alert('Sikeres telefonszám változtatás!', 'success', 'bx-check-circle');
-                    });
+                factory.select('student', 'email', $rootScope.loggedUserMail).then(function (res) {
+                   if(res.length != 0)
+                   {
+                    factory.alert('Ez a telefonszám már foglalt!', 'danger', 'bxs-error');
+                   }
+                   else
+                   {
+                       factory.select('teacher','email', $rootScope.loggedUserMail).then(function(res){
+                        if(res.length != 0)
+                        {
+                         factory.alert('Ez a telefonszám már foglalt!', 'danger', 'bxs-error');
+                        }
+                        else
+                        {
+                            factory.select('admin','email',$rootScope.loggedUserMail).then(function(res){
+                                if(res.length != 0)
+                                {
+                                 factory.alert('Ez a telefonszám már foglalt!', 'danger', 'bxs-error');
+                                }
+                                else
+                                {
+                                    let data = { phoneNum: $scope.phoneNum.phoneNum };
+                                    factory.update($scope.userPerm[$rootScope.loggedPermission], res[0].ID, data).then(function (res) {
+                                        factory.alert('Sikeres telefonszám változtatás!', 'success', 'bx-check-circle');
+                                    });
+                                }
+                            })
+                        }
+                       })
+                   }
                 });
             }
         }
     };
 });
+
+
