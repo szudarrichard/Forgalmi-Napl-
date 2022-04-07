@@ -1,7 +1,7 @@
-app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
+app.controller('loginCtrl', function ($scope, $rootScope, factory, factoryAlert, $location) {
     $scope.login = function () {
         if ($scope.uMail == null || $scope.uPassword == null) {
-            factory.alert('Nem adtál meg minden belépési adatot!', 'danger', 'bxs-error');
+            factoryAlert.alert('Nem adtál meg minden belépési adatot!', 'danger', 'bxs-error');
         } else {
             factory.logincheck('admin', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
                 if (res.data.length > 0) {
@@ -51,7 +51,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, $location) {
                                         $location.path('/');
                                     }
                                 } else {
-                                    factory.alert('Hibás belépési adatok!', 'danger', 'bxs-error');
+                                    factoryAlert.alert('Hibás belépési adatok!', 'danger', 'bxs-error');
                                 }
                             });
                         }

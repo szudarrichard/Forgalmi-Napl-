@@ -1,4 +1,4 @@
-app.controller('teacherCtrl', function ($scope, factory) {
+app.controller('teacherCtrl', function ($scope, factory, factoryAlert) {
     $scope.peoples = [];
     $scope.db = [];
     $scope.teachers = [];
@@ -45,13 +45,13 @@ app.controller('teacherCtrl', function ($scope, factory) {
         // insert
         if ($scope.mode == 1) {
             if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null) {
-                factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
+                factoryAlert.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } else {
                 factory.insert('teacher', $scope.people).then(function (res) {
                     $scope.people.ID = res.insertId;
                     $scope.peoples.push($scope.people);
                     $scope.people = {};
-                    factory.alert('Tanár felvétele sikeres!', 'success', 'bx-check-circle');
+                    factoryAlert.alert('Tanár felvétele sikeres!', 'success', 'bx-check-circle');
                 });
             }
         }
@@ -59,13 +59,13 @@ app.controller('teacherCtrl', function ($scope, factory) {
         // update
         if ($scope.mode == 2) {
             if ($scope.people.userName == null || $scope.people.password == null || $scope.people.email == null || $scope.people.phoneNum == null) {
-                factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
+                factoryAlert.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } else {
                 factory.update('teacher', $scope.people.ID, $scope.people).then(function (res) {
                     let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                     $scope.peoples[index] = $scope.people;
                     $scope.people = {};
-                    factory.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
+                    factoryAlert.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
                 });
             }
         }
@@ -76,7 +76,7 @@ app.controller('teacherCtrl', function ($scope, factory) {
                 let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                 $scope.peoples.splice(index, 1);
                 $scope.people = {};
-                factory.alert('Az adat eltávolítva!', 'success', 'bx-check-circle');
+                factoryAlert.alert('Az adat eltávolítva!', 'success', 'bx-check-circle');
             });
         }
     };
