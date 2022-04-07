@@ -1,4 +1,4 @@
-app.controller('calendarCtrl', function ($scope, $rootScope, factory) {
+app.controller('calendarCtrl', function ($scope, $rootScope, factory, factoryCalendar) {
     $scope.reservations = [];
     $scope.students = [];
 
@@ -21,7 +21,7 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory) {
                                     id: reservation.ID,
                                     color: '#0A5355', // TODO tanaár szín - kell egy átláthatóbb szín
                                 });
-                                factory.toCalendar(events, 'calendar', 'timeGridWeek', true, true, 'clock');
+                                factoryCalendar.toCalendar(events, 'calendar', 'timeGridWeek', true, true, 'clock');
                             });
                         });
                     });
@@ -52,7 +52,7 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory) {
                                     id: reservation.ID,
                                     color: color,
                                 });
-                                factory.toCalendar(events, 'calendar', 'timeGridWeek', true, true, 'clock');
+                                factoryCalendar.toCalendar(events, 'calendar', 'timeGridWeek', true, true, 'clock');
                             });
                         });
                     });

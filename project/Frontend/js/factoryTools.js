@@ -1,6 +1,7 @@
-app.factory('factoryTools', function ($http, $q) {
+app.factory('factoryTools', function () {
     //ALERT WINDOW
     return {
+        //ALERT WINDOW
         alert: function (message, type, icon) {
             var alertplaceholder = document.getElementById('alertplaceholder');
             var wrapper = document.createElement('div');
@@ -19,6 +20,7 @@ app.factory('factoryTools', function ($http, $q) {
             }, 5000);
         },
 
+        //KM MODAL
         modal: function (res) {
             alert('óra ' + res);
             /*
@@ -44,6 +46,12 @@ app.factory('factoryTools', function ($http, $q) {
                 </div>
             </div>
             */
+        },
+
+        //DATE FORMAT
+        format: function (amount, decimalCount = 0, decimal = ',', thousands = '.') {
+            var re = '\\d(?=(\\d{' + 3 + '})+' + (decimalCount > 0 ? '\\,' : '$') + ')';
+            return amount.toFixed(Math.max(0, ~~decimalCount)).replace(new RegExp(re, 'g'), '$&.');
         },
     };
 });
