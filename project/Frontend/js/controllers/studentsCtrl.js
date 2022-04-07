@@ -1,4 +1,3 @@
-
 app.controller('studentsCtrl', function ($scope, factory, factoryAlert) {
     $scope.peoples = [];
     $scope.db = [];
@@ -54,7 +53,7 @@ app.controller('studentsCtrl', function ($scope, factory, factoryAlert) {
     $scope.diary = function (id) {
         $scope.modaltitle = 'Diák karton';
         $scope.mode = 4;
-        factory.select('student', 'ID', id).then(function(res){
+        factory.select('student', 'ID', id).then(function (res) {
             $scope.selectedName = res[0].userName;
         });
 
@@ -85,90 +84,57 @@ app.controller('studentsCtrl', function ($scope, factory, factoryAlert) {
         });
     };
 
-    
     //submit button események
     $scope.submit = function () {
         // insert
         if ($scope.mode == 1) {
             if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null || $scope.people.teacherID == null) {
-              /*
                 factoryAlert.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
-                console.log($scope.people);
             } else {
-                factory.insert('student', $scope.people).then(function (res) {
-                    $scope.people.ID = res.insertId;
-                    $scope.peoples.push($scope.people);
-                    $scope.people = {};
-                    factoryAlert.alert('Diák felvétele sikeres!', 'success', 'bx-check-circle');
-                });
-                */
-                factory.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
-            } 
-            else {
-                factory.select('student','email', $scope.people.email).then(function(res){
-                    if(res.length != 0)
-                    {
-                        factory.alert('Ez az email cím már foglalt!', 'danger', 'bxs-error');
-                    }    
-                    else
-                    {
-                        factory.select('student','phoneNum', $scope.people.phoneNum).then(function(res){
-                            if(res.length != 0)
-                            {
-                                factory.alert('Ez a telefonszám  már foglalt!', 'danger', 'bxs-error');
-                            }  
-                            else
-                            {
+                factory.select('student', 'email', $scope.people.email).then(function (res) {
+                    if (res.length != 0) {
+                        factoryAlert.alert('Ez az email cím már foglalt!', 'danger', 'bxs-error');
+                    } else {
+                        factory.select('student', 'phoneNum', $scope.people.phoneNum).then(function (res) {
+                            if (res.length != 0) {
+                                factoryAlert.alert('Ez a telefonszám  már foglalt!', 'danger', 'bxs-error');
+                            } else {
                                 factory.insert('student', $scope.people).then(function (res) {
                                     $scope.people.ID = res.insertId;
                                     $scope.peoples.push($scope.people);
                                     $scope.people = {};
-                                    factory.alert('Diák felvétele sikeres!', 'success', 'bx-check-circle');
+                                    factoryAlert.alert('Diák felvétele sikeres!', 'success', 'bx-check-circle');
                                 });
                             }
-                        })
+                        });
                     }
-                })
+                });
             }
         }
-       
+
         // update
         if ($scope.mode == 2) {
             if ($scope.people.userName == null || $scope.people.password == null || $scope.people.email == null || $scope.people.phoneNum == null) {
                 factoryAlert.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } else {
-              /*
-                factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
-                    let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
-                    $scope.peoples[index] = $scope.people;
-                    $scope.people = {};
-                    factoryAlert.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
-                });
-                */
-                factory.select('student','email', $scope.people.email).then(function(res){
-                    if(res.length != 0)
-                    {
-                        factory.alert('Ez az email cím már foglalt!', 'danger', 'bxs-error');
-                    }    
-                    else
-                    {
-                        factory.select('student','phoneNum', $scope.people.phoneNum).then(function(res){
-                            if(res.length != 0)
-                            {
-                                factory.alert('Ez a telefonszám  már foglalt!', 'danger', 'bxs-error');
-                            }  
-                            else
-                            {
+                factory.select('student', 'email', $scope.people.email).then(function (res) {
+                    if (res.length != 0) {
+                        factoryAlert.alert('Ez az email cím már foglalt!', 'danger', 'bxs-error');
+                    } else {
+                        factory.select('student', 'phoneNum', $scope.people.phoneNum).then(function (res) {
+                            if (res.length != 0) {
+                                factoryAlert.alert('Ez a telefonszám  már foglalt!', 'danger', 'bxs-error');
+                            } else {
                                 factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
                                     let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                                     $scope.peoples[index] = $scope.people;
                                     $scope.people = {};
-                                    factory.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
+                                    factoryAlert.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
                                 });
                             }
-                        })
+                        });
                     }
-                })
+                });
             }
         }
 
