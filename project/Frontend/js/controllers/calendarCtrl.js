@@ -19,7 +19,7 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory) {
                                     start: reservation.start,
                                     end: reservation.end,
                                     id: reservation.ID,
-                                    color: '#119FB3', // TODO tanaár szín - kell egy átláthatóbb szín
+                                    color: '#0A5355', // TODO tanaár szín - kell egy átláthatóbb szín
                                 });
                                 factory.toCalendar(events, 'calendar', 'timeGridWeek', true, true, 'clock');
                             });
@@ -43,7 +43,7 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory) {
                                 let color = '#C70039';
                                 if (res[0].userName == angular.fromJson(sessionStorage.getItem('user'))) {
                                     title = res[0].userName;
-                                    color = '#52E954';
+                                    color = '#30A510';
                                 }
                                 events.push({
                                     title: title,

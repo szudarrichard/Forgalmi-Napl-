@@ -1,4 +1,4 @@
-app.factory('factory', function ($http, $q) {
+app.factory('factory', function ($http, $q, factoryAlert) {
     let url = 'http://localhost:3000';
     return {
         //LOGIN
@@ -148,13 +148,13 @@ app.factory('factory', function ($http, $q) {
                                     if (data.start.substring(0, 10) != res.data[i].start.substring(0, 10)) {
                                     } else {
                                         data.start = '';
-                                        console.log('Már van foglat órád ezen a napon');
+                                        factoryAlert.alert('Már van foglat órád ezen a napon', 'danger', 'bxs-error');
                                     }
                                 }
                             }
 
                             if (data.start.length != 0) {
-                                console.log('Óra sikeresen rögzítve!');
+                                factoryAlert.alert('Óra sikeresen rögzítve!', 'success', 'bx-check-circle');
                                 $http.post(url + '/' + tablename, data).then(function (res) {
                                     calendar.addEvent({
                                         start: arg.start,
@@ -174,10 +174,10 @@ app.factory('factory', function ($http, $q) {
                     $http.get(url + '/' + tablename + '/' + 'ID' + '/' + arg.event.id).then(function (res) {
                         $http.get(url + '/' + 'student' + '/' + 'ID' + '/' + res.data[0].studentID).then(function (res) {
                             if (res.data[0].email != angular.fromJson(sessionStorage.getItem('email'))) {
-                                console.log('Ez az óra már foglalt!');
+                                factoryAlert.alert('Ez az óra már foglalt!', 'danger', 'bxs-error');
                             } else {
                                 $http.delete(url + '/' + tablename + '/' + arg.event.id).then(function (res) {
-                                    console.log('Óra eltávolítva!');
+                                    factoryAlert.alert('Óra eltávolítva!', 'danger', 'bxs-error');
                                     arg.event.remove();
                                 });
                             }
@@ -194,25 +194,6 @@ app.factory('factory', function ($http, $q) {
         format: function (amount, decimalCount = 0, decimal = ',', thousands = '.') {
             var re = '\\d(?=(\\d{' + 3 + '})+' + (decimalCount > 0 ? '\\,' : '$') + ')';
             return amount.toFixed(Math.max(0, ~~decimalCount)).replace(new RegExp(re, 'g'), '$&.');
-        },
-
-        //ALERT WINDOW
-        alert: function (message, type, icon) {
-            var alertplaceholder = document.getElementById('alertplaceholder');
-            var wrapper = document.createElement('div');
-            wrapper.innerHTML =
-                '<div class="animate__animated animate__slideInRight animate__delay-0s animate__faster alert alert-' +
-                type +
-                '" role="alert"><i class="alert-icon bx ' +
-                icon +
-                '"></i>' +
-                message +
-                '<button type="button" class="btn-close ms-2" data-bs-dismiss="alert" aria-label="Close"></div>';
-
-            alertplaceholder.append(wrapper);
-            setTimeout(function () {
-                wrapper.remove();
-            }, 5000);
         },
     };
 });

@@ -250,6 +250,15 @@ h3 {
     font-size: 18px;
 }
 
+.calendar {
+    border-radius: 5px;
+    background-color: #e7a637;
+}
+
+.fc-col-header-cell {
+    background-color: #a57110;
+}
+
 @media (max-width: 770px) {
     .alertplaceholder {
         top: 10px;
