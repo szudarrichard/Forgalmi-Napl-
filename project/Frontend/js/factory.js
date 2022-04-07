@@ -1,4 +1,4 @@
-app.factory('factory', function ($http, $q, factoryAlert) {
+app.factory('factory', function ($http, $q, factoryTools) {
     let url = 'http://localhost:3000';
     return {
         //LOGIN
@@ -119,6 +119,11 @@ app.factory('factory', function ($http, $q, factoryAlert) {
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
                 },
+                businessHours: {
+                    daysOfWeek: [0, 1, 2, 3, 4, 5, 6],
+                    startTime: '06:00', // a start time (6am in this example)
+                    endTime: '20:00', // an end time (8pm in this example)
+                },
                 timeZone: 'Europe/Budapest',
                 slotDuration: '01:00',
                 selectable: selectable,
@@ -147,14 +152,15 @@ app.factory('factory', function ($http, $q, factoryAlert) {
                                 } else {
                                     if (data.start.substring(0, 10) != res.data[i].start.substring(0, 10)) {
                                     } else {
+                                        console.log(data.start);
                                         data.start = '';
-                                        factoryAlert.alert('Már van foglat órád ezen a napon', 'danger', 'bxs-error');
+                                        factoryTools.alert('Már van foglat órád ezen a napon', 'danger', 'bxs-error');
                                     }
                                 }
                             }
 
                             if (data.start.length != 0) {
-                                factoryAlert.alert('Óra sikeresen rögzítve!', 'success', 'bx-check-circle');
+                                factoryTools.alert('Óra sikeresen rögzítve!', 'success', 'bx-check-circle');
                                 $http.post(url + '/' + tablename, data).then(function (res) {
                                     calendar.addEvent({
                                         start: arg.start,
@@ -171,18 +177,24 @@ app.factory('factory', function ($http, $q, factoryAlert) {
                 },
 
                 eventClick: function (arg) {
-                    $http.get(url + '/' + tablename + '/' + 'ID' + '/' + arg.event.id).then(function (res) {
-                        $http.get(url + '/' + 'student' + '/' + 'ID' + '/' + res.data[0].studentID).then(function (res) {
-                            if (res.data[0].email != angular.fromJson(sessionStorage.getItem('email'))) {
-                                factoryAlert.alert('Ez az óra már foglalt!', 'danger', 'bxs-error');
-                            } else {
-                                $http.delete(url + '/' + tablename + '/' + arg.event.id).then(function (res) {
-                                    factoryAlert.alert('Óra eltávolítva!', 'danger', 'bxs-error');
-                                    arg.event.remove();
-                                });
-                            }
+                    //diak
+                    if (angular.fromJson(sessionStorage.getItem('permission')) == 1) {
+                        $http.get(url + '/' + tablename + '/' + 'ID' + '/' + arg.event.id).then(function (res) {
+                            $http.get(url + '/' + 'student' + '/' + 'ID' + '/' + res.data[0].studentID).then(function (res) {
+                                if (res.data[0].email != angular.fromJson(sessionStorage.getItem('email'))) {
+                                    factoryTools.alert('Ez az óra már foglalt!', 'danger', 'bxs-error');
+                                } else {
+                                    $http.delete(url + '/' + tablename + '/' + arg.event.id).then(function (res) {
+                                        factoryTools.alert('Óra eltávolítva!', 'danger', 'bxs-error');
+                                        arg.event.remove();
+                                    });
+                                }
+                            });
                         });
-                    });
+                    } else {
+                        //tanar
+                        factoryTools.modal(arg.event.id);
+                    }
                 },
                 events: events,
             });
