@@ -85,6 +85,12 @@ table > tbody > tr > td {
     border-color: #8d2d36;
 }
 
+.btn-light
+{
+    background-color: var(--text-color);
+    color: var(--text-secondarycolor);
+}
+
 .nav {
     overflow: hidden;
     background-color: var(--nav-color);
@@ -267,7 +273,7 @@ h5 {
 
 .teacher-data {
     margin-right: 100px;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .teacher-data-icon {
@@ -297,6 +303,13 @@ h5 {
 .fc-col-header-cell {
     background-color: #a57110;
 }
+
+.dropdown-toggle::after 
+{
+    content: none;
+}
+
+
 
 @media (max-width: 770px) {
     .alertplaceholder {

@@ -3,6 +3,11 @@ app.controller('settingsCtrl', function ($scope, $rootScope, factory, factoryToo
     $scope.password = {};
     $scope.phoneNum = {};
     $scope.email = {};
+    $scope.teacherdata = {};
+
+    factory.select('student', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
+        console.log(res);
+    });
 
     $scope.passMod = function () {
         if ($scope.password.password == null || $scope.uNewPasswordAgain == null) {

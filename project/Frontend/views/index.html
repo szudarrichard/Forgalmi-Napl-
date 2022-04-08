@@ -44,8 +44,10 @@
     </head>
     <body>
         <!--ALERT DIV-->
+        
         <div id="alertplaceholder" class="alertplaceholder"></div>
         <header ng-if="loggedIn" ng-controller="loginCtrl">
+            
             <nav class="navbar navbar-expand-lg" style="background-color: #1c658c">
                 <div class="container-fluid">
                     <img src="../img/LOGOarnyek.png" alt="Logó" class="logo" />
@@ -83,28 +85,11 @@
                             <li class="nav-item" ng-if="status != 0">
                                 <a class="nav-link" href="#!/settings"><i class="bx bx-cog"></i>Beállítások</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  <i class="bx bx-cog"></i>Beállítások
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  <li><a class="dropdown-item" href="#">Jelszó módosítás</a></li>
-                                  <li><a class="dropdown-item" href="#">E-mail módosítás</a></li>
-                                  <li><a class="dropdown-item" href="#">Telefonszám módosítás</a></li>
-                                </ul>
-                              </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" ng-click="logout()"><i class="bx bx-log-out"></i>Kijelentkezés</a>
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div class="teacher-data">
-                    <strong>Tanárom adatai</strong><br />
-                    <a><i class="bx bx-user teacher-data-icon"></i>{{teacher.userName}</a><br />
-                    <a><i class="bx bx-phone teacher-data-icon"></i>Telefon:</a> {{teacher.phoneNum}}<br />
-                    <a><i class="bx bx-envelope teacher-data-icon"></i>E-mail</a>
-                    <a>{{teacher.email}}</a>
                 </div>
                 <div class="logged-user">
                     <i class="bx bxs-user"></i>
@@ -112,9 +97,7 @@
                 </div>
             </nav>
         </header>
-
         <main class="container main" ng-view></main>
-
         <footer class="bg-white footer" ng-if="loggedIn == true">
             <div class="bg-light py-4">
                 <div class="container text-center">
