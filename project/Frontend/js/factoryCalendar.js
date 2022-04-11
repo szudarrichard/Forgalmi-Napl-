@@ -29,44 +29,45 @@ app.factory('factoryCalendar', function (factory, factoryTools) {
                 eventResizableFromStart: false,
                 height: 750,
                 select: function (arg) {
-                    //TODO console-log helyére be kell húzni a factory alert function-t
+                    if (moment(arg.start).locale('hu').format('H') - 2 < 6 || moment(arg.start).locale('hu').format('HH') - 2 >= 20) {
+                        factoryTools.alert('06:00 és 20:00 között lehetséges az időpontok foglalása!', 'danger', 'bxs-error');
+                    } else {
+                        factory.select('student', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
+                            let data = {
+                                start: moment(arg.start).locale('hu').format('YYYY-MM-DD HH:mm'),
+                                end: moment(arg.start).add(1, 'hours').locale('hu').format('YYYY-MM-DD HH:mm'),
+                                studentID: res[0].ID,
+                            };
 
-                    factory.select('student', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
-                        console.log(res);
-                        let data = {
-                            start: moment(arg.start).locale('hu').format('YYYY-MM-DD HH:mm'),
-                            end: moment(arg.start).add(1, 'hours').locale('hu').format('YYYY-MM-DD HH:mm'), //TODO azonnal frissíteni kell az oldalt!!! VAGY keresni full calendar hove eseményt
-                            studentID: res[0].ID,
-                        };
-
-                        factory.selectAll(tablename).then(function (res) {
-                            for (let i = 0; i < res.length; i++) {
-                                if (data.studentID != res[i].studentID) {
-                                } else {
-                                    if (data.start.substring(0, 10) != res[i].start.substring(0, 10)) {
+                            factory.selectAll(tablename).then(function (res) {
+                                for (let i = 0; i < res.length; i++) {
+                                    if (data.studentID != res[i].studentID) {
                                     } else {
-                                        console.log(data.start);
-                                        data.start = '';
-                                        factoryTools.alert('Már van foglat órád ezen a napon', 'danger', 'bxs-error');
+                                        if (data.start.substring(0, 10) != res[i].start.substring(0, 10)) {
+                                        } else {
+                                            console.log(data.start.length);
+                                            data.start = '';
+                                            factoryTools.alert('Már van foglat órád ezen a napon', 'danger', 'bxs-error');
+                                        }
                                     }
                                 }
-                            }
 
-                            if (data.start.length != 0) {
-                                factoryTools.alert('Óra sikeresen rögzítve!', 'success', 'bx-check-circle');
-                                factory.insert(tablename, data).then(function (res) {
-                                    calendar.addEvent({
-                                        start: arg.start,
-                                        end: arg.end,
-                                        id: res.insertId,
-                                        allDay: arg.allDay,
+                                if (data.start.length != 0) {
+                                    factoryTools.alert('Óra sikeresen rögzítve!', 'success', 'bx-check-circle');
+                                    factory.insert(tablename, data).then(function (res) {
+                                        calendar.addEvent({
+                                            start: arg.start,
+                                            end: arg.end,
+                                            id: res.insertId,
+                                            allDay: arg.allDay,
+                                        });
                                     });
-                                });
-                            }
-                        });
+                                }
+                            });
 
-                        calendar.unselect();
-                    });
+                            calendar.unselect();
+                        });
+                    }
                 },
 
                 eventClick: function (arg) {
@@ -87,6 +88,12 @@ app.factory('factoryCalendar', function (factory, factoryTools) {
                     } else {
                         //tanar
                         factoryTools.modal(arg.event.id);
+                        /*
+                            modal include
+                            controller-ben kigyüjteni a km órát
+                            kattintásra modál ablak => új km beírása után bevinni  akezdő és végső km-ert
+                            frissíteni a tanár autójának km óráját
+                        */
                     }
                 },
                 events: events,

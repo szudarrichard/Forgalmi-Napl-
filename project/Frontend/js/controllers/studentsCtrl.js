@@ -58,7 +58,15 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools) {
         });
 
         factory.select('clock', 'studentID', id).then(function (res) {
-            $scope.lessions = res;
+            for (let i = 0; i < res.length; i++)
+            {
+                $scope.lessions.push({
+                    startKM:res[i].startKM,
+                    endKM: res[i].endKM, 
+
+                    start:moment(res[i].start).locale('hu').format('YYYY-MM-DD HH:mm')
+                })
+            }
         });
     };
 

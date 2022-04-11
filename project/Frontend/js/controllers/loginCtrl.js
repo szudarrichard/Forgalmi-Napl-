@@ -32,7 +32,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, factoryTools,
                             sessionStorage.setItem('schoolID', angular.toJson(res.data[0].schoolID));
                             sessionStorage.setItem('status', angular.toJson(res.data[0].status));
                             sessionStorage.setItem('phoneNum', angular.toJson(res.data[0].phoneNum));
-
+                            $rootScope.loggedUser = res.data[0].userName;
                             $rootScope.status = res.data[0].status;
                             if ($rootScope.status == 0) {
                                 $location.path('/firstlogin');
@@ -51,6 +51,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, factoryTools,
                                     sessionStorage.setItem('status', angular.toJson(res.data[0].status));
                                     sessionStorage.setItem('phoneNum', angular.toJson(res.data[0].phoneNum));
 
+                                    $rootScope.loggedUser = res.data[0].userName;
                                     $rootScope.status = res.data[0].status;
                                     if ($rootScope.status == 0) {
                                         $location.path('/firstlogin');
