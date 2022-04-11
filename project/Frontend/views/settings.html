@@ -64,15 +64,15 @@
                         <div class="col-md-6">
                             <h4>Jelszó módosítása</h4>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Jelenlegi jelszó" name="oldpasswod" ng-model="password.password" />
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Jelenlegi jelszó" name="oldpasswod" ng-model="password.oldpassword" />
                                 <label for="floatingInput">Jelenlegi jelszó</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Új jelszó" name="newpassword" ng-model="password.password" />
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Új jelszó" name="newpassword" ng-model="password.newpassword1" />
                                 <label for="floatingInput">Új jelszó</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Új jelszó megerősítése" name="newpasswordagain" ng-model="uNewPasswordAgain" />
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Új jelszó megerősítése" name="newpasswordagain" ng-model="password.newpassword2" />
                                 <label for="floatingPassword">Új jelszó megerősítése</label>
                             </div>
                         </div>
@@ -85,14 +85,14 @@
                         <div class="col-md-6">
                             <h4>E-mail cím módosítása</h4>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="Új E-mail megerősítése" name="newemailagain" ng-model="oldEmail" />
+                                <input type="email" class="form-control" id="floatingInput" placeholder="Új E-mail megerősítése" name="newemailagain" ng-model="email.oldemail" />
                                 <label for="floatingPassword">Jelenlegi e-mail</label>
                             </div><div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="Új E-mail" name="newemail" ng-model="email.email" />
+                                <input type="email" class="form-control" id="floatingInput" placeholder="Új E-mail" name="newemail" ng-model="email.newemail1" />
                                 <label for="floatingInput">Új E-mail</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="Új E-mail megerősítése" name="newemailagain" ng-model="uNewEmailAgain" />
+                                <input type="email" class="form-control" id="floatingInput" placeholder="Új E-mail megerősítése" name="newemailagain" ng-model="email.newemail2" />
                                 <label for="floatingPassword">Új E-mail megerősítése</label>
                             </div>
                         </div>
@@ -105,14 +105,14 @@
                         <div class="col-md-6">
                             <h4>Telefonszám módosítása</h4>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Új Telefonszám megerősítése" name="newphoneagain" ng-model="oldPhonenum" />
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Új Telefonszám megerősítése" name="newphoneagain" ng-model="phoneNum.oldphoneNum" />
                                 <label for="floatingPassword">Régi telefonszám</label>
                             </div><div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Új Telefonszám" name="newphone" ng-model="phoneNum.phoneNum" />
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Új Telefonszám" name="newphone" ng-model="phoneNum.newphoneNum1" />
                                 <label for="floatingInput">Új Telefonszám</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="Új Telefonszám megerősítése" name="newphoneagain" ng-model="uNewPhoneAgain" />
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Új Telefonszám megerősítése" name="newphoneagain" ng-model="phoneNum.newphoneNum2" />
                                 <label for="floatingPassword">Új Telefonszám megerősítése</label>
                             </div>
                         </div>
