@@ -139,7 +139,7 @@ a.nav-link:hover {
     height: 100px;
 }
 
-.main{
+.main {
     min-height: calc(100vh - 188px);
     padding-bottom: 10px;
 }
@@ -165,6 +165,15 @@ footer {
 
 .form-floating {
     color: black;
+}
+
+.form-label {
+    color: black;
+}
+
+em {
+    font-size: 10px;
+    color: red;
 }
 
 .loginlogo {
@@ -252,13 +261,8 @@ h3 {
     margin-top: 10px;
 }
 
-
 h5 {
     color: var(--text-secondarycolor);
-}
-
-h2 {
-    color: var(--text-color);
 }
 
 .logged-user
@@ -285,7 +289,6 @@ h2 {
     vertical-align: middle;
     color: var(--text-color);
     margin-right: 5px;
-    
 }
 
 .teacher-data a {
