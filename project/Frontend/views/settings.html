@@ -49,10 +49,9 @@
             <div class="col-md-7">
                 <div class="teacher-data" ng-if="loggedPermission == 1">
                     <a>Tanárom adatai</a><br />
-                    <a><i class="bx bx-user teacher-data-icon"></i>Név: </a><br />
-                    <a><i class="bx bx-phone teacher-data-icon"></i>Telefon:</a> <br />
-                    <a><i class="bx bx-envelope teacher-data-icon"></i>E-mail: </a>
-                    <a>{{teacher.email}}</a>
+                    <a><i class="bx bx-user teacher-data-icon"></i>Név: {{teacherdata[0].res[0].userName}}</a><br />
+                    <a><i class="bx bx-phone teacher-data-icon"></i>Telefon: {{teacherdata[0].res[0].phoneNum}}</a> <br />
+                    <a><i class="bx bx-envelope teacher-data-icon"></i>E-mail: {{teacherdata[0].res[0].email}}</a>
                 </div>
             </div>
             <div class="my-4">
