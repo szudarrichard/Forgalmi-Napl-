@@ -1,3 +1,4 @@
+<!--
 <div class="container">
     <div class="settings-container">
         <h3>Jelszó módosítása</h3>
@@ -11,6 +12,7 @@
         </div>
         <input type="button" class="btn btn-sm btn-success" value="Módosítás" ng-click="passMod()" />
     </div>
+    ---------------------
 
     <div class="settings-container">
         <h3>E-mail módosítása</h3>
@@ -24,6 +26,7 @@
         </div>
         <input type="button" class="btn btn-sm btn-success" value="Módosítás" ng-click="emailMod()" />
     </div>
+    ---------
 
     <div class="settings-container">
         <h3>Telefonszám módosítása</h3>
@@ -36,5 +39,86 @@
             <label for="floatingPassword">Új Telefonszám megerősítése</label>
         </div>
         <input type="button" class="btn btn-sm btn-success" value="Módosítás" ng-click="phoneMod()" />
+    </div>
+</div>
+-->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+            <h2 class="h3 mb-4 page-title">Beállítások</h2>
+            <div class="col-md-7">
+                <div class="teacher-data" ng-if="loggedPermission == 1">
+                    <a>Tanárom adatai</a><br />
+                    <a><i class="bx bx-user teacher-data-icon"></i>Név: {{teacherdata[0].res[0].userName}}</a><br />
+                    <a><i class="bx bx-phone teacher-data-icon"></i>Telefon: {{teacherdata[0].res[0].phoneNum}}</a> <br />
+                    <a><i class="bx bx-envelope teacher-data-icon"></i>E-mail: {{teacherdata[0].res[0].email}}</a>
+                </div>
+            </div>
+            <div class="my-4">
+                <form>
+                    
+                    <!--Jelszó mod-->
+                    <hr class="my-4" />
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h4>Jelszó módosítása</h4>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Jelenlegi jelszó" name="oldpasswod" ng-model="password.oldpassword" />
+                                <label for="floatingInput">Jelenlegi jelszó</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Új jelszó" name="newpassword" ng-model="password.newpassword1" />
+                                <label for="floatingInput">Új jelszó</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Új jelszó megerősítése" name="newpasswordagain" ng-model="password.newpassword2" />
+                                <label for="floatingPassword">Új jelszó megerősítése</label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" class="btn btn-primary" value="Módosítás" ng-click="passMod()" />
+
+                    <!--Email mod-->
+                    <hr class="my-4" />
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h4>E-mail cím módosítása</h4>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="Új E-mail megerősítése" name="newemailagain" ng-model="email.oldemail" />
+                                <label for="floatingPassword">Jelenlegi e-mail</label>
+                            </div><div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="Új E-mail" name="newemail" ng-model="email.newemail1" />
+                                <label for="floatingInput">Új E-mail</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="Új E-mail megerősítése" name="newemailagain" ng-model="email.newemail2" />
+                                <label for="floatingPassword">Új E-mail megerősítése</label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" class="btn btn-primary" value="Módosítás" ng-click="emailMod()" />
+
+                    <!--telefon mod-->
+                    <hr class="my-4" />
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h4>Telefonszám módosítása</h4>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Új Telefonszám megerősítése" name="newphoneagain" ng-model="phoneNum.oldphoneNum" />
+                                <label for="floatingPassword">Régi telefonszám</label>
+                            </div><div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Új Telefonszám" name="newphone" ng-model="phoneNum.newphoneNum1" />
+                                <label for="floatingInput">Új Telefonszám</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Új Telefonszám megerősítése" name="newphoneagain" ng-model="phoneNum.newphoneNum2" />
+                                <label for="floatingPassword">Új Telefonszám megerősítése</label>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" class="btn btn-primary" value="Módosítás" ng-click="phoneMod()" />
+                </form>
+            </div>
+        </div>
     </div>
 </div>

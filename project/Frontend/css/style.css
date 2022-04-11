@@ -3,6 +3,8 @@
     --nav-color: #1c658c;
     --text-color: white;
     --text-secondarycolor: black;
+    --calendar-color: #00B4D8;
+    --calender-button: #1a252f;
 }
 
 body {
@@ -83,6 +85,12 @@ table > tbody > tr > td {
     color: var(--text-color);
     background-color: #8d2d36;
     border-color: #8d2d36;
+}
+
+.btn-light
+{
+    background-color: var(--text-color);
+    color: var(--text-secondarycolor);
 }
 
 .nav {
@@ -257,7 +265,8 @@ h5 {
     color: var(--text-secondarycolor);
 }
 
-.logged-user {
+.logged-user
+{
     float: right;
     color: var(--text-color);
     margin-right: 70px;
@@ -273,8 +282,7 @@ h5 {
 }
 
 .teacher-data {
-    margin-right: 100px;
-    font-size: 13px;
+    font-size: 18px;
 }
 
 .teacher-data-icon {
@@ -297,11 +305,42 @@ h5 {
 
 .calendar {
     border-radius: 5px;
-    background-color: #e7a637;
+    background-color: var(--calendar-color);
 }
 
 .fc-col-header-cell {
-    background-color: #a57110;
+    background-color: var(--calendar-color);
+}
+
+.calendar a {
+    color: var(--text-color);
+}
+
+.fc .fc-button-primary {
+    background-color: var(--nav-color);
+    color: var(--text-color);
+    
+}
+
+.fc .fc-button-primary:hover {
+    background-color: var(--calender-button);
+    color: var(--text-color);
+    border-color: var(--text-secondarycolor);
+}
+
+.fc .fc-button-primary:focus {
+    background-color: var(--calender-button);
+    color: var(--text-color);
+    border-color: var(--text-secondarycolor);
+}
+
+.fc-list-day-cushion .fc-cell-shaded {
+    background-color: red;
+}
+
+.dropdown-toggle::after 
+{
+    content: none;
 }
 
 @media (max-width: 770px) {
