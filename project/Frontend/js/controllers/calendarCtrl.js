@@ -21,7 +21,7 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory, factoryCal
                                     id: reservation.ID,
                                     color: '#0A5355', // TODO tanaár szín - kell egy átláthatóbb szín
                                 });
-                                factoryCalendar.toCalendar(events, 'calendar', 'timeGridWeek', true, true, 'clock');
+                                factoryCalendar.toCalendar(events, 'calendar', 'timeGridDay', true, true, 'clock');
                             });
                         });
                     });

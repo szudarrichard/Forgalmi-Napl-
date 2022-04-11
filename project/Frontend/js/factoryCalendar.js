@@ -88,6 +88,12 @@ app.factory('factoryCalendar', function (factory, factoryTools) {
                     } else {
                         //tanar
                         factoryTools.modal(arg.event.id);
+                        /*
+                            modal include
+                            controller-ben kigyüjteni a km órát
+                            kattintásra modál ablak => új km beírása után bevinni  akezdő és végső km-ert
+                            frissíteni a tanár autójának km óráját
+                        */
                     }
                 },
                 events: events,
