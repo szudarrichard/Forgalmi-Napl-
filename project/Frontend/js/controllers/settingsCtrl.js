@@ -3,11 +3,13 @@ app.controller('settingsCtrl', function ($scope, $rootScope, factory, factoryToo
     $scope.password = {};
     $scope.phoneNum = {};
     $scope.email = {};
-    $scope.teacherdata = {};
+    $scope.teacherdata =  [];
 
-    factory.select('student', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
-        console.log(res);
+    
+    factory.select('teacher', 'ID', angular.fromJson(sessionStorage.getItem('teacherID'))).then(function (res) {
+        $scope.teacherdata.push({res});
     });
+    console.log($scope.teacherdata);
 
     $scope.passMod = function () {
         factory.select($scope.userPerm[$rootScope.loggedPermission], 'email', $rootScope.loggedUserMail).then(function(res) {
