@@ -12,7 +12,8 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
 
     //Felvétel
     $scope.addPeople = function () {
-        $scope.people = { schoolID: angular.fromJson(sessionStorage.getItem('schoolID')), permission: '2', clockStatus: '1', status: '1' };
+        let password = "tanar";
+        $scope.people = { schoolID: angular.fromJson(sessionStorage.getItem('schoolID')), permission: '2', clockStatus: '1', status: '0', password: CryptoJS.SHA1(password).toString() };
         $scope.modaltitle = 'Új tanár felvétele';
         $scope.modalBtn = 'Felvesz';
         $scope.modalType = 'success';
