@@ -89,7 +89,6 @@ app.patch('/:table/:id', (req, res) => {
     }
 
     str = str.substring(0, str.length - 1);
-
     pool.query(`UPDATE ${table} SET ${str} WHERE ID=${id}`, (err, results) => {
         if (err) throw err;
         res.json(results);

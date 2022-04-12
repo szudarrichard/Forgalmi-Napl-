@@ -3,7 +3,6 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools) {
     $scope.db = [];
     $scope.teachers = [];
     $scope.students = [];
-    $scope.lessions = [];
     $scope.decide = 1;
 
     $scope.userTitle = 'Diák';
@@ -36,7 +35,7 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools) {
 
     //új diák felvétele
     $scope.addPeople = function () {
-        let password = "diak";
+        let password = 'diak';
         if (angular.fromJson(sessionStorage.getItem('permission')) == 2) {
             factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
                 $scope.people = { teacherID: res[0].ID, permission: '1', status: '0', password: CryptoJS.SHA1(password).toString() };
@@ -54,19 +53,21 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools) {
     $scope.diary = function (id) {
         $scope.modaltitle = 'Diák karton';
         $scope.mode = 4;
+        $scope.lessions = [];
         factory.select('student', 'ID', id).then(function (res) {
             $scope.selectedName = res[0].userName;
         });
 
         factory.select('clock', 'studentID', id).then(function (res) {
-            for (let i = 0; i < res.length; i++)
-            {
-                $scope.lessions.push({
-                    startKM:res[i].startKM,
-                    endKM: res[i].endKM, 
-
-                    start:moment(res[i].start).locale('hu').format('YYYY-MM-DD HH:mm')
-                })
+            for (let i = 0; i < res.length; i++) {
+                if (res[i].startKM != res[i].endKM) {
+                    $scope.lessions.push({
+                        lessonKM: res[i].endKM - res[i].startKM,
+                        startKM: res[i].startKM,
+                        endKM: res[i].endKM,
+                        start: moment(res[i].start).locale('hu').format('YYYY-MM-DD HH:mm'),
+                    });
+                }
             }
         });
     };
@@ -81,7 +82,6 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools) {
         factory.select('student', 'ID', id).then(function (res) {
             $scope.people = res[0];
         });
-        
     };
 
     //kiválasztott diák törlése
@@ -128,29 +128,25 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools) {
         if ($scope.mode == 2) {
             if ($scope.people.userName == null || $scope.people.password == null || $scope.people.email == null || $scope.people.phoneNum == null) {
                 factoryTools.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
-            } 
-            else {
-                factory.select('student', 'ID', $scope.ID).then(function (res){
+            } else {
+                factory.select('student', 'ID', $scope.ID).then(function (res) {
                     let editdata = [];
                     editdata.push(res[0]);
-                    if($scope.people.email != editdata[0].email)
-                    {
+                    if ($scope.people.email != editdata[0].email) {
                         factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
                             let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                             $scope.peoples[index] = $scope.people;
                             $scope.people = {};
                         });
                     }
-                    if($scope.people.phoneNum != editdata[0].phoneNum)
-                    {
+                    if ($scope.people.phoneNum != editdata[0].phoneNum) {
                         factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
                             let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                             $scope.peoples[index] = $scope.people;
                             $scope.people = {};
                         });
                     }
-                    if($scope.people.userName != editdata[0].userName)
-                    {
+                    if ($scope.people.userName != editdata[0].userName) {
                         factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
                             let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                             $scope.peoples[index] = $scope.people;

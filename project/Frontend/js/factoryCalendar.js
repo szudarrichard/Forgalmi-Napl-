@@ -90,16 +90,28 @@ app.factory('factoryCalendar', function (factory, factoryTools) {
                     } else {
                         //tanar
                         $('#staticBackdrop').modal('show');
-
-                        factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
-                            factory.select('car', 'teacherID', res[0].ID).then(function (res) {
-                                $('#startKM').val(res[0].sumKM);
-                                $('#endKM').val(res[0].sumKM);
-                            });
+                        factory.select('clock', 'ID', arg.event.id).then(function (res) {
+                            if (res[0].startKM != res[0].endKM) {
+                                $('#startKM').val(res[0].startKM);
+                                $('#endKM').val(res[0].endKM);
+                                factoryTools.alert('Ez az óra már fel lett véve!', 'danger', 'bxs-error');
+                            } else {
+                                factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
+                                    factory.select('car', 'teacherID', res[0].ID).then(function (res) {
+                                        $('#startKM').val(res[0].sumKM);
+                                        $('#endKM').val(res[0].sumKM);
+                                    });
+                                });
+                            }
                         });
 
-                        factory.select(tablename, 'ID', arg.event.id).then(function (res) {
+                        factory.select('clock', 'ID', arg.event.id).then(function (res) {
                             $('#eventID').val(res[0].ID);
+                            if (res[0].pay == 1) {
+                                $('#pay').prop('checked', true);
+                            } else {
+                                $('#pay').prop('checked', false);
+                            }
                         });
                     }
                 },
