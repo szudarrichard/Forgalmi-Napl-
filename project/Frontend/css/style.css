@@ -3,7 +3,7 @@
     --nav-color: #1c658c;
     --text-color: white;
     --text-secondarycolor: black;
-    --calendar-color: #00B4D8;
+    --calendar-color: #00b4d8;
     --calender-button: #1a252f;
 }
 
@@ -24,6 +24,10 @@ body {
 table.table.table-bordered {
     color: var(--text-secondarycolor);
     text-align: center;
+}
+
+table > thead > tr > th {
+    vertical-align: middle;
 }
 
 table > tbody > tr > td {
@@ -87,8 +91,7 @@ table > tbody > tr > td {
     border-color: #8d2d36;
 }
 
-.btn-light
-{
+.btn-light {
     background-color: var(--text-color);
     color: var(--text-secondarycolor);
 }
@@ -265,8 +268,7 @@ h5 {
     color: var(--text-secondarycolor);
 }
 
-.logged-user
-{
+.logged-user {
     float: right;
     color: var(--text-color);
     margin-right: 70px;
@@ -319,7 +321,6 @@ h5 {
 .fc .fc-button-primary {
     background-color: var(--nav-color);
     color: var(--text-color);
-    
 }
 
 .fc .fc-button-primary:hover {
@@ -338,8 +339,7 @@ h5 {
     background-color: red;
 }
 
-.dropdown-toggle::after 
-{
+.dropdown-toggle::after {
     content: none;
 }
 
