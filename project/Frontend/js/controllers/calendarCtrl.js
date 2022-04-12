@@ -18,16 +18,20 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory, factoryCal
                         $scope.reservations = res;
                         $scope.reservations.forEach((reservation) => {
                             let color = '#0A5355';
+
                             if (reservation.startKM != reservation.endKM) {
-                                color = '#45BA07'; //befejezett óra
+                                color = '#45BA07';
                             }
+
                             factory.select('student', 'ID', reservation.studentID).then(function (res) {
+                                let title = res[0].userName;
+
                                 events.push({
-                                    title: res[0].userName,
+                                    title: title,
                                     start: reservation.start,
                                     end: reservation.end,
                                     id: reservation.ID,
-                                    color: color, //Tanár naptár színek (#0A5355 - alap, #45BA07 - az óra be lett fejezve)
+                                    color: color, //Tanár naptár színek, #45BA07 - az óra be lett fejezve( fizetett ))
                                 });
                                 factoryCalendar.toCalendar(events, 'calendar', 'timeGridDay', true, true, 'clock');
                             });
@@ -74,8 +78,10 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory, factoryCal
             ID: document.getElementById('eventID').value,
             startKM: document.getElementById('startKM').value,
             endKm: document.getElementById('endKM').value,
+            pay: $('#pay').prop('checked') == true ? '1' : '0',
         };
 
+        console.log($scope.lession);
         $scope.car = {
             sumKM: document.getElementById('endKM').value,
         };
@@ -87,7 +93,7 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory, factoryCal
         factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
             factory.select('car', 'teacherID', res[0].ID).then(function (res) {
                 factory.update('car', res[0].ID, $scope.car).then(function (res) {
-                    location.reload();
+                    //location.reload();
                 });
             });
         });

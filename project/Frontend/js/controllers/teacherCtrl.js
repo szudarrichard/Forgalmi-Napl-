@@ -83,6 +83,7 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
                 factory.select('teacher', 'ID', $scope.ID).then(function (res) {
                     let editdata = [];
                     editdata.push(res[0]);
+
                     if ($scope.people.email != editdata[0].email) {
                         factory.update('teacher', $scope.people.ID, $scope.people).then(function (res) {
                             let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
