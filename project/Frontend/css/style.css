@@ -265,6 +265,10 @@ h3 {
     margin-top: 10px;
 }
 
+.h3.mb-4.page-title.settings {
+    margin-top: 10px;
+}
+
 h5 {
     color: var(--text-color);
 }
@@ -380,6 +384,14 @@ h5 {
 
 .dropdown-toggle::after {
     content: none;
+}
+
+.teacher-data a {
+    text-decoration: none;
+}
+
+.table-hover>tbody>tr:hover>* {
+    color: var(--text-color);
 }
 
 @media (max-width: 770px) {
