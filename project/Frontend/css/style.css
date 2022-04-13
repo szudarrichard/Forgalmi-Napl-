@@ -3,7 +3,8 @@
     --nav-color: #1c658c;
     --text-color: white;
     --text-secondarycolor: black;
-    --calendar-color: #00b4d8;
+    --calendar-color: #00B4D8;
+    --calender-hovercolor: #029ebd;
     --calender-button: #1a252f;
 }
 
@@ -265,7 +266,7 @@ h3 {
 }
 
 h5 {
-    color: var(--text-secondarycolor);
+    color: var(--text-color);
 }
 
 .logged-user {
@@ -310,12 +311,17 @@ h5 {
     background-color: var(--calendar-color);
 }
 
-.fc-col-header-cell {
-    background-color: var(--calendar-color);
-}
-
 .calendar a {
     color: var(--text-color);
+}
+
+.calendar h2 {
+    color: var(--text-color);
+    font-weight: normal;
+}
+
+.fc-col-header-cell {
+    background-color: var(--calendar-color);
 }
 
 .fc .fc-button-primary {
@@ -337,6 +343,39 @@ h5 {
 
 .fc-list-day-cushion .fc-cell-shaded {
     background-color: red;
+}
+
+.fc-daygrid-dot-event .fc-event-title {
+    font-weight: normal;
+}
+
+.fc .fc-col-header-cell-cushion {
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.fc .fc-timegrid-axis-cushion {
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.fc-theme-standard .fc-list-day-cushion
+{
+    background-color: var(--nav-color);
+}
+
+.fc-direction-ltr .fc-list-day-side-text, .fc-direction-rtl .fc-list-day-text {
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.fc-direction-ltr .fc-list-day-text, .fc-direction-rtl .fc-list-day-side-text {
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.fc .fc-list-event:hover td {
+    background-color: var(--calender-hovercolor);
 }
 
 .dropdown-toggle::after {
