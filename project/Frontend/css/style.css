@@ -270,7 +270,7 @@ h3 {
 }
 
 h5 {
-    color: var(--text-color);
+    color: var(--text-secondarycolor);
 }
 
 .logged-user {
@@ -389,6 +389,8 @@ h5 {
 tr[payed='0'] {
     background-color: rgba(255, 0, 0, 0.3);
     color: black;
+}
+
 .teacher-data a {
     text-decoration: none;
 }
@@ -397,7 +399,7 @@ tr[payed='0'] {
     color: var(--text-color);
 }
 
-@media (max-width: 770px) {
+@media (max-width: 768px) {
     .alertplaceholder {
         top: 10px;
         margin-right: 0px;
@@ -411,4 +413,13 @@ tr[payed='0'] {
     .alertplaceholder .alert {
         width: 100% !important;
     }
+    .btn-group-sm>.btn, .btn-sm{
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
 }
