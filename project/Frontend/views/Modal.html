@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!--Felvétel / szerkesztés / törlés események modal ablaka-->
-            <div class="modal-body">
+            <div class="modal-body" ng-if="decide<2">
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="userName" placeholder="{{userTitle}} neve:" ng-model="people.userName" ng-disabled="mode==3" />
                     <label for="userName">{{userTitle}} neve:</label>
@@ -20,13 +20,37 @@
                     <input type="text" class="form-control" id="email" placeholder="Email cím:" ng-model="people.email" ng-disabled="mode==3" />
                     <label for="email">Email cím:</label>
                 </div>
-                <div ng-if="loggedPermission == 3 && decide == 1">
-                    <select id="teacherlist" ng-model="people.teacherID" class="form-select">
-                        <option value="" selected disabled>Tanárok listája</option>
-                        <option ng-repeat="teacher in teachers" value="{{teacher.ID}}">{{teacher.userName}}</option>
+                <div class="form-floating" ng-if="loggedPermission == 3 && decide == 1">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example" id="teacherlist" ng-model="people.teacherID">
+                        <option ng-repeat="teacher in teachers" ng-value="teacher.ID">{{teacher.userName}}</option>
                     </select>
+                    <label for="floatingSelect">Tanárok listája</label>
                 </div>
             </div>
+
+            <!--vezetett óra KM-->
+            <div class="modal-body" ng-if="decide == 2">
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Óra azonosító</label>
+                    <input type="number" class="form-control" id="eventID" />
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Kezdő KM <br /><em>* ezt a mezőt csak akkor módosítása, ha a jármű órán kívül is ment</em> </label>
+                    <input type="number" class="form-control" id="startKM" />
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">Végső KM</label>
+                    <input type="number" class="form-control" id="endKM" />
+                </div>
+                <div class="pretty p-icon p-round" style="color: black">
+                    <input type="checkbox" class="paybox" id="pay" />
+                    <div class="state">
+                        <i class="icon mdi mdi-check" style="color: black"></i>
+                        <label>Fizetve?</label>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
                 <button type="button" class="btn btn-{{modalType}}" ng-click="submit()" data-bs-dismiss="modal">{{modalBtn}}</button>
@@ -35,17 +59,16 @@
     </div>
 </div>
 
-
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+        <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">{{modaltitle}} - {{selectedName}}</h5>
             </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Göngyölt óraszám</th>
+                        <th>Göngyölt <br />óraszám</th>
                         <th>Óra</th>
                         <th>Dátum</th>
                         <th>Kezdő KM</th>
@@ -55,8 +78,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="lession in lessions">
-                        <td>{{0}}</td>
+                    <tr ng-repeat="lession in lessions | orderBy: 'start'">
+                        <td>{{lession.lessonKM}} km</td>
                         <td>{{$index + 1}}</td>
                         <td>{{lession.start}}</td>
                         <td>{{lession.startKM}}</td>
@@ -69,7 +92,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
             </div>
-      </div>
+        </div>
     </div>
-
 </div>

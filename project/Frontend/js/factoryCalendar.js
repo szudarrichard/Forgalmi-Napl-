@@ -45,7 +45,6 @@ app.factory('factoryCalendar', function (factory, factoryTools) {
                                     } else {
                                         if (data.start.substring(0, 10) != res[i].start.substring(0, 10)) {
                                         } else {
-                                            console.log(data.start.length);
                                             data.start = '';
                                             factoryTools.alert('Már van foglat órád ezen a napon', 'danger', 'bxs-error');
                                         }
@@ -54,17 +53,20 @@ app.factory('factoryCalendar', function (factory, factoryTools) {
 
                                 if (data.start.length != 0) {
                                     factoryTools.alert('Óra sikeresen rögzítve!', 'success', 'bx-check-circle');
-                                    factory.insert(tablename, data).then(function (res) {
-                                        calendar.addEvent({
-                                            start: arg.start,
-                                            end: arg.end,
-                                            id: res.insertId,
-                                            allDay: arg.allDay,
+                                    factory.select('car', 'teacherID', angular.fromJson(sessionStorage.getItem('teacherID'))).then(function (res) {
+                                        data['startKM'] = res[0].sumKM;
+                                        data['endKM'] = res[0].sumKM;
+                                        factory.insert(tablename, data).then(function (res) {
+                                            calendar.addEvent({
+                                                start: arg.start,
+                                                end: arg.end,
+                                                id: res.insertId,
+                                                allDay: arg.allDay,
+                                            });
                                         });
                                     });
                                 }
                             });
-
                             calendar.unselect();
                         });
                     }
@@ -87,13 +89,30 @@ app.factory('factoryCalendar', function (factory, factoryTools) {
                         });
                     } else {
                         //tanar
-                        factoryTools.modal(arg.event.id);
-                        /*
-                            modal include
-                            controller-ben kigyüjteni a km órát
-                            kattintásra modál ablak => új km beírása után bevinni  akezdő és végső km-ert
-                            frissíteni a tanár autójának km óráját
-                        */
+                        $('#staticBackdrop').modal('show');
+                        factory.select('clock', 'ID', arg.event.id).then(function (res) {
+                            if (res[0].startKM != res[0].endKM) {
+                                $('#startKM').val(res[0].startKM);
+                                $('#endKM').val(res[0].endKM);
+                                factoryTools.alert('Ez az óra már fel lett véve!', 'danger', 'bxs-error');
+                            } else {
+                                factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
+                                    factory.select('car', 'teacherID', res[0].ID).then(function (res) {
+                                        $('#startKM').val(res[0].sumKM);
+                                        $('#endKM').val(res[0].sumKM);
+                                    });
+                                });
+                            }
+                        });
+
+                        factory.select('clock', 'ID', arg.event.id).then(function (res) {
+                            $('#eventID').val(res[0].ID);
+                            if (res[0].pay == 1) {
+                                $('#pay').prop('checked', true);
+                            } else {
+                                $('#pay').prop('checked', false);
+                            }
+                        });
                     }
                 },
                 events: events,

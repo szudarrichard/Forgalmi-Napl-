@@ -1,1 +1,5 @@
-<div class="calendar" id="calendar"></div>
+<div ng-controller="calendarCtrl">
+    <div ng-include="'Modal.html'"></div>
+    <button type="button" class="btn btn-primary" style="display: none" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></button>
+    <div class="calendar" id="calendar"></div>
+</div>

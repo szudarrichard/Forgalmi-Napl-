@@ -27,6 +27,10 @@ table.table.table-bordered {
     text-align: center;
 }
 
+table > thead > tr > th {
+    vertical-align: middle;
+}
+
 table > tbody > tr > td {
     vertical-align: middle;
 }
@@ -88,8 +92,7 @@ table > tbody > tr > td {
     border-color: #8d2d36;
 }
 
-.btn-light
-{
+.btn-light {
     background-color: var(--text-color);
     color: var(--text-secondarycolor);
 }
@@ -140,7 +143,7 @@ a.nav-link:hover {
     height: 100px;
 }
 
-.main{
+.main {
     min-height: calc(100vh - 188px);
     padding-bottom: 10px;
 }
@@ -166,6 +169,15 @@ footer {
 
 .form-floating {
     color: black;
+}
+
+.form-label {
+    color: black;
+}
+
+em {
+    font-size: 10px;
+    color: red;
 }
 
 .loginlogo {
@@ -253,17 +265,11 @@ h3 {
     margin-top: 10px;
 }
 
-
 h5 {
     color: var(--text-color);
 }
 
-h2 {
-    color: var(--text-color);
-}
-
-.logged-user
-{
+.logged-user {
     float: right;
     color: var(--text-color);
     margin-right: 70px;
@@ -286,7 +292,6 @@ h2 {
     vertical-align: middle;
     color: var(--text-color);
     margin-right: 5px;
-    
 }
 
 .teacher-data a {
@@ -322,7 +327,6 @@ h2 {
 .fc .fc-button-primary {
     background-color: var(--nav-color);
     color: var(--text-color);
-    
 }
 
 .fc .fc-button-primary:hover {
@@ -374,8 +378,7 @@ h2 {
     background-color: var(--calender-hovercolor);
 }
 
-.dropdown-toggle::after 
-{
+.dropdown-toggle::after {
     content: none;
 }
 
