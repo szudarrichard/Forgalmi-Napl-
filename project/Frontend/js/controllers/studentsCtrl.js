@@ -1,4 +1,4 @@
-app.controller('studentsCtrl', function ($scope, factory, factoryTools) {
+app.controller('studentsCtrl', function ($scope, factory, factoryTools, $window) {
     $scope.peoples = [];
     $scope.db = [];
     $scope.teachers = [];
@@ -65,12 +65,48 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools) {
                         lessonKM: res[i].endKM - res[i].startKM,
                         startKM: res[i].startKM,
                         endKM: res[i].endKM,
+                        payed: res[i].pay,
                         start: moment(res[i].start).locale('hu').format('YYYY-MM-DD HH:mm'),
                     });
                 }
             }
         });
     };
+
+    //TODO nyomtatás
+    $scope.print = function () {
+        var printContents = document.getElementById('print').innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        $window.print();
+
+        document.body.innerHTML = originalContents;
+        location.reload();
+    };
+
+    //TODO kiválasztott diák fizetett
+    /*
+    $scope.payed = function (id) {
+        $scope.modaltitle = 'Diák karton';
+        $scope.mode = 5;
+        $scope.payed = [];
+        factory.select('student', 'ID', id).then(function (res) {
+            $scope.selectedName = res[0].userName;
+        });
+
+        factory.select('clock', 'studentID', id).then(function (res) {
+            for (let i = 0; i < res.length; i++) {
+                if (res[i].pay != 1) {
+                    $scope.payed.push({
+                        payed: res[i].pay,
+                        start: moment(res[i].start).locale('hu').format('YYYY-MM-DD HH:mm'),
+                    });
+                }
+            }
+        });
+    };*/
 
     //kiválasztott diák módosítása
     $scope.modPeople = function (id) {

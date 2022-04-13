@@ -65,32 +65,36 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">{{modaltitle}} - {{selectedName}}</h5>
             </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Göngyölt <br />óraszám</th>
-                        <th>Óra</th>
-                        <th>Dátum</th>
-                        <th>Kezdő KM</th>
-                        <th>Végső KM</th>
-                        <th>Tanuló</th>
-                        <th>Oktató</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="lession in lessions | orderBy: 'start'">
-                        <td>{{lession.lessonKM}} km</td>
-                        <td>{{$index + 1}}</td>
-                        <td>{{lession.start}}</td>
-                        <td>{{lession.startKM}}</td>
-                        <td>{{lession.endKM}}</td>
-                        <td>......</td>
-                        <td>......</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div id="print">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Göngyölt <br />óraszám</th>
+                            <th>Óra</th>
+                            <th>Dátum</th>
+                            <th>Kezdő KM</th>
+                            <th>Végső KM</th>
+                            <th>Tanuló</th>
+                            <th>Oktató</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="lession in lessions | orderBy: 'start'" payed="{{lession.payed}}">
+                            <td>{{lession.lessonKM}} km</td>
+                            <td>{{$index + 1}}</td>
+                            <td>{{lession.start}}</td>
+                            <td>{{lession.startKM}}</td>
+                            <td>{{lession.endKM}}</td>
+                            <td>......</td>
+                            <td>......</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mégsem</button>
+                <button type="button" class="btn btn-success" ng-click="print()">Nyomtatas</button>
             </div>
         </div>
     </div>

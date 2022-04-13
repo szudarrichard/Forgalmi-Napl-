@@ -117,7 +117,6 @@ app.factory('factoryCalendar', function (factory, factoryTools) {
                 },
                 events: events,
             });
-
             calendar.render();
         },
     };
