@@ -93,7 +93,7 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory, factoryCal
         factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
             factory.select('car', 'teacherID', res[0].ID).then(function (res) {
                 factory.update('car', res[0].ID, $scope.car).then(function (res) {
-                    //location.reload();
+                    location.reload();
                 });
             });
         });

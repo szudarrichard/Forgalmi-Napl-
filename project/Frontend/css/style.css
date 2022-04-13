@@ -343,6 +343,11 @@ h5 {
     content: none;
 }
 
+tr[payed='0'] {
+    background-color: rgba(255, 0, 0, 0.3);
+    color: black;
+}
+
 @media (max-width: 770px) {
     .alertplaceholder {
         top: 10px;
