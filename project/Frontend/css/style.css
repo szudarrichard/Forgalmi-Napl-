@@ -414,12 +414,30 @@ tr[payed='0'] {
         width: 100% !important;
     }
     .btn-group-sm>.btn, .btn-sm{
-        margin-left: 20px;
+        margin-bottom: 5px;
+    }
+    td.text-end{
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        margin-bottom: 5px;
+        align-items: flex-end;
     }
 
 }
+@media (max-width: 576px) {
+    th:nth-child(3)
+    {
+        display: none;
+    }
+    td:nth-child(3)
+    {
+        display: none;
+    }
+    .navbar{
+        width: 100%;
+    }
+    footer{
+        width: 100%;
+    }
+}
+
