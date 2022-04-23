@@ -53,6 +53,7 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
         if ($scope.mode == 1) {
             if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null) {
                 factoryTools.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
+                console.log('asd');
             } else {
                 factory.select('teacher', 'email', $scope.people.email).then(function (res) {
                     if (res.length != 0) {
@@ -77,14 +78,16 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
 
         // update
         if ($scope.mode == 2) {
-            if ($scope.people.userName == null || $scope.people.password == null || $scope.people.email == null || $scope.people.phoneNum == null) {
-                factoryTools.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
-            } else {
-                factory.select('teacher', 'ID', $scope.ID).then(function (res) {
-                    let editdata = [];
-                    editdata.push(res[0]);
+            factory.select('teacher', 'ID', $scope.people.ID).then(function (res) {
+                let editdata = [];
+                editdata.push(res[0]);
 
-                    if ($scope.people.email != editdata[0].email) {
+                //TODO üres mezők figyelése
+
+                if ($scope.people.userName == '' || $scope.people.phoneNum == '' || $scope.people.email == '') {
+                    factoryTools.alert('Hiányzó adat!', 'danger', 'bxs-error');
+                } else {
+                    if ($scope.people.userName != editdata[0].userName) {
                         factory.update('teacher', $scope.people.ID, $scope.people).then(function (res) {
                             let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                             $scope.peoples[index] = $scope.people;
@@ -98,17 +101,20 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
                             $scope.people = {};
                         });
                     }
-                    if ($scope.people.userName != editdata[0].userName) {
+                    if ($scope.people.email != editdata[0].email) {
                         factory.update('teacher', $scope.people.ID, $scope.people).then(function (res) {
                             let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
                             $scope.peoples[index] = $scope.people;
                             $scope.people = {};
                         });
                     }
-                    editdata = [];
                     factoryTools.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
-                });
-            }
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
+                }
+                editdata = [];
+            });
         }
 
         // delete

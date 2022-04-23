@@ -86,28 +86,6 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools, $window)
         location.reload();
     };
 
-    //TODO kiválasztott diák fizetett
-    /*
-    $scope.payed = function (id) {
-        $scope.modaltitle = 'Diák karton';
-        $scope.mode = 5;
-        $scope.payed = [];
-        factory.select('student', 'ID', id).then(function (res) {
-            $scope.selectedName = res[0].userName;
-        });
-
-        factory.select('clock', 'studentID', id).then(function (res) {
-            for (let i = 0; i < res.length; i++) {
-                if (res[i].pay != 1) {
-                    $scope.payed.push({
-                        payed: res[i].pay,
-                        start: moment(res[i].start).locale('hu').format('YYYY-MM-DD HH:mm'),
-                    });
-                }
-            }
-        });
-    };*/
-
     //kiválasztott diák módosítása
     $scope.modPeople = function (id) {
         $scope.modaltitle = 'Diák adatainak módosítása';
@@ -165,32 +143,40 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools, $window)
             if ($scope.people.userName == null || $scope.people.password == null || $scope.people.email == null || $scope.people.phoneNum == null) {
                 factoryTools.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
             } else {
-                factory.select('student', 'ID', $scope.ID).then(function (res) {
+                factory.select('student', 'ID', $scope.people.ID).then(function (res) {
                     let editdata = [];
                     editdata.push(res[0]);
-                    if ($scope.people.email != editdata[0].email) {
-                        factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
-                            let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
-                            $scope.peoples[index] = $scope.people;
-                            $scope.people = {};
-                        });
-                    }
-                    if ($scope.people.phoneNum != editdata[0].phoneNum) {
-                        factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
-                            let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
-                            $scope.peoples[index] = $scope.people;
-                            $scope.people = {};
-                        });
-                    }
-                    if ($scope.people.userName != editdata[0].userName) {
-                        factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
-                            let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
-                            $scope.peoples[index] = $scope.people;
-                            $scope.people = {};
-                        });
+
+                    if ($scope.people.userName == '' || $scope.people.phoneNum == '' || $scope.people.email == '') {
+                        factoryTools.alert('Hiányzó adat!', 'danger', 'bxs-error');
+                    } else {
+                        if ($scope.people.email != editdata[0].email) {
+                            factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
+                                let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
+                                $scope.peoples[index] = $scope.people;
+                                $scope.people = {};
+                            });
+                        }
+                        if ($scope.people.phoneNum != editdata[0].phoneNum) {
+                            factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
+                                let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
+                                $scope.peoples[index] = $scope.people;
+                                $scope.people = {};
+                            });
+                        }
+                        if ($scope.people.userName != editdata[0].userName) {
+                            factory.update('student', $scope.people.ID, $scope.people).then(function (res) {
+                                let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
+                                $scope.peoples[index] = $scope.people;
+                                $scope.people = {};
+                            });
+                        }
+                        factoryTools.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
                     }
                     editdata = [];
-                    factoryTools.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
                 });
             }
         }
