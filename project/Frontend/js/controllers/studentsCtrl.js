@@ -188,6 +188,9 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools, $window)
                 $scope.peoples.splice(index, 1);
                 $scope.people = {};
                 factoryTools.alert('Az adat eltávolítva!', 'success', 'bx-check-circle');
+                setTimeout(function () {
+                    location.reload();
+                }, 1000);
             });
         }
     };
