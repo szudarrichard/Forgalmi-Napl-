@@ -73,29 +73,39 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory, factoryCal
         });
     }
 
+    //Órák beírása
     $scope.submit = function () {
         $scope.lession = {
             ID: document.getElementById('eventID').value,
             startKM: document.getElementById('startKM').value,
-            endKm: document.getElementById('endKM').value,
+            endKM: document.getElementById('endKM').value,
             pay: $('#pay').prop('checked') == true ? '1' : '0',
         };
 
-        console.log($scope.lession);
-        $scope.car = {
-            sumKM: document.getElementById('endKM').value,
-        };
+        if ($scope.lession.endKM == '' || $scope.lession.startKM == '') {
+            factoryTools.alert('Nem adott meg minden adatot!', 'danger', 'bxs-error');
+        } else {
+            if ($scope.lession.endKM < $scope.lession.startKM) {
+                factoryTools.alert('A végső KM kissebb mind a kezdő!', 'danger', 'bxs-error');
+            } else {
+                $scope.car = {
+                    sumKM: document.getElementById('endKM').value,
+                };
 
-        factory.update('clock', $scope.lession.ID, $scope.lession).then(function (res) {
-            factoryTools.alert('Óra adatainak mentése!', 'success', 'bx-check-circle');
-        });
-
-        factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
-            factory.select('car', 'teacherID', res[0].ID).then(function (res) {
-                factory.update('car', res[0].ID, $scope.car).then(function (res) {
-                    location.reload();
+                factory.update('clock', $scope.lession.ID, $scope.lession).then(function (res) {
+                    factoryTools.alert('Óra adatainak mentése!', 'success', 'bx-check-circle');
                 });
-            });
-        });
+
+                factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
+                    factory.select('car', 'teacherID', res[0].ID).then(function (res) {
+                        factory.update('car', res[0].ID, $scope.car).then(function (res) {
+                            setTimeout(function () {
+                                location.reload();
+                            }, 1000);
+                        });
+                    });
+                });
+            }
+        }
     };
 });
