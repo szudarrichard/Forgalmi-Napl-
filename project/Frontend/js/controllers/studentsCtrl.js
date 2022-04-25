@@ -130,6 +130,9 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools, $window)
                                     $scope.peoples.push($scope.people);
                                     $scope.people = {};
                                     factoryTools.alert('Diák felvétele sikeres!', 'success', 'bx-check-circle');
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
                                 });
                             }
                         });
