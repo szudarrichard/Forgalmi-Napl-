@@ -66,8 +66,6 @@ app.post('/:table', (req, res) => {
         str += ',"' + element + '"';
     });
 
-    console.log(fields);
-
     pool.query(`INSERT INTO ${table} (${fields}) VALUES(null ${str})`, (err, results) => {
         if (err) throw err;
         res.json(results);

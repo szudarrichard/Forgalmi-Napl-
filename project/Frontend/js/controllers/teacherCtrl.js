@@ -68,6 +68,9 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
                                     $scope.peoples.push($scope.people);
                                     $scope.people = {};
                                     factoryTools.alert('Tanár felvétele sikeres!', 'success', 'bx-check-circle');
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
                                 });
                             }
                         });

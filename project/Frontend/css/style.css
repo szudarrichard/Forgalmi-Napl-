@@ -3,7 +3,7 @@
     --nav-color: #1c658c;
     --text-color: white;
     --text-secondarycolor: black;
-    --calendar-color: #00B4D8;
+    --calendar-color: #00b4d8;
     --calender-hovercolor: #029ebd;
     --calender-button: #1a252f;
 }
@@ -235,7 +235,7 @@ h5 {
 
 .alertplaceholder {
     z-index: 99999;
-    position: absolute;
+    position: fixed;
     margin-top: 30px;
     margin-right: 30px;
     right: 0;
@@ -363,17 +363,18 @@ h5 {
     text-decoration: none;
 }
 
-.fc-theme-standard .fc-list-day-cushion
-{
+.fc-theme-standard .fc-list-day-cushion {
     background-color: var(--nav-color);
 }
 
-.fc-direction-ltr .fc-list-day-side-text, .fc-direction-rtl .fc-list-day-text {
+.fc-direction-ltr .fc-list-day-side-text,
+.fc-direction-rtl .fc-list-day-text {
     font-weight: normal;
     text-decoration: none;
 }
 
-.fc-direction-ltr .fc-list-day-text, .fc-direction-rtl .fc-list-day-side-text {
+.fc-direction-ltr .fc-list-day-text,
+.fc-direction-rtl .fc-list-day-side-text {
     font-weight: normal;
     text-decoration: none;
 }
@@ -395,7 +396,7 @@ tr[payed='0'] {
     text-decoration: none;
 }
 
-.table-hover>tbody>tr:hover>* {
+.table-hover > tbody > tr:hover > * {
     color: var(--text-color);
 }
 
@@ -413,31 +414,28 @@ tr[payed='0'] {
     .alertplaceholder .alert {
         width: 100% !important;
     }
-    .btn-group-sm>.btn, .btn-sm{
+    .btn-group-sm > .btn,
+    .btn-sm {
         margin-bottom: 5px;
     }
-    td.text-end{
+    td.text-end {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: flex-end;
     }
-
 }
 @media (max-width: 576px) {
-    th:nth-child(3)
-    {
+    th:nth-child(3) {
         display: none;
     }
-    td:nth-child(3)
-    {
+    td:nth-child(3) {
         display: none;
     }
-    .navbar{
+    .navbar {
         width: 100%;
     }
-    footer{
+    footer {
         width: 100%;
     }
 }
-
