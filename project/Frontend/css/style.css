@@ -175,9 +175,13 @@ footer {
     color: black;
 }
 
-em {
+.lessonKM {
     font-size: 10px;
     color: red;
+}
+
+.plateNum {
+    font-weight: bold;
 }
 
 .loginlogo {
