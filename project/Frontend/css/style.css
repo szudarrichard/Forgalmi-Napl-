@@ -270,7 +270,7 @@ h3 {
 }
 
 h5 {
-    color: var(--text-color);
+    color: var(--text-secondarycolor);
 }
 
 .logged-user {
