@@ -19,7 +19,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, factoryTools,
                     if ($rootScope.status == 0) {
                         $location.path('/firstlogin');
                     } else {
-                        $location.path('/');
+                        $location.path('/teacherlist');
                     }
                 } else {
                     factory.logincheck('teacher', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
@@ -37,7 +37,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, factoryTools,
                             if ($rootScope.status == 0) {
                                 $location.path('/firstlogin');
                             } else {
-                                $location.path('/');
+                                $location.path('/calendar');
                             }
                         } else {
                             factory.logincheck('student', $scope.uMail, CryptoJS.SHA1($scope.uPassword).toString()).then(function (res) {
@@ -56,7 +56,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, factory, factoryTools,
                                     if ($rootScope.status == 0) {
                                         $location.path('/firstlogin');
                                     } else {
-                                        $location.path('/');
+                                        $location.path('/calendar');
                                     }
                                 } else {
                                     factoryTools.alert('Hibás belépési adatok!', 'danger', 'bxs-error');

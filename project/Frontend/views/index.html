@@ -70,11 +70,6 @@
                                 <!--tanár diák látja (permission 1 || 2)-->
                                 <a class="nav-link" href="#!/calendar"><i class="bx bx-calendar"></i>Naptár</a>
                             </li>
-                            <!--
-                            <li class="nav-item" ng-if="loggedPermission==2 && status != 0">
-                                Csak tanár látja (permission 2)
-                                <a class="nav-link" href="#!/studentdata"><i class='bx bxs-contact'></i>Diákok elérhetőségei</a>
-                            </li>-->
                             <li class="nav-item" ng-if="loggedPermission>=2 && status != 0">
                                 <!--Csak admin látja (permission 3)-->
                                 <a class="nav-link" href="#!/studentlist"><i class="bx bx-user-pin"></i>Diákok kezelése</a>

@@ -2,12 +2,13 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
     $scope.peoples = [];
     $scope.db = [];
     $scope.teachers = [];
+    $scope.cars = [];
     $scope.decide = 0;
     $scope.userTitle = 'Tanár';
 
     //Tanárok listája a belépett administrátor iskolájában
     factory.select('teacher', 'schoolID', angular.fromJson(sessionStorage.getItem('schoolID'))).then(function (res) {
-        $scope.teachers = res;
+        $scope.peoples = res;
     });
 
     //Felvétel
@@ -20,6 +21,7 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
             status: '0',
             password: CryptoJS.SHA1(password).toString(),
         };
+        $scope.car = {};
         $scope.modaltitle = 'Új tanár felvétele';
         $scope.modalBtn = 'Felvesz';
         $scope.modalType = 'success';
@@ -34,6 +36,9 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
         $scope.mode = 2;
         factory.select('teacher', 'ID', id).then(function (res) {
             $scope.people = res[0];
+        });
+        factory.select('car', 'teacherID', id).then(function (res) {
+            $scope.car = res[0];
         });
     };
 
@@ -51,9 +56,8 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
     $scope.submit = function () {
         // insert
         if ($scope.mode == 1) {
-            if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null) {
+            if ($scope.people.userName == null || $scope.people.email == null || $scope.people.phoneNum == null || $scope.car.plateNum == null || $scope.car.sumKM == null) {
                 factoryTools.alert('Nem adtál meg minden adatot!', 'danger', 'bxs-error');
-                console.log('asd');
             } else {
                 factory.select('teacher', 'email', $scope.people.email).then(function (res) {
                     if (res.length != 0) {
@@ -66,11 +70,16 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
                                 factory.insert('teacher', $scope.people).then(function (res) {
                                     $scope.people.ID = res.insertId;
                                     $scope.peoples.push($scope.people);
-                                    $scope.people = {};
                                     factoryTools.alert('Tanár felvétele sikeres!', 'success', 'bx-check-circle');
-                                    setTimeout(function () {
-                                        location.reload();
-                                    }, 1000);
+
+                                    //Tanár autó felvétel
+                                    $scope.car.teacherID = $scope.people.ID;
+                                    factory.insert('car', $scope.car).then(function (res) {
+                                        console.log(res);
+                                    });
+
+                                    $scope.people = {};
+                                    $scope.car = {};
                                 });
                             }
                         });
@@ -84,8 +93,6 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
             factory.select('teacher', 'ID', $scope.people.ID).then(function (res) {
                 let editdata = [];
                 editdata.push(res[0]);
-
-                //TODO üres mezők figyelése
 
                 if ($scope.people.userName == '' || $scope.people.phoneNum == '' || $scope.people.email == '') {
                     factoryTools.alert('Hiányzó adat!', 'danger', 'bxs-error');
@@ -111,10 +118,29 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
                             $scope.people = {};
                         });
                     }
+                    editdata = [];
+
+                    factory.select('car', 'teacherID', $scope.people.ID).then(function (res) {
+                        editdata.push(res[0]);
+                        if ($scope.car.plateNum == '' || $scope.car.sumKM == '') {
+                            factoryTools.alert('Hiányzó adat!', 'danger', 'bxs-error');
+                        } else {
+                            if ($scope.car.plateNum != editdata[0].plateNum) {
+                                factory.update('car', editdata[0].ID, $scope.car).then(function (res) {
+                                    $scope.car = {};
+                                });
+                            }
+                            if ($scope.car.sumKM != editdata[0].sumKM) {
+                                factory.update('car', editdata[0].ID, $scope.car).then(function (res) {
+                                    $scope.car = {};
+                                });
+                            }
+                        }
+                    });
+
+                    //TODO auto adatok módosítása
+
                     factoryTools.alert('Az adatok módosítása sikeres!', 'success', 'bx-check-circle');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 1000);
                 }
                 editdata = [];
             });
@@ -122,14 +148,15 @@ app.controller('teacherCtrl', function ($scope, factory, factoryTools) {
 
         // delete
         if ($scope.mode == 3) {
-            factory.delete('teacher', $scope.people.ID).then(function (res) {
-                let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
-                $scope.peoples.splice(index, 1);
-                $scope.people = {};
-                factoryTools.alert('Az adat eltávolítva!', 'success', 'bx-check-circle');
-                setTimeout(function () {
-                    location.reload();
-                }, 1000);
+            factory.select('car', 'teacherID', $scope.people.ID).then(function (res) {
+                factory.delete('car', res[0].ID).then(function (res) {
+                    factory.delete('teacher', $scope.people.ID).then(function (res) {
+                        let index = $scope.peoples.findIndex((item) => item.ID === $scope.people.ID);
+                        $scope.peoples.splice(index, 1);
+                        $scope.people = {};
+                        factoryTools.alert('Az adat eltávolítva!', 'success', 'bx-check-circle');
+                    });
+                });
             });
         }
     };
