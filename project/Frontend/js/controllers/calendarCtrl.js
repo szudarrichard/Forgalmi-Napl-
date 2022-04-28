@@ -16,16 +16,22 @@ app.controller('calendarCtrl', function ($scope, $rootScope, factory, factoryCal
                 for (let i = 0; i < res.length; i++) {
                     factory.select('clock', 'studentID', res[i].ID).then(function (res) {
                         $scope.reservations = res;
+                        console.log($scope.reservations);
                         $scope.reservations.forEach((reservation) => {
+                            let payed = '';
                             let color = '#0A5355';
 
                             if (reservation.startKM != reservation.endKM) {
                                 color = '#45BA07';
+                                payed = 'Kész';
+                            }
+                            if (reservation.pay != 1) {
+                                color = '#FFC300';
+                                payed = 'Fizetésre vár';
                             }
 
                             factory.select('student', 'ID', reservation.studentID).then(function (res) {
-                                let title = res[0].userName;
-
+                                let title = res[0].userName + payed;
                                 events.push({
                                     title: title,
                                     start: reservation.start,
