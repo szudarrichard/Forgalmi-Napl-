@@ -1,0 +1,89 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2022. Ápr 28. 11:54
+-- Kiszolgáló verziója: 10.4.21-MariaDB
+-- PHP verzió: 8.0.11
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Adatbázis: `forgalminaplo`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `clock`
+--
+
+CREATE TABLE `clock` (
+  `ID` int(11) NOT NULL,
+  `studentID` int(11) NOT NULL,
+  `startKM` int(11) NOT NULL,
+  `endKM` int(11) NOT NULL,
+  `start` datetime NOT NULL,
+  `end` datetime NOT NULL,
+  `pay` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `clock`
+--
+
+INSERT INTO `clock` (`ID`, `studentID`, `startKM`, `endKM`, `start`, `end`, `pay`) VALUES
+(286, 34, 100047, 100050, '2022-04-15 09:00:00', '2022-04-15 10:00:00', 1),
+(353, 1, 100050, 100070, '2022-04-13 11:00:00', '2022-04-13 12:00:00', 0),
+(354, 1, 100070, 100080, '2022-04-14 11:00:00', '2022-04-14 12:00:00', 1),
+(355, 1, 100050, 100050, '2022-04-15 11:00:00', '2022-04-15 12:00:00', 0),
+(357, 1, 100080, 100080, '2022-04-18 10:00:00', '2022-04-18 11:00:00', 0),
+(358, 1, 100080, 100080, '2022-04-22 10:00:00', '2022-04-22 11:00:00', 0),
+(359, 1, 100080, 100080, '2022-04-25 08:00:00', '2022-04-25 09:00:00', 0),
+(360, 1, 100100, 100110, '2022-04-26 09:00:00', '2022-04-26 10:00:00', 0),
+(361, 1, 100080, 100080, '2022-04-27 10:00:00', '2022-04-27 11:00:00', 0),
+(362, 1, 100080, 100080, '2022-04-28 10:00:00', '2022-04-28 11:00:00', 0),
+(363, 1, 100080, 100080, '2022-04-29 10:00:00', '2022-04-29 11:00:00', 0),
+(364, 1, 100080, 100080, '2022-04-30 10:00:00', '2022-04-30 11:00:00', 0),
+(365, 1, 100080, 100080, '2022-05-01 10:00:00', '2022-05-01 11:00:00', 0),
+(366, 34, 100080, 100080, '2022-04-25 09:00:00', '2022-04-25 10:00:00', 0),
+(367, 34, 100083, 100100, '2022-04-26 08:00:00', '2022-04-26 09:00:00', 1),
+(368, 34, 100080, 100080, '2022-04-27 08:00:00', '2022-04-27 09:00:00', 0),
+(369, 34, 100110, 100120, '2022-04-28 08:00:00', '2022-04-28 09:00:00', 0),
+(370, 34, 100080, 100080, '2022-04-29 08:00:00', '2022-04-29 09:00:00', 0),
+(371, 34, 100080, 100080, '2022-04-30 08:00:00', '2022-04-30 09:00:00', 0),
+(372, 34, 100080, 100080, '2022-05-01 08:00:00', '2022-05-01 09:00:00', 0);
+
+--
+-- Indexek a kiírt táblákhoz
+--
+
+--
+-- A tábla indexei `clock`
+--
+ALTER TABLE `clock`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- A kiírt táblák AUTO_INCREMENT értéke
+--
+
+--
+-- AUTO_INCREMENT a táblához `clock`
+--
+ALTER TABLE `clock`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
