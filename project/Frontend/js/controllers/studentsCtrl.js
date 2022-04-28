@@ -16,7 +16,7 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools, $window)
                 factory.select('student', 'teacherID', res[i].ID).then(function (res) {
                     assistObj[i] = res;
                     for (let j = 0; j < assistObj[i].length; j++) {
-                        $scope.students.push(assistObj[i][j]);
+                        $scope.peoples.push(assistObj[i][j]);
                     }
                 });
             }
@@ -28,7 +28,7 @@ app.controller('studentsCtrl', function ($scope, factory, factoryTools, $window)
     if (angular.fromJson(sessionStorage.getItem('permission')) == 2) {
         factory.select('teacher', 'email', angular.fromJson(sessionStorage.getItem('email'))).then(function (res) {
             factory.select('student', 'teacherID', res[0].ID).then(function (res) {
-                $scope.students = res;
+                $scope.peoples = res;
             });
         });
     }
